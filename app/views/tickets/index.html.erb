@@ -1,7 +1,5 @@
 <h1> Listing tickets</h1>
 
-
-
 <table border='1' >
   <tr>
     <th width=10%>UUID</th>
@@ -20,10 +18,9 @@
       <td><%= ticket.problem %></td>
 
       <td width=4%><%= link_to 'Show', ticket_path(ticket) %></td>
-<% if false %>
-     <td width=4%><%= link_to 'Edit', edit_ticket_path(ticket) %></td>
-<% end %>
+
       <% if session[:login] == 'root' %>
+        <td width=4%><%= link_to 'Edit', edit_ticket_path(ticket) %></td>
         <td width=4%><%= link_to 'Destroy', ticket_path(ticket), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       <% end %>
     </tr>

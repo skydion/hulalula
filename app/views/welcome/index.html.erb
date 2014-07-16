@@ -23,8 +23,8 @@
     <% end %>
 <% end %>
 
-<!-- only for support staff -->
 <% if session[:user_id] %>
+<!-- only for support staff -->
 <%= link_to 'Tickets', controller: 'tickets' %>
 | <%= link_to 'Supports', controller: 'supports' %>
 | <%= link_to 'Roles', controller: 'roles' %>
@@ -42,8 +42,8 @@
 
 <%= link_to 'New ticket', action: 'new', controller: 'tickets' %>
 
-<!-- only for support staff -->
 <% if session[:user_id] %>
+<!-- only for support staff -->
 | <%= link_to 'New support', action: 'new', controller: 'supports' %>
 | <%= link_to 'New role', action: 'new', controller: 'roles' %>
 <% end %>

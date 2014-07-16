@@ -1,0 +1,78 @@
+<% @support = Support.find_by(id: @ticket.owner_id) %>
+
+<% if !@support.nil? %>
+    <p>
+      <strong>Owner:</strong> <font color='green'><%= @support.login %></font>
+    </p>
+<% else %>
+    <p>
+      <strong>Owner:</strong> <font color='red'>Customer</font>
+    </p>
+<% end %>
+
+<p>
+  <strong>Date: </strong>
+  <%= @ticket.created_at %>
+</p>
+
+<p>
+  <strong>Generated unique UUID:</strong>
+  <%= @ticket.uuid %>
+</p>
+
+<p>
+  <strong>Username:</strong>
+  <%= @ticket.username %>
+</p>
+
+<p>
+  <strong>E-mail:</strong>
+  <%= @ticket.email %>
+</p>
+
+<p>
+  <strong>Subject:</strong>
+  <%= @ticket.subject %>
+</p>
+
+<p>
+  <strong>Problem:</strong>
+  <%= @ticket.problem %>
+</p>
+
+<h2>Comments</h2>
+<% @ticket.comments.each do |comment| %>
+    <%
+       # puts '=== comment.owner_id: ' + comment.owner_id.to_s
+       if comment.owner_id == session[:user_id]
+         color = 'green'
+       else
+         color = 'red'
+       end
+    %>
+
+    <p>
+      <font color="<%= color %>"
+      <strong>Comment [<%= comment.id %>] created at <%= comment.created_at %>:</strong><br>
+      <%= comment.body %>
+      </font>
+    </p>
+
+    <% if comment.owner_id == session[:user_id] %>
+        <p>
+          <%= link_to 'Destroy Comment', [comment.ticket, comment], method: :delete, data: { confirm: 'Are you sure?' } %>
+        </p>
+    <% end %>
+<% end %>
+
+<h2>Add a comment:</h2>
+<%= form_for ([@ticket, @ticket.comments.build]) do |f| %>
+    <%= f.hidden_field :owner_id, value: session[:user_id] %>
+    <p>
+      <%= f.label :body %><br>
+      <%= f.text_area :body, cols: 60, rows: 10 %>
+    </p>
+    <p>
+      <%= f.submit %>
+    </p>
+<% end %>

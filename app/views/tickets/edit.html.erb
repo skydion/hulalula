@@ -3,8 +3,8 @@
 <%= form_for :ticket, url: ticket_path(@ticket), method: :patch do |f| %>
 
   <% if @ticket.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@ticket.errors.count, "error") %> prohibited this ticket from being saved:</h2>
+    <div id='error_explanation'>
+      <h2><%= pluralize(@ticket.errors.count, 'error') %> prohibited this ticket from being saved:</h2>
 
       <ul>
         <% @ticket.errors.full_messages.each do |msg| %>
@@ -14,6 +14,14 @@
     </div>
   <% end %>
 
+  <p>
+    <%= f.label :Owner %>:
+    <select name='selected_owner'>
+      <% @supports.each do |support| %>
+        <option value="<%= support.id %>"><%= support.login + ' [' + support.first_name + ' ' + support.last_name + ']' %></option>
+      <% end %>
+    </select>
+  </p>
 
   <p>
     <%= f.label :Username %><br>

@@ -8,10 +8,24 @@ class TicketsController < ApplicationController
 
   def edit
     @ticket = Ticket.find(params[:id])
+
+    puts 'edit ticket: ' + @ticket.owner_id.to_s
+
+    @supports = Support.all
+
+=begin
+    if @ticket.owner_id
+      @support = Support.find_by(id: @ticket.owner_id)
+      @owner_name = @support.login
+    else
+      @owner_name = 'Customer'
+    end
+=end
   end
 
   def update
     @ticket = Ticket.find(params[:id])
+    @ticket.update_attribute :owner_id, params[:selected_owner]
 
     if @ticket.update(ticket_params)
       redirect_to @ticket

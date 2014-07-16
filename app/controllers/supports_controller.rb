@@ -3,6 +3,7 @@ class SupportsController < ApplicationController
 
   def new
     @support = Support.new
+    @roles = Role.all
   end
 
   def edit
