@@ -76,7 +76,7 @@ Date: <%= @ticket.created_at %>
   </p>
 <% end %>
 
-<% if session[:user_id] %>
+<% unless session[:user_id] %>
 <%= link_to 'New ticket', action: 'new', controller: 'tickets' %>
 |
 <% end %>

@@ -59,7 +59,7 @@ class TicketsController < ApplicationController
   end
 
   def show_by_uuid
-    puts '=== params: ', params.inspect
+    # puts '=== params: ', params.inspect
     if params[:commit] == 'Find'
       @ticket = Ticket.find_by(uuid: params[:tickets][:uuid])
     else
