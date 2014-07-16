@@ -18,20 +18,31 @@
     <%= f.label :Owner %>:
     <select name='selected_owner'>
       <% @supports.each do |support| %>
-        <option value="<%= support.id %>"><%= support.login + ' [' + support.first_name + ' ' + support.last_name + ']' %></option>
+          <% if support.id == @ticket.owner_id %>
+          <option value="<%= support.id %>" selected>
+        <% else %>
+          <option value="<%= support.id %>">
+        <% end %>
+
+        <%= support.login + ' [' + support.first_name + ' ' + support.last_name + ']' %></option>
       <% end %>
     </select>
   </p>
 
-    <p>
-      <%= f.label :Status %>:
-      <select name='selected_status'>
-        <% @states.each do |status| %>
-            <option value="<%= status.id %>"><%= status.name %></option>
+  <p>
+    <%= f.label :Status %>:
+    <select name='selected_status'>
+      <% @states.each do |status| %>
+        <% if status.id == @ticket.status_id %>
+          <option value="<%= status.id %>" selected>
+        <% else %>
+          <option value="<%= status.id %>">
         <% end %>
-      </select>
-    </p>
 
+        <%= status.name %></option>
+      <% end %>
+    </select>
+  </p>
 
   <p>
     <%= f.label :Username %><br>
