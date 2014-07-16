@@ -1,0 +1,47 @@
+<h1>Edit support user</h1>
+
+<%= form_for :support, url: support_path(@support), method: :patch do |f| %>
+
+  <% if @support.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@support.errors.count, "error") %> prohibited this support from being saved:</h2>
+      <ul>
+        <% @support.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <p>
+    <%= f.label :login %>
+    <%= f.text_field :login %>
+  </p>
+
+  <p>
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+  </p>
+
+  <p>
+    <%= f.label :first_name %>:
+    <%= f.text_field :first_name %>
+  </p>
+
+  <p>
+    <%= f.label :last_name %>:
+    <%= f.text_field :last_name %>
+  </p>
+
+  <p>
+    <%= f.label :email %>:
+    <%= f.text_field :email %>
+  </p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', supports_path %>

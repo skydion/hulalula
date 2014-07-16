@@ -1,0 +1,49 @@
+<p>Welcome to the our cool company site</p>
+
+<% if session[:user_id] %>
+<%= link_to 'Logout', controller: 'supports', action: 'logout' %>
+<br><br>
+<% end %>
+
+<% unless session[:user_id] %>
+    <%= form_for :supports, url: authenticate_path do |f| %>
+    <p>
+      <%= f.label :Login %><br>
+      <%= f.text_field :username %>
+    </p>
+
+    <p>
+      <%= f.label :Password %><br>
+      <%= f.password_field :password %>
+    </p>
+
+    <p>
+      <%= f.submit('Login') %>
+    </p>
+    <% end %>
+<% end %>
+
+<!-- only for support staff -->
+<% if session[:user_id] %>
+<%= link_to 'Tickets', controller: 'tickets' %>
+| <%= link_to 'Supports', controller: 'supports' %>
+| <%= link_to 'Roles', controller: 'roles' %>
+<br><br>
+<% end %>
+
+  <%= form_for :tickets, url: ticket_show_by_uuid_path do |f1| %>
+    <p>
+      <%= f1.label :url %>
+      <%= f1.text_field :uuid %>
+
+      <%= f1.submit('Find') %>
+    </p>
+  <% end %>
+
+<%= link_to 'New ticket', action: 'new', controller: 'tickets' %>
+
+<!-- only for support staff -->
+<% if session[:user_id] %>
+| <%= link_to 'New support', action: 'new', controller: 'supports' %>
+| <%= link_to 'New role', action: 'new', controller: 'roles' %>
+<% end %>

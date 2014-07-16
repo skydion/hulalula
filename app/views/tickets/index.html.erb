@@ -1,0 +1,36 @@
+<h1> Listing tickets</h1>
+
+
+
+<table border='1' >
+  <tr>
+    <th width=10%>UUID</th>
+    <th width=10%>Username</th>
+    <th width=10%>E-mail</th>
+    <th width=30%>Subject</th>
+    <th>Problem</th>
+  </tr>
+
+  <% @tickets.each do |ticket| %>
+    <tr>
+      <td><%= ticket.uuid %></td>
+      <td><%= ticket.username %></td>
+      <td><%= ticket.email %></td>
+      <td><%= ticket.subject %></td>
+      <td><%= ticket.problem %></td>
+
+      <td width=4%><%= link_to 'Show', ticket_path(ticket) %></td>
+<% if false %>
+     <td width=4%><%= link_to 'Edit', edit_ticket_path(ticket) %></td>
+<% end %>
+      <% if session[:login] == 'root' %>
+        <td width=4%><%= link_to 'Destroy', ticket_path(ticket), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>
+
+<br><br>
+
+<%= link_to 'Home', action: 'index', controller: 'welcome' %>
+

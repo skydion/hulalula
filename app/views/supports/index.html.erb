@@ -1,0 +1,34 @@
+<h1> Listing supports</h1>
+
+<% @roles = Role.all %>
+
+<table border='1' >
+  <tr>
+    <th width=10%>Login</th>
+    <th width=10%>Password</th>
+    <th width=20%>First name</th>
+    <th width=20%>Last name</th>
+    <th width=20%>E-mail</th>
+    <th width=20%>Role</th>
+  </tr>
+
+  <% @supports.each do |support| %>
+    <tr>
+      <td><%= support.login %></td>
+      <td><%= support.password %></td>
+      <td><%= support.first_name%></td>
+      <td><%= support.last_name %></td>
+      <td><%= support.email %></td>
+      <% role = @roles.find_by id: support.role_id %>
+      <td><%= role.name %></td>
+
+      <td width=4%><%= link_to 'Edit', edit_support_path(support) %></td>
+      <td width=4%><%= link_to 'Destroy', support_path(support), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+</table>
+
+<br><br>
+
+<%= link_to 'Home', action: 'index', controller: 'welcome' %>
+| <%= link_to 'New Support', new_support_path %>

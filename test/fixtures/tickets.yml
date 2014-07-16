@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id: 
+  customer_id: 1
+  uuid: 
+  limit: MyString
+  15: MyString
+  date_creation: 2014-07-09
+  owner_id: 1
+  status_id: 1
+  problem: MyText
+
+two:
+  id: 
+  customer_id: 1
+  uuid: 
+  limit: MyString
+  15: MyString
+  date_creation: 2014-07-09
+  owner_id: 1
+  status_id: 1
+  problem: MyText
