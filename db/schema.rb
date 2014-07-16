@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140714131904) do
+ActiveRecord::Schema.define(version: 20140716114049) do
 
   create_table "comments", force: true do |t|
     t.text     "body"
@@ -46,6 +46,12 @@ ActiveRecord::Schema.define(version: 20140714131904) do
   end
 
   add_index "supports", ["ticket_id"], name: "index_supports_on_ticket_id"
+
+  create_table "ticket_states", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "tickets", force: true do |t|
     t.integer  "customer_id"

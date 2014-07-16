@@ -13,7 +13,7 @@ class Support < ActiveRecord::Base
   end
 
   def check_login
-    puts '=== check_login: '
+    # puts '=== check_login: '
     Support.present(self.login, self.password)
   end
 end

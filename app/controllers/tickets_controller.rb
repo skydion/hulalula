@@ -9,9 +9,10 @@ class TicketsController < ApplicationController
   def edit
     @ticket = Ticket.find(params[:id])
 
-    puts 'edit ticket: ' + @ticket.owner_id.to_s
-
+    #puts 'edit ticket: ' + @ticket.owner_id.to_s
     @supports = Support.all
+
+    @states = TicketState.all
 
 =begin
     if @ticket.owner_id

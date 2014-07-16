@@ -23,6 +23,16 @@
     </select>
   </p>
 
+    <p>
+      <%= f.label :Status %>:
+      <select name='selected_status'>
+        <% @states.each do |status| %>
+            <option value="<%= status.id %>"><%= status.name %></option>
+        <% end %>
+      </select>
+    </p>
+
+
   <p>
     <%= f.label :Username %><br>
     <%= f.text_field :username %>
