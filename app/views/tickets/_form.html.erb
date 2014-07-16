@@ -1,5 +1,3 @@
-<% @support = Support.find_by(id: @ticket.owner_id) %>
-
 <% if !@support.nil? %>
     <p>
       <strong>Owner:</strong> <font color='green'><%= @support.login %></font>
@@ -18,6 +16,11 @@
 <p>
   <strong>Generated unique UUID:</strong>
   <%= @ticket.uuid %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <font color='blue'> <%= @status.name %></font>
 </p>
 
 <p>

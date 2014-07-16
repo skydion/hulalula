@@ -14,8 +14,11 @@
   <% @tickets.each do |ticket| %>
     <tr>
       <td><%= ticket.uuid %></td>
+
+      <!-- Look to the join! -->
       <td><%= @states[ticket.status_id-1].name %></td>
       <td><%= @supports[ticket.owner_id-1].login %></td>
+
       <td><%= ticket.username %></td>
       <td><%= ticket.email %></td>
       <td><%= ticket.subject %></td>

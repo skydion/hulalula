@@ -44,20 +44,24 @@
     </select>
   </p>
 
+<!--
   <p>
-    <%= f.label :Username %><br>
-    <%= f.text_field :username %>
+    <%#= f.label :Username %><br>
+    <%#= f.text_field :username %>
+  </p>
+-->
+
+  <strong>
+  <p>
+    <%= f.label :'E-mail' %>:
+    <%= @ticket.email %>
   </p>
 
   <p>
-    <%= f.label :'E-mail' %><br>
-    <%= f.text_field :email %>
+    <%= f.label :Subject %>:
+    <%= @ticket.subject %>
   </p>
-
-  <p>
-    <%= f.label :Subject %><br>
-    <%= f.text_field :subject %>
-  </p>
+  </strong>
 
   <p>
     <%= f.label :Problem %><br>

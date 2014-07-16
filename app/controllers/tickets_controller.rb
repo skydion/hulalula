@@ -10,15 +10,6 @@ class TicketsController < ApplicationController
     @ticket = Ticket.find(params[:id])
     @supports = Support.all
     @states = TicketState.all
-
-=begin
-    if @ticket.owner_id
-      @support = Support.find_by(id: @ticket.owner_id)
-      @owner_name = @support.login
-    else
-      @owner_name = 'Customer'
-    end
-=end
   end
 
   def update
@@ -72,6 +63,9 @@ class TicketsController < ApplicationController
 
   def show
     @ticket = Ticket.find(params[:id])
+
+    @support = Support.find_by(id: @ticket.owner_id)
+    @status = TicketState.find_by(id: @ticket.status_id)
   end
 
   def show_by_uuid
@@ -81,6 +75,9 @@ class TicketsController < ApplicationController
     else
       @ticket = Ticket.find_by(uuid: params[:uuid])
     end
+
+    @support = Support.find_by(id: @ticket.owner_id)
+    @status = TicketState.find_by(id: @ticket.status_id)
   end
 
 private
