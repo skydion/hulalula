@@ -53,20 +53,27 @@
        else
          color = 'red'
        end
+
+       if comment.owner_id
+         owner = Support.find_by(id: comment.owner_id).login
+       else
+         owner = 'Customer'
+       end
     %>
 
-    <p>
-      <font color="<%= color %>"
-      <strong>Comment [<%= comment.id %>] created at <%= comment.created_at %>:</strong><br>
-      <%= comment.body %>
-      </font>
-    </p>
+    <div class="comment">
+      <div class="header1">Comment [<%= comment.id %>] - <%= comment.created_at %></div>
+      <div class="header2">User: [<%= owner %>]</div>
 
-    <% if comment.owner_id == session[:user_id] %>
-        <p>
-          <%= link_to 'Destroy Comment', [comment.ticket, comment], method: :delete, data: { confirm: 'Are you sure?' } %>
-        </p>
-    <% end %>
+      <div class="comment_body"><%= comment.body %></div>
+
+      <div class="delete_comment">
+      <% if comment.owner_id == session[:user_id] %>
+        <%= link_to 'Destroy Comment', [comment.ticket, comment], method: :delete, data: { confirm: 'Are you sure?' } %>
+      <% end %>
+      </div>
+    </div>
+
 <% end %>
 
 <h2>Add a comment:</h2>

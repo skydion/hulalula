@@ -1,3 +1,30 @@
 // Place all the styles related to the Comments controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.comment {
+  color: blue;
+  background-color:lightgoldenrodyellow;
+  margin-bottom: 5px;
+}
+
+.comment_body {
+  color: green;
+  background-color:lemonchiffon;
+  margin-top: 10px;
+}
+
+.header1 {
+  color: red;
+}
+
+.header2 {
+  color: darkblue;
+}
+
+.delete_comment
+{
+  font-weight: bold;
+  color: black;
+  text-align: right;
+}

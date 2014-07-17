@@ -6,6 +6,7 @@ class Ticket < ActiveRecord::Base
   validates :username, presence: true, length: { minimum: 3 }
   validates_format_of :email,:with => /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/
   validates :subject, presence: true
+  validates :problem, presence: true
 
   def current_status
     #puts '=== current_status: ' + self.ticket_state_id.to_s

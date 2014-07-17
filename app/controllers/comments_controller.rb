@@ -1,9 +1,10 @@
 class CommentsController < ApplicationController
   def create
     @ticket = Ticket.find(params[:ticket_id])
+
     @ticket.comments.create(comment_params)
 
-    puts '=== Comment::create: ' + @ticket.support_id.to_s + ' uuid: ' + @ticket.uuid.to_s
+    # puts '=== Comment::create: ' + @ticket.support_id.to_s + ' uuid: ' + @ticket.uuid.to_s
     if @ticket.support_id
       redirect_to ticket_path(@ticket)
     else

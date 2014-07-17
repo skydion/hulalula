@@ -3,7 +3,7 @@
 <%= form_for :ticket, url: tickets_path do |f| %>
 
   <% if @ticket.errors.any? %>
-    <div id="error_explanation">
+    <div id='error_explanation'>
       <h2><%= pluralize(@ticket.errors.count, 'error') %> prohibited this ticket from being saved:</h2>
 
       <ul>
@@ -41,4 +41,3 @@
 <% end %>
 
 <%= link_to 'Home', controller: 'welcome' %>
-<%# link_to 'Back', tickets_path %>

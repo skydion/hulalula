@@ -4,9 +4,9 @@
 
 <%= render 'form' %>
 
-<% unless session[:user_id] %>
-<%= link_to 'New ticket', action: 'new', controller: 'tickets' %>
-|
-<% end %>
-
 <%= link_to 'Back', controller: 'tickets' %>
+
+<% unless session[:user_id] %>
+<%= link_to 'Home', controller: 'welcome' %>
+| <%= link_to 'New ticket', action: 'new', controller: 'tickets' %>
+<% end %>
