@@ -6,7 +6,7 @@ class CreateSupports < ActiveRecord::Migration
       t.string :first_name, default: ''
       t.string :last_name, default: ''
       t.string :email, default: ''
-      t.references :role_id, index: true
+      t.references :role, index: true
       t.references :ticket, index: true
 
       t.timestamps

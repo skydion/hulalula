@@ -22,6 +22,6 @@ class Support < ActiveRecord::Base
   end
 
   def login_with_full_name
-    "#{login} - #{first_name} #{last_name}"
+    "#{login} - [#{first_name} #{last_name}]"
   end
 end

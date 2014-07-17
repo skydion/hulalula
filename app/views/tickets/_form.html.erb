@@ -1,6 +1,6 @@
 <% if !@support.nil? %>
     <p>
-      <strong>Owner:</strong> <font color='green'><%= @support.full_name %></font>
+      <strong>Owner:</strong> <font color='green'><%= @support.login_with_full_name %></font>
     </p>
 <% else %>
     <p>
@@ -19,8 +19,9 @@
 </p>
 
 <p>
-  <strong>Status:</strong>
-  <font color='blue'> <%= @status.name %></font>
+  <strong>Status:
+  <font color='blue'> <%= @ticket.current_status %></font>
+  </strong>
 </p>
 
 <p>

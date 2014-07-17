@@ -12,12 +12,9 @@
     <% @ticket_states.each do |ticket_state| %>
       <tr>
         <td><%= ticket_state.name %></td>
-        <td><%= link_to 'Show', ticket_state %></td>
 
-        <% if session[:login] == 'root' %>
-          <td><%= link_to 'Edit', edit_ticket_state_path(ticket_state) %></td>
-          <td><%= link_to 'Destroy', ticket_state, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
+        <td><%= link_to 'Edit', edit_ticket_state_path(ticket_state) %></td>
+        <td><%= link_to 'Destroy', ticket_state, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

@@ -15,9 +15,9 @@ ActiveRecord::Schema.define(version: 20140716114049) do
 
   create_table "comments", force: true do |t|
     t.text     "body"
+    t.integer  "owner_id"
     t.datetime "created_at"
     t.integer  "ticket_id"
-    t.integer  "owner_id"
     t.datetime "updated_at"
   end
 
@@ -26,25 +26,23 @@ ActiveRecord::Schema.define(version: 20140716114049) do
   create_table "roles", force: true do |t|
     t.string   "name"
     t.string   "description"
-    t.integer  "support_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "roles", ["support_id"], name: "index_roles_on_support_id"
-
   create_table "supports", force: true do |t|
-    t.string   "login"
+    t.string   "login",      default: ""
     t.string   "password"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "email"
+    t.string   "first_name", default: ""
+    t.string   "last_name",  default: ""
+    t.string   "email",      default: ""
     t.integer  "role_id"
     t.integer  "ticket_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "supports", ["role_id"], name: "index_supports_on_role_id"
   add_index "supports", ["ticket_id"], name: "index_supports_on_ticket_id"
 
   create_table "ticket_states", force: true do |t|
@@ -57,13 +55,16 @@ ActiveRecord::Schema.define(version: 20140716114049) do
     t.integer  "customer_id"
     t.string   "uuid"
     t.datetime "created_at"
-    t.integer  "owner_id"
-    t.integer  "status_id"
-    t.string   "username"
-    t.string   "email"
-    t.string   "subject"
-    t.text     "problem"
+    t.integer  "support_id"
+    t.integer  "ticket_state_id"
+    t.string   "username",        default: ""
+    t.string   "email",           default: ""
+    t.string   "subject",         default: ""
+    t.text     "problem",         default: ""
     t.datetime "updated_at"
   end
+
+  add_index "tickets", ["support_id"], name: "index_tickets_on_support_id"
+  add_index "tickets", ["ticket_state_id"], name: "index_tickets_on_ticket_state_id"
 
 end

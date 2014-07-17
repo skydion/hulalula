@@ -4,8 +4,8 @@ class CreateTickets < ActiveRecord::Migration
       t.integer :customer_id
       t.string :uuid, index: true
       t.datetime :created_at, default: Time.new
-      t.references :owner_id, index: true
-      t.references :status_id, index: true
+      t.references :support, index: true
+      t.references :ticket_state, index: true
       t.string :username, default: ''
       t.string :email, default: ''
       t.string :subject, default: ''
@@ -15,4 +15,3 @@ class CreateTickets < ActiveRecord::Migration
     end
   end
 end
-

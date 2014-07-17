@@ -3,8 +3,8 @@ class CommentsController < ApplicationController
     @ticket = Ticket.find(params[:ticket_id])
     @ticket.comments.create(comment_params)
 
-    puts '=== Comment::create: ' + @ticket.owner_id.to_s + ' uuid: ' + @ticket.uuid.to_s
-    if @ticket.owner_id
+    puts '=== Comment::create: ' + @ticket.support_id.to_s + ' uuid: ' + @ticket.uuid.to_s
+    if @ticket.support_id
       redirect_to ticket_path(@ticket)
     else
       redirect_to '/ticket/' + @ticket.uuid.to_s
@@ -16,7 +16,7 @@ class CommentsController < ApplicationController
     @comment = @ticket.comments.find(params[:id])
     @comment.destroy
 
-    if @ticket.owner_id
+    if @ticket.support_id
       redirect_to ticket_path(@ticket)
     else
       redirect_to '/ticket/' + @ticket.uuid.to_s

@@ -14,13 +14,12 @@
     </div>
   <% end %>
 
-  <%= f.collection_select :owner_id, @supports, :id, :login_with_full_name, include_blank: true, :selected => @ticket.owner_id %>
+  <%= f.collection_select :support_id, @supports, :id, :login_with_full_name, include_blank: true, :selected => @ticket.support_id %>
   <br>
 
-  <%= f.collection_select :status_id, @states, :id, :name, include_blank: true, :selected => @ticket.status_id %>
+  <%= f.collection_select :ticket_state_id, @states, :id, :name, include_blank: true, :selected => @ticket.ticket_state_id %>
   <br>
 
-  <!-- TODO find solution that help to disable all field without error in update -->
   <strong>
   <p>
     <%= f.label :'E-mail' %>:

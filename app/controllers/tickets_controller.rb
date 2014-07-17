@@ -3,7 +3,6 @@ class TicketsController < ApplicationController
 
   def new
     @ticket = Ticket.new
-    @ticket.status_id = 1 # 'Waiting for Staff Response'
   end
 
   def edit
@@ -16,9 +15,9 @@ class TicketsController < ApplicationController
     @ticket = Ticket.find(params[:id])
 
     if @ticket
-      puts '=== ticket::update'
-      @ticket.update_attribute :owner_id, params[:owner_id]
-      @ticket.update_attribute :status_id, params[:status_id]
+      # puts '=== ticket::update'
+      @ticket.update_attribute :support_id, params[:support_id]
+      @ticket.update_attribute :ticket_state_id, params[:ticket_state_id]
 
       if @ticket.update(ticket_params)
         redirect_to @ticket
@@ -29,19 +28,15 @@ class TicketsController < ApplicationController
   end
 
   def index
-#    @list = Ticket.joins(:supports, :ticket_states)
-
     @tickets = Ticket.all
-    @supports = Support.all
-    @states = TicketState.all
   end
 
   def create
     @ticket = Ticket.new(ticket_params)
 
     if @ticket
-      @ticket.status_id = 1 # 'Waiting for Staff Response'
-      @ticket.owner_id = session[:user_id]
+      @ticket.support_id = session[:user_id]
+      @ticket.ticket_state_id = 1 # 'Waiting for Staff Response'
 
       # generate unique url
       alpha = (:A..:Z).to_a.shuffle[0,9].join
@@ -63,7 +58,7 @@ class TicketsController < ApplicationController
     if @ticket
       @ticket.destroy
 
-      if @ticket.owner_id
+      if @ticket.support_id
         redirect_to tickets_path
       else
         redirect_to ticket_show_by_uuid_path
@@ -74,8 +69,7 @@ class TicketsController < ApplicationController
   def show
     @ticket = Ticket.find(params[:id])
 
-    @support = Support.find_by(id: @ticket.owner_id)
-    @status = TicketState.find_by(id: @ticket.status_id)
+    @support = Support.find_by(id: @ticket.support_id)
   end
 
   def show_by_uuid
@@ -86,13 +80,12 @@ class TicketsController < ApplicationController
       @ticket = Ticket.find_by(uuid: params[:uuid])
     end
 
-    @support = Support.find_by(id: @ticket.owner_id)
-    @status = TicketState.find_by(id: @ticket.status_id)
+    @support = Support.find_by(id: @ticket.support_id)
+    @status = TicketState.find_by(id: @ticket.ticket_state_id)
   end
 
 private
   def ticket_params
-    params.require(:ticket).permit(:username, :email, :subject, :problem, :owner_id, :status_id) # if params[:ticket]
+    params.require(:ticket).permit(:username, :email, :subject, :problem, :support_id, :ticket_state_id)
   end
 end
-

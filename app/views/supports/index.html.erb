@@ -19,6 +19,7 @@
       <td><%= support.first_name%></td>
       <td><%= support.last_name %></td>
       <td><%= support.email %></td>
+      <!-- need review -->
       <% role = @roles.find_by id: support.role_id %>
       <td><%= role.name %></td>
 
