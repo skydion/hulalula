@@ -78,7 +78,7 @@ class SupportsController < ApplicationController
 
 private
   def support_params
-    params.require(:support).permit(:login, :password, :first_name, :last_name, :email)
+    params.require(:support).permit(:login, :password, :first_name, :last_name, :email) if params[:support]
   end
 end
 

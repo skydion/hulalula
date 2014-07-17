@@ -2,14 +2,14 @@ class CreateTickets < ActiveRecord::Migration
   def up
     create_table :tickets do |t|
       t.integer :customer_id
-      t.string :uuid
+      t.string :uuid, index: true
       t.datetime :created_at, default: Time.new
-      t.integer :owner_id
-      t.integer :status_id
-      t.string :username
-      t.string :email
-      t.string :subject
-      t.text :problem
+      t.references :owner_id, index: true
+      t.references :status_id, index: true
+      t.string :username, default: ''
+      t.string :email, default: ''
+      t.string :subject, default: ''
+      t.text :problem, default: ''
 
       t.timestamps
     end

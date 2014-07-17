@@ -16,4 +16,12 @@ class Support < ActiveRecord::Base
     # puts '=== check_login: '
     Support.present(self.login, self.password)
   end
+
+  def full_name
+    "#{first_name} #{last_name}"
+  end
+
+  def login_with_full_name
+    "#{login} - #{first_name} #{last_name}"
+  end
 end

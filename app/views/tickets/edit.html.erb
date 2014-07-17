@@ -14,43 +14,13 @@
     </div>
   <% end %>
 
-  <p>
-    <%= f.label :Owner %>:
-    <select name='selected_owner'>
-      <% @supports.each do |support| %>
-          <% if support.id == @ticket.owner_id %>
-          <option value="<%= support.id %>" selected>
-        <% else %>
-          <option value="<%= support.id %>">
-        <% end %>
+  <%= f.collection_select :owner_id, @supports, :id, :login_with_full_name, include_blank: true, :selected => @ticket.owner_id %>
+  <br>
 
-        <%= support.login + ' [' + support.first_name + ' ' + support.last_name + ']' %></option>
-      <% end %>
-    </select>
-  </p>
+  <%= f.collection_select :status_id, @states, :id, :name, include_blank: true, :selected => @ticket.status_id %>
+  <br>
 
-  <p>
-    <%= f.label :Status %>:
-    <select name='selected_status'>
-      <% @states.each do |status| %>
-        <% if status.id == @ticket.status_id %>
-          <option value="<%= status.id %>" selected>
-        <% else %>
-          <option value="<%= status.id %>">
-        <% end %>
-
-        <%= status.name %></option>
-      <% end %>
-    </select>
-  </p>
-
-<!--
-  <p>
-    <%#= f.label :Username %><br>
-    <%#= f.text_field :username %>
-  </p>
--->
-
+  <!-- TODO find solution that help to disable all field without error in update -->
   <strong>
   <p>
     <%= f.label :'E-mail' %>:
@@ -61,12 +31,13 @@
     <%= f.label :Subject %>:
     <%= @ticket.subject %>
   </p>
-  </strong>
 
   <p>
     <%= f.label :Problem %><br>
-    <%= f.text_area :problem, cols: 60, rows: 10 %>
+    <%#= f.text_area :problem, cols: 60, rows: 10 %>
+    <%= @ticket.problem %>
   </p>
+  </strong>
 
   <p>
     <%= f.submit %>
