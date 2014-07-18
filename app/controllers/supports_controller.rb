@@ -58,7 +58,7 @@ class SupportsController < ApplicationController
     else
       l = params[:supports][:username]
       p = params[:supports][:password]
-      puts '=== login: ' + l + ' password: ' + p
+      # puts '=== login: ' + l + ' password: ' + p
 
       @support = Support.new(login: l, password: p)
       valid = @support.check_login
@@ -66,11 +66,13 @@ class SupportsController < ApplicationController
       if !valid.nil?
         session[:user_id] = valid.id
         session[:login] = valid.login
-        puts '=== id: ' + valid.id.to_s
-        puts '=== Welcome ' + valid.login
+        session[:role_name] = Role.find_by(id: valid.role_id).name
+
+        # puts '=== id: ' + valid.id.to_s
+        #puts '=== Welcome ' + valid.login
         redirect_to :controller => 'tickets', :action => 'index'
       else
-        puts '=== Invalid User/Password'
+        #puts '=== Invalid User/Password'
         redirect_to :controller => 'welcome', :action => 'index'
       end
     end

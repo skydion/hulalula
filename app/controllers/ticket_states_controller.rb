@@ -69,6 +69,6 @@ class TicketStatesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def ticket_state_params
-      params.require(:ticket_state).permit(:name)
+      params.require(:ticket_state).permit(:name) if params[:ticket_state]
     end
 end

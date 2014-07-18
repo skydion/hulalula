@@ -1,50 +1,60 @@
-<p>Welcome to the our cool company site</p>
+<h2>Welcome to the our cool company site</h2>
 
 <% if session[:user_id] %>
-<%= link_to 'Logout', controller: 'supports', action: 'logout' %>
-<br><br>
+    <div class="link_logout">
+      <%= link_to 'Logout', controller: 'supports', action: 'logout' %>
+    </div>
 <% end %>
 
 <% unless session[:user_id] %>
-    <%= form_for :supports, url: authenticate_path do |f| %>
-    <p>
-      <%= f.label :Login %><br>
-      <%= f.text_field :username %>
-    </p>
+    <div class="form_login">
+      <%= form_for :supports, url: authenticate_path do |f| %>
+          <div class="form_field">
+            <%= f.label :Login %>
+            <br>
+            <%= f.text_field :username %>
+          </div>
 
-    <p>
-      <%= f.label :Password %><br>
-      <%= f.password_field :password %>
-    </p>
+          <div class="form_field">
+            <%= f.label :Password %>
+            <br>
+            <%= f.password_field :password %>
+          </div>
 
-    <p>
-      <%= f.submit('Login') %>
-    </p>
-    <% end %>
+          <div class="form_field">
+            <%= f.submit('Login') %>
+          </div>
+      <% end %>
+    </div>
 <% end %>
 
 <% if session[:user_id] %>
-<!-- only for support staff -->
-<%= link_to 'Tickets', controller: 'tickets' %>
-| <%= link_to 'Supports', controller: 'supports' %>
-| <%= link_to 'Roles', controller: 'roles' %>
-| <%= link_to 'States', controller: 'ticket_states' %>
-<br><br>
+    <!-- only for support staff -->
+    <div class="link_logout">
+    <%= link_to 'Tickets', controller: 'tickets' %>
+    | <%= link_to 'Supports', controller: 'supports' %>
+    | <%= link_to 'Roles', controller: 'roles' %>
+    | <%= link_to 'States', controller: 'ticket_states' %>
+    </div>
 <% end %>
 
+<div class="form_search">
   <%= form_for :tickets, url: ticket_show_by_uuid_path do |f1| %>
-    <p>
-      <%= f1.label :url %>
-      <%= f1.text_field :uuid %>
+      <div class="form_field">
+        <%= f1.label :url %>
+        <%= f1.text_field :uuid %>
 
-      <%= f1.submit('Find') %>
-    </p>
+        <%= f1.submit('Find') %>
+      </div>
   <% end %>
+</div>
 
-<%= link_to 'New ticket', action: 'new', controller: 'tickets' %>
+<div class="link_newticket">
+  <%= link_to 'New ticket', action: 'new', controller: 'tickets' %>
 
-<% if session[:user_id] %>
-<!-- only for support staff -->
-| <%= link_to 'New support', action: 'new', controller: 'supports' %>
-| <%= link_to 'New role', action: 'new', controller: 'roles' %>
-<% end %>
+  <% if session[:user_id] %>
+      <!-- only for admin staff -->
+      | <%= link_to 'New support', action: 'new', controller: 'supports' %>
+      | <%= link_to 'New role', action: 'new', controller: 'roles' %>
+  <% end %>
+</div>

@@ -13,19 +13,7 @@
   </tr>
 
   <% @supports.each do |support| %>
-    <tr>
-      <td><%= support.login %></td>
-      <td><%= support.password %></td>
-      <td><%= support.first_name%></td>
-      <td><%= support.last_name %></td>
-      <td><%= support.email %></td>
-      <!-- need review -->
-      <% role = @roles.find_by id: support.role_id %>
-      <td><%= role.name %></td>
-
-      <td width=4%><%= link_to 'Edit', edit_support_path(support) %></td>
-      <td width=4%><%= link_to 'Destroy', support_path(support), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-    </tr>
+      <%= render partial: 'table_row', locals: {support: support} %>
   <% end %>
 </table>
 
