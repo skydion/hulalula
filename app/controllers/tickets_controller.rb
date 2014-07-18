@@ -45,6 +45,7 @@ class TicketsController < ApplicationController
       @ticket.uuid = url
 
       if @ticket.save
+        # TODO - send email to the customer
         redirect_to @ticket
       else
         render 'new'
