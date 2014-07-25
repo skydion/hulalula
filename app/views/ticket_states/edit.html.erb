@@ -2,5 +2,6 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @ticket_state %> |
-<%= link_to 'Back', ticket_states_path %>
+<%#= link_to 'Show', @ticket_state %> |
+<%#= link_to 'Back', ticket_states_path %>
+<%= link_to 'Back', controller: 'welcome', action: 'index', anchor: 'states' %>

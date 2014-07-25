@@ -17,9 +17,7 @@
   <% end %>
 </table>
 
-<br>
-
-<%= link_to 'Home', action: 'index', controller: 'welcome' %>
+<%#= link_to 'Home', action: 'index', controller: 'welcome' %>
 <% if session[:role_name] == 'admin' %>
-    | <%= link_to 'New Support', new_support_path %>
+    <%= link_to 'New Support', new_support_path %>
 <% end %>

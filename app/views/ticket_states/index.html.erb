@@ -25,9 +25,8 @@
     </table>
 <% end %>
 
-<br>
+<%#= link_to 'Home', action: 'index', controller: 'welcome' %>
 
-<%= link_to 'Home', action: 'index', controller: 'welcome' %>
 <% if session[:role_name] == 'admin' %>
-    | <%= link_to 'New Ticket State', new_ticket_state_path %>
+    <%= link_to 'New Ticket State', new_ticket_state_path %>
 <% end %>

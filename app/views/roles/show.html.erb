@@ -10,5 +10,6 @@
   <%= raw @role.description %>
 </p>
 
-<%= link_to 'Edit', edit_role_path(@role) %> |
-<%= link_to 'Back', roles_path %>
+<%#= link_to 'Edit', edit_role_path(@role) %> |
+<%#= link_to 'Back', roles_path %>
+<%= link_to 'Back', controller: 'welcome', action: 'index', anchor: 'roles' %>

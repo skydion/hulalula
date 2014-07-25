@@ -24,9 +24,7 @@
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'Home', action: 'index', controller: 'welcome' %>
+<%#= link_to 'Home', action: 'index', controller: 'welcome' %>
 <% if session[:role_name] == 'admin' %>
-    | <%= link_to 'New Role', new_role_path %>
+    <%= link_to 'New Role', new_role_path %>
 <% end %>
