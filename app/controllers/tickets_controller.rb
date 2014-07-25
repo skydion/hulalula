@@ -16,6 +16,7 @@ class TicketsController < ApplicationController
 
     if @ticket
       # puts '=== ticket::update'
+      # TODO - check owner and state changing between comments and end email if one of them is changed
       @ticket.update_attribute :support_id, params[:support_id]
       @ticket.update_attribute :ticket_state_id, params[:ticket_state_id]
 
@@ -45,6 +46,7 @@ class TicketsController < ApplicationController
       @ticket.uuid = url
 
       if @ticket.save
+        flash[:notice] = 'Mail with ticket url, and unique UUID send, to your e-mail address'
         # TODO - send email to the customer
         redirect_to @ticket
       else
@@ -57,12 +59,15 @@ class TicketsController < ApplicationController
     @ticket = Ticket.find(params[:id])
 
     if @ticket
+      support_id = @ticket.support_id
+      #puts '=== support_id: ' + support_id.to_s
+
       @ticket.destroy
 
-      if @ticket.support_id
+      if support_id
         redirect_to tickets_path
       else
-        redirect_to ticket_show_by_uuid_path
+        redirect_to welcome_index_path
       end
     end
   end
@@ -74,15 +79,15 @@ class TicketsController < ApplicationController
   end
 
   def show_by_uuid
-    # puts '=== params: ', params.inspect
-    if params[:commit] == 'Find'
-      @ticket = Ticket.find_by(uuid: params[:tickets][:uuid])
-    else
-      @ticket = Ticket.find_by(uuid: params[:uuid])
-    end
+    @ticket = Ticket.find_by(uuid: params[:uuid])
 
-    @support = Support.find_by(id: @ticket.support_id)
-    @status = TicketState.find_by(id: @ticket.ticket_state_id)
+    if @ticket.nil?
+      flash[:notice] = 'Wrong UUID, please re-check and try again'
+      redirect_to :controller => 'welcome', :action => 'index'
+    else
+      @support = Support.find_by(id: @ticket.support_id)
+      @status = TicketState.find_by(id: @ticket.ticket_state_id)
+    end
   end
 
 private

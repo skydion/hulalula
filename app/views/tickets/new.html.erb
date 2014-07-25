@@ -2,42 +2,42 @@
 
 <%= form_for :ticket, url: tickets_path do |f| %>
 
-  <% if @ticket.errors.any? %>
-    <div id='error_explanation'>
-      <h2><%= pluralize(@ticket.errors.count, 'error') %> prohibited this ticket from being saved:</h2>
+    <% if @ticket.errors.any? %>
+        <div id='error_explanation'>
+          <h2><%= pluralize(@ticket.errors.count, 'error') %> prohibited this ticket from being saved:</h2>
 
-      <ul>
-        <% @ticket.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+          <ul>
+            <% @ticket.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
 
 
-  <p>
-    <%= f.label :Username %><br>
-    <%= f.text_field :username %>
-  </p>
+    <p>
+      <%= f.label :Username %><br>
+      <%= f.text_field :username %>
+    </p>
 
-  <p>
-    <%= f.label :'E-mail' %><br>
-    <%= f.text_field :email %>
-  </p>
+    <p>
+      <%= f.label :'E-mail' %><br>
+      <%= f.text_field :email %>
+    </p>
 
-  <p>
-    <%= f.label :Subject %><br>
-    <%= f.text_field :subject %>
-  </p>
+    <p>
+      <%= f.label :Subject %><br>
+      <%= f.text_field :subject %>
+    </p>
 
-  <p>
-    <%= f.label :Problem %><br>
-    <%= f.text_area :problem, cols: 60, rows: 10 %>
-  </p>
+    <p>
+      <%= f.label :Problem %><br>
+      <%= f.text_area :problem, cols: 60, rows: 10 %>
+    </p>
 
-  <p>
-    <%= f.submit %>
-  </p>
+    <p>
+      <%= f.submit %>
+    </p>
 <% end %>
 
-<%= link_to 'Home', controller: 'welcome' %>
+<%= link_to 'Home', controller: 'welcome', action: 'index', anchor: 'tickets' %>

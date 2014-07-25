@@ -35,3 +35,6 @@ Ticket.create(uuid: 'YUL683NRZ745CAV', created_at: '2014-07-15 10:01:33.436916',
 
 Ticket.create(uuid: 'UIK107GAP893CTQ', created_at: '2014-07-16 09:54:32.524883', support_id: 2, ticket_state_id: 1,
               username: 'customer4', email: 'customer4@user.net', subject: 'help customer4', problem: 'problem customer4', updated_at: '2014-07-16 10:49:21.068174')
+
+Ticket.create(uuid: 'SMU980NFB372JRY', created_at: '2014-07-21 08:11:07.501664', support_id: 3, ticket_state_id: 1,
+              username: 'customer5', email: 'customer5@user.net', subject: 'help customer5', problem: 'problem customer5', updated_at: '2014-07-21 08:11:07.501664')

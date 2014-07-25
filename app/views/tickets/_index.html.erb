@@ -1,6 +1,7 @@
-<h1> Listing tickets</h1>
+<!-- <h2>Listing tickets</h2> -->
 
 <table border='1'>
+  <thead>
   <tr>
     <th width=10%>UUID</th>
     <th width=15%>State</th>
@@ -9,15 +10,15 @@
     <th width=10%>E-mail</th>
     <th width=15%>Subject</th>
     <th>Problem</th>
+    <th colspan="3">Actions</th>
   </tr>
+  </thead>
 
   <tbody>
   <% @tickets.each do |ticket| %>
-      <%= render partial: 'table_row', locals: {ticket: ticket} %>
+      <%= render partial: 'tickets/table_row', locals: {ticket: ticket} %>
   <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'Home', action: 'index', controller: 'welcome' %>
+<%#= link_to 'Home', action: 'index', controller: 'welcome' %>

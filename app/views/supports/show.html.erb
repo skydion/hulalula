@@ -1,25 +1,25 @@
 <p>
   <strong>Login:</strong>
-  <%= @support.login %>
+  <%= raw @support.login %>
 </p>
 
 <p>
   <strong>First name:</strong>
-  <%= @support.first_name %>
+  <%= raw @support.first_name %>
 </p>
 
 <p>
   <strong>Last name:</strong>
-  <%= @support.last_name %>
+  <%= raw @support.last_name %>
 </p>
 
 <p>
   <strong>E-mail:</strong>
-  <%= @support.email %>
+  <%= raw @support.email %>
 </p>
 
 <br>
 
 <%= link_to 'Home', controller: 'welcome' %>
-| <%= link_to 'New support', action: 'new', controller: 'supports' %>
+| <%= link_to 'New support', controller: 'supports', action: 'new' %>
 | <%= link_to 'Edit', edit_support_path(@support) %>

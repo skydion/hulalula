@@ -1,89 +1,85 @@
-<% if !@support.nil? %>
-    <p>
-      <strong>Owner:</strong> <font color='green'><%= @support.login_with_full_name %></font>
-    </p>
-<% else %>
-    <p>
-      <strong>Owner:</strong> <font color='red'>Customer</font>
-    </p>
-<% end %>
+<div class="container">
+  <div id="content">
+    <% if !@support.nil? %>
+        <div class="owner_support">Owner: <%= @support.login_with_full_name %></div>
+    <% else %>
+        <div class="owner_customer">Owner: Customer</div>
+    <% end %>
 
-<p>
-  <strong>Date: </strong>
-  <%= @ticket.created_at %>
-</p>
+    <div>
+      <p>
+        <strong>Date: </strong>
+        <%= @ticket.created_at %>
+      </p>
 
-<p>
-  <strong>Generated unique UUID:</strong>
-  <%= @ticket.uuid %>
-</p>
+      <p>
+        <strong>Generated unique UUID:</strong>
+        <%= @ticket.uuid %>
+      </p>
 
-<p>
-  <strong>Status:
-  <font color='blue'> <%= @ticket.current_status %></font>
-  </strong>
-</p>
+      <p>
+        <strong class="status">Status:
+          <%= @ticket.current_status %>
+        </strong>
+      </p>
 
-<p>
-  <strong>Username:</strong>
-  <%= @ticket.username %>
-</p>
+      <p>
+        <strong>Username:</strong>
+        <%= h @ticket.username %>
+      </p>
 
-<p>
-  <strong>E-mail:</strong>
-  <%= @ticket.email %>
-</p>
+      <p>
+        <strong>E-mail:</strong>
+        <%= h @ticket.email %>
+      </p>
 
-<p>
-  <strong>Subject:</strong>
-  <%= @ticket.subject %>
-</p>
+      <p>
+        <strong>Subject:</strong>
+        <%= h @ticket.subject %>
+      </p>
 
-<p>
-  <strong>Problem:</strong>
-  <%= @ticket.problem %>
-</p>
-
-<h2>Comments</h2>
-<% @ticket.comments.each do |comment| %>
-    <%
-       # puts '=== comment.owner_id: ' + comment.owner_id.to_s
-       if comment.owner_id == session[:user_id]
-         color = 'green'
-       else
-         color = 'red'
-       end
-
-       if comment.owner_id
-         owner = Support.find_by(id: comment.owner_id).login
-       else
-         owner = 'Customer'
-       end
-    %>
-
-    <div class="comment">
-      <div class="header1">Comment [<%= comment.id %>] - <%= comment.created_at %></div>
-      <div class="header2">User: [<%= owner %>]</div>
-
-      <div class="comment_body"><%= comment.body %></div>
-
-      <div class="delete_comment">
-      <% if comment.owner_id == session[:user_id] %>
-        <%= link_to 'Destroy Comment', [comment.ticket, comment], method: :delete, data: { confirm: 'Are you sure?' } %>
-      <% end %>
-      </div>
+      <p>
+        <strong>Problem:</strong>
+        <%= h @ticket.problem %>
+      </p>
     </div>
 
-<% end %>
+    <h2>Comments</h2>
+    <% @ticket.comments.each do |comment| %>
+        <%
+           if comment.owner_id
+             owner = Support.find_by(id: comment.owner_id).login
+           else
+             owner = 'Customer'
+           end
+        %>
 
-<h2>Add a comment:</h2>
-<%= form_for ([@ticket, @ticket.comments.build]) do |f| %>
-    <%= f.hidden_field :owner_id, value: session[:user_id] %>
-    <p>
-      <%= f.label :body %><br>
-      <%= f.text_area :body, cols: 60, rows: 10 %>
-    </p>
-    <p>
-      <%= f.submit %>
-    </p>
-<% end %>
+        <div class="comment">
+          <div class="header1">Comment [<%= comment.id %>] - <%= comment.created_at %></div>
+          <div class="header2">User: [<%= owner %>]</div>
+
+          <div class="comment_body"><%= h comment.body %></div>
+
+          <div class="delete_comment">
+            <% if comment.owner_id == session[:user_id] %>
+                <%= link_to 'Destroy Comment', [comment.ticket, comment], method: :delete, data: {confirm: 'Are you sure?'} %>
+            <% end %>
+          </div>
+        </div>
+
+    <% end %>
+
+    <h2>Add a comment:</h2>
+    <%= form_for ([@ticket, @ticket.comments.new]) do |f| %>
+        <%= f.hidden_field :owner_id, value: session[:user_id] %>
+        <p>
+          <%= f.label :body %><br>
+          <%= f.text_area :body, cols: 60, rows: 10 %>
+        </p>
+
+        <p>
+          <%= f.submit %>
+        </p>
+    <% end %>
+  </div>
+</div>

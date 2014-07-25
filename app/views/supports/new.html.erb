@@ -2,61 +2,60 @@
 
 <%= form_for :support, url: supports_path do |f| %>
 
-  <% if @support.errors.any? %>
-    <div id='error_explanation'>
-      <h2><%= pluralize(@support.errors.count, 'error') %> prohibited this support from being saved:</h2>
-      <ul>
-        <% @support.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+    <% if @support.errors.any? %>
+        <div id='error_explanation'>
+          <h2><%= pluralize(@support.errors.count, 'error') %> prohibited this support from being saved:</h2>
+          <ul>
+            <% @support.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
 
+    <p>
+      <%= f.label :login %>
+      <%= raw f.text_field :login %>
+    </p>
 
-  <p>
-    <%= f.label :login %>
-    <%= f.text_field :login %>
-  </p>
+    <p>
+      <%= f.label :password %>
+      <%= raw f.password_field :password %>
+    </p>
 
-  <p>
-    <%= f.label :password %>
-    <%= f.password_field :password %>
-  </p>
+    <p>
+      <%= f.label :first_name %>:
+      <%= raw f.text_field :first_name %>
+    </p>
 
-  <p>
-    <%= f.label :first_name %>:
-    <%= f.text_field :first_name %>
-  </p>
+    <p>
+      <%= f.label :last_name %>:
+      <%= raw f.text_field :last_name %>
+    </p>
 
-  <p>
-    <%= f.label :last_name %>:
-    <%= f.text_field :last_name %>
-  </p>
+    <p>
+      <%= f.label :email %>:
+      <%= raw f.text_field :email %>
+    </p>
 
-  <p>
-    <%= f.label :email %>:
-    <%= f.text_field :email %>
-  </p>
-
-  <p>
-    <%= f.label :Role %>:
-    <select name='selected_role'>
-      <% @roles.each do |role| %>
-          <% if role.name == 'Guest' %>
-            <option value = "<%= role.id %>" selected>
-          <% else %>
-            <option value = "<%= role.id %>">
-          <% end %>
+    <p>
+      <%= f.label :Role %>:
+      <select name='selected_role'>
+        <% @roles.each do |role| %>
+            <% if role.name == 'Guest' %>
+                <option value="<%= role.id %>" selected>
+            <% else %>
+                <option value="<%= role.id %>">
+            <% end %>
             <%= role.name %>
-          </option>
-      <% end %>
-    </select>
-  </p>
+            </option>
+        <% end %>
+      </select>
+    </p>
 
-  <p>
-    <%= f.submit %>
-  </p>
+    <p>
+      <%= f.submit %>
+    </p>
 <% end %>
 
-<%= link_to 'Back', supports_path %>
+<%= link_to 'Back', controller: 'welcome', action: 'index', anchor: 'supports' %>

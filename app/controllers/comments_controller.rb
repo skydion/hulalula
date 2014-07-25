@@ -2,7 +2,9 @@ class CommentsController < ApplicationController
   def create
     @ticket = Ticket.find(params[:ticket_id])
 
-    @ticket.comments.create(comment_params)
+    @comment = @ticket.comments.create(comment_params)
+
+    puts '=== Comment inspect', @comment.inspect
 
     # TODO - send email with comment to the customer
 

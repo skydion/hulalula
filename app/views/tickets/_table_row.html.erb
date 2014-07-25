@@ -1,16 +1,16 @@
-<tr>
+<tr class="<%= cycle("even", "odd")%>">
   <td><%= ticket.uuid %></td>
   <td><%= ticket.current_status %></td>
   <td><%= ticket.current_support %></td>
-  <td><%= ticket.username %></td>
-  <td><%= ticket.email %></td>
-  <td><%= ticket.subject %></td>
-  <td><%= ticket.problem %></td>
+  <td><%= h ticket.username %></td>
+  <td><%= h ticket.email %></td>
+  <td><%= h ticket.subject %></td>
+  <td><%= h ticket.problem %></td>
 
-  <td width=4%><%= link_to 'Show', ticket_path(ticket) %></td>
-  <td width=4%><%= link_to 'Edit', edit_ticket_path(ticket) %></td>
+  <td><%= link_to 'Show', ticket_path(ticket) %></td>
+  <td><%= link_to 'Edit', edit_ticket_path(ticket) %></td>
 
   <% if session[:role_name] == 'admin' %>
-      <td width=4%><%= link_to 'Destroy', ticket_path(ticket), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <td><%= link_to 'Destroy', ticket_path(ticket), method: :delete, data: { confirm: 'Are you sure?' } %></td>
   <% end %>
 </tr>

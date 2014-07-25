@@ -1,19 +1,19 @@
-<h1>Listing roles</h1>
+<!-- <h1>Listing roles</h1> -->
 
 <table border='1'>
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Description</th>
+      <th width="30%">Name</th>
+      <th width="60%">Description</th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @roles.each do |role| %>
-      <tr>
-        <td><%= role.name %></td>
-        <td><%= role.description %></td>
+      <tr class="<%= cycle("even", "odd") %>">
+        <td><%= raw role.name %></td>
+        <td><%= raw role.description %></td>
 
         <td><%= link_to 'Edit', edit_role_path(role) %></td>
         <% if session[:role_name] == 'admin' %>
@@ -27,4 +27,6 @@
 <br>
 
 <%= link_to 'Home', action: 'index', controller: 'welcome' %>
-| <%= link_to 'New Role', new_role_path %>
+<% if session[:role_name] == 'admin' %>
+    | <%= link_to 'New Role', new_role_path %>
+<% end %>

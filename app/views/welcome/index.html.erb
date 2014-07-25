@@ -1,60 +1,87 @@
-<h2>Welcome to the our cool company site</h2>
+<% content_for :form_login do %>
+    <%= form_for @support, url: authenticate_path do |f| %>
+        <div class="label">
+        <div>
+        <%= f.label :Login, class: 'label' %>
+        <%= f.text_field :login %>
+        </div>
 
-<% if session[:user_id] %>
-    <div class="link_logout">
-      <%= link_to 'Logout', controller: 'supports', action: 'logout' %>
-    </div>
+        <div>
+        <%= f.label :Password, class: 'label' %>
+        <%= f.password_field :password %>
+        </div>
+
+        <%= f.submit('Login') %>
+        </div>
+    <% end %>
 <% end %>
 
-<% unless session[:user_id] %>
-    <div class="form_login">
-      <%= form_for :supports, url: authenticate_path do |f| %>
-          <div class="form_field">
-            <%= f.label :Login %>
-            <br>
-            <%= f.text_field :username %>
-          </div>
+<% content_for :home do %>
+    <% if flash[:notice] %>
+        <p class="notification notice">
+          <%= flash[:notice] %>
+        </p>
+    <% end %>
 
-          <div class="form_field">
-            <%= f.label :Password %>
-            <br>
-            <%= f.password_field :password %>
-          </div>
+    <% if flash[:alert] %>
+        <p class="notification alert">
+          <%= flash[:alert] %>
+        </p>
+    <% end %>
 
-          <div class="form_field">
-            <%= f.submit('Login') %>
-          </div>
+    <div class="form_search">
+      <%= form_tag(ticket_show_by_uuid_path, method: 'post') do %>
+          <%= label_tag('url', 'UUID: ') %>
+          <%= text_field_tag(:uuid) %>
+          <%= submit_tag('Search') %>
+      <% end %>
+
+      <% unless session[:user_id] %>
+          <%= link_to 'New Ticket', {controller: 'tickets', action: 'new'} %>
       <% end %>
     </div>
 <% end %>
 
-<% if session[:user_id] %>
-    <!-- only for support staff -->
-    <div class="link_logout">
-    <%= link_to 'Tickets', controller: 'tickets' %>
-    | <%= link_to 'Supports', controller: 'supports' %>
-    | <%= link_to 'Roles', controller: 'roles' %>
-    | <%= link_to 'States', controller: 'ticket_states' %>
-    </div>
-<% end %>
+<script>
+    $(function () {
+        $("#content").tabs();
+    });
+</script>
 
-<div class="form_search">
-  <%= form_for :tickets, url: ticket_show_by_uuid_path do |f1| %>
-      <div class="form_field">
-        <%= f1.label :url %>
-        <%= f1.text_field :uuid %>
+<%= render 'layouts/header' %>
 
-        <%= f1.submit('Find') %>
+<div class="container">
+  <section id="content">
+
+    <div id="wrapper">
+      <div id="content_menu">
+
+        <div id="menu">
+          <ul>
+            <li><%= link_to 'Home', '#home', {:class => 'active'} %></li>
+            <% if session[:user_id] %>
+                <li><%= link_to 'Tickets', '#tickets' %></li>
+                <li><%= link_to 'Supports', '#supports' %></li>
+                <li><%= link_to 'Roles', '#roles' %></li>
+                <li><%= link_to 'States', '#states' %></li>
+            <% end %>
+          </ul>
+        </div>
+
+        <div id="main">
+          <h3>Home</h3>
+          <%= content_tag :div, yield(:home), :id => 'home' %>
+          <% if session[:user_id] %>
+            <%= content_tag :div, render(partial: 'tickets/index', locals: {ticket: @tickets}), :id => 'tickets' %>
+            <%= content_tag :div, render(partial: 'supports/index', locals: {support: @supports}), :id => 'supports' %>
+            <%= content_tag :div, render(template: 'roles/index', locals: {roles: @roles}), :id => 'roles' %>
+            <%= content_tag :div, render(template: 'ticket_states/index', locals: {ticket_states: @ticket_states}), :id => 'states' %>
+          <% end %>
+        </div>
       </div>
-  <% end %>
+
+    </div>
+  </section>
 </div>
 
-<div class="link_newticket">
-  <%= link_to 'New ticket', action: 'new', controller: 'tickets' %>
-
-  <% if session[:user_id] %>
-      <!-- only for admin staff -->
-      | <%= link_to 'New support', action: 'new', controller: 'supports' %>
-      | <%= link_to 'New role', action: 'new', controller: 'roles' %>
-  <% end %>
-</div>
+<%= render 'layouts/footer' %>

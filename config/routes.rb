@@ -1,23 +1,23 @@
 Rails.application.routes.draw do
-  resources :ticket_states
+  resources :ticket_states, constraints: { id: /\d+/ }
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
   post '/authenticate' => 'supports#authenticate'
 
-  resources :roles
+  resources :roles, constraints: { id: /\d+/ }
 
-  resources :supports do
-    resources :roles
+  resources :supports, constraints: { id: /\d+/ } do
+    resources :roles, constraints: { id: /\d+/ }
   end
 
   get 'logout' => 'supports#logout'
 
   get 'ticket/:uuid', to: 'tickets#show_by_uuid', constraints: { uuid: /[A-Z]{3}\d{3}[A-Z]{3}\d{3}[A-Z]{3}/ }
-  post 'ticket/show_by_uuid' => 'tickets#show_by_uuid'
+  post 'ticket/show_by_uuid', to: 'tickets#show_by_uuid'
 
-  resources :tickets do
-    resources :comments
+  resources :tickets, constraints: { id: /\d+/ } do
+    resources :comments, constraints: { id: /\d+/ }
   end
 
   get 'welcome/index'

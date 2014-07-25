@@ -2,12 +2,12 @@
 
 <p>
   <strong>Name:</strong>
-  <%= @role.name %>
+  <%= raw @role.name %>
 </p>
 
 <p>
   <strong>Description:</strong>
-  <%= @role.description %>
+  <%= raw @role.description %>
 </p>
 
 <%= link_to 'Edit', edit_role_path(@role) %> |
