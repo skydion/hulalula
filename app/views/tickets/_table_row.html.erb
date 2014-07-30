@@ -11,6 +11,6 @@
   <td><%= link_to 'Edit', edit_ticket_path(ticket) %></td>
 
   <% if session[:role_name] == 'admin' %>
-      <td><%= link_to 'Destroy', ticket_path(ticket), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <td><%= link_to 'Destroy', ticket_path(ticket), method: :delete, data: {confirm: 'Are you sure?'} %></td>
   <% end %>
 </tr>
