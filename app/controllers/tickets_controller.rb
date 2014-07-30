@@ -29,7 +29,7 @@ class TicketsController < ApplicationController
   end
 
   def index
-    @tickets = Ticket.all
+    # @tickets = Ticket.all
   end
 
   def create
@@ -88,6 +88,29 @@ class TicketsController < ApplicationController
       @support = Support.find_by(id: @ticket.support_id)
       @status = TicketState.find_by(id: @ticket.ticket_state_id)
     end
+  end
+
+  def get_tickets(state_name)
+
+    @status = case state_name
+                when 'unassigned'
+                  TicketState.find_by('name = ? OR name = ?', 'Waiting for staff responce', 'Waiting for customer')
+                when 'opened'
+                  TicketState.find_by(name: 'On hold')
+                when 'cancelled'
+                  TicketState.find_by(name: 'Cancelled')
+                when 'closed'
+                  TicketState.find_by(name: 'Completed')
+                else
+                  @status = nil
+              end
+
+    if @status
+      @tickets = Ticket.find_by(ticket_state_id: @status.id)
+      # puts '=== tickets [1]: ' + @tickets.inspect.to_s
+    end
+
+    return @tickets
   end
 
 private

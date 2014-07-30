@@ -20,7 +20,7 @@ Rails.application.routes.draw do
     resources :comments, constraints: { id: /\d+/ }
   end
 
-  get 'welcome/index'
+  #get 'welcome/index'
 
   # You can have the root of your site routed with "root"
   root 'welcome#index'

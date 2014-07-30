@@ -1,23 +1,20 @@
-<!-- <h1> Listing supports</h1> -->
-
 <% @roles = Role.all %>
 
-<table border='1' >
+<table>
   <tr>
-    <th width=10%>Login</th>
-    <th width=10%>Password</th>
-    <th width=20%>First name</th>
-    <th width=20%>Last name</th>
-    <th width=20%>E-mail</th>
-    <th width=20%>Role</th>
+    <th>Login</th>
+    <th>Password</th>
+    <th>First name</th>
+    <th>Last name</th>
+    <th>E-mail</th>
+    <th>Role</th>
   </tr>
 
   <% @supports.each do |support| %>
-      <%= render partial: 'supports/table_row', locals: {support: support} %>
+    <%= render partial: 'supports/table_row', locals: {support: support} %>
   <% end %>
 </table>
 
-<%#= link_to 'Home', action: 'index', controller: 'welcome' %>
 <% if session[:role_name] == 'admin' %>
     <%= link_to 'New Support', new_support_path %>
 <% end %>

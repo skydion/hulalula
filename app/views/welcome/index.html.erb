@@ -1,17 +1,17 @@
 <% content_for :form_login do %>
     <%= form_for @support, url: authenticate_path do |f| %>
         <div class="label">
-        <div>
-        <%= f.label :Login, class: 'label' %>
-        <%= f.text_field :login %>
-        </div>
+          <div>
+            <%= f.label :Login, class: 'label' %>
+            <%= f.text_field :login %>
+          </div>
 
-        <div>
-        <%= f.label :Password, class: 'label' %>
-        <%= f.password_field :password %>
-        </div>
+          <div>
+            <%= f.label :Password, class: 'label' %>
+            <%= f.password_field :password %>
+          </div>
 
-        <%= f.submit('Login') %>
+          <%= f.submit('Login') %>
         </div>
     <% end %>
 <% end %>
@@ -31,13 +31,15 @@
 
     <div class="form_search">
       <%= form_tag(ticket_show_by_uuid_path, method: 'post') do %>
-          <%= label_tag('url', 'UUID: ') %>
+          <b><%= label_tag('url', 'UUID: ') %></b>
           <%= text_field_tag(:uuid) %>
           <%= submit_tag('Search') %>
       <% end %>
 
       <% unless session[:user_id] %>
+        <h3>
           <%= link_to 'New Ticket', {controller: 'tickets', action: 'new'} %>
+        </h3>
       <% end %>
     </div>
 <% end %>
@@ -69,13 +71,18 @@
         </div>
 
         <div id="main">
-          <h3>Home</h3>
           <%= content_tag :div, yield(:home), :id => 'home' %>
           <% if session[:user_id] %>
-            <%= content_tag :div, render(partial: 'tickets/index', locals: {ticket: @tickets}), :id => 'tickets' %>
-            <%= content_tag :div, render(partial: 'supports/index', locals: {support: @supports}), :id => 'supports' %>
-            <%= content_tag :div, render(template: 'roles/index', locals: {roles: @roles}), :id => 'roles' %>
-            <%= content_tag :div, render(template: 'ticket_states/index', locals: {ticket_states: @ticket_states}), :id => 'states' %>
+              <%# Look on the locals variable, is there a pass not updated variable from welcome controller?
+                # because without , locals: {support: @supports} render work too, it is strange for me.
+                # For test this idea I need login as guest from another web browser and add new ticket,
+                # if this ticket will be rendered, it will be fine another way we have global variables work
+                # , locals: {tickets: @tickets}
+              %>
+              <%= content_tag :div, render(partial: 'tickets/index'), :id => 'tickets' %>
+              <%= content_tag :div, render(partial: 'supports/index', locals: {support: @supports}), :id => 'supports' %>
+              <%= content_tag :div, render(template: 'roles/index', locals: {roles: @roles}), :id => 'roles' %>
+              <%= content_tag :div, render(template: 'ticket_states/index', locals: {ticket_states: @ticket_states}), :id => 'states' %>
           <% end %>
         </div>
       </div>

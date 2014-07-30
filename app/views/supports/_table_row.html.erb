@@ -1,15 +1,15 @@
-<tr class="<%= cycle("even", "odd")%>">
-  <td><%= raw support.login %></td>
-  <td><%= raw support.password %></td>
-  <td><%= raw support.first_name%></td>
-  <td><%= raw support.last_name %></td>
-  <td><%= raw support.email %></td>
-  <!-- need review -->
-  <% role = @roles.find_by id: support.role_id %>
-  <td><%= raw role.name %></td>
+<tr class="<%= cycle('even', 'odd') %>">
+  <td><%= h support.login %></td>
+  <td><%= h support.password %></td>
+  <td><%= h support.first_name%></td>
+  <td><%= h support.last_name %></td>
+  <td><%= h support.email %></td>
 
-  <td width=4%><%= link_to 'Edit', edit_support_path(support) %></td>
+  <% role = @roles.find_by id: support.role_id %>
+  <td><%= h role.name %></td>
+
+  <td><%= link_to 'Edit', edit_support_path(support) %></td>
   <% if session[:role_name] == 'admin' %>
-      <td width=4%><%= link_to 'Destroy', support_path(support), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <td><%= link_to 'Destroy', support_path(support), method: :delete, data: { confirm: 'Are you sure?' } %></td>
   <% end %>
 </tr>

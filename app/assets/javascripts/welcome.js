@@ -13,7 +13,5 @@ $(document).ready(function() {
         });
 
         $(this).addClass("active");
-
-        $("h3").html($(this).html());
     });
 });

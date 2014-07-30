@@ -1,9 +1,8 @@
 class WelcomeController < ApplicationController
-  before_filter :check_authentic_user, :except =>[ :index ]
+  before_filter :check_authentic_user, :except => [:index]
 
   def index
-    @tickets = Ticket.all
-
+    #@tickets = Ticket.all
     @support = Support.new
     @supports = Support.all
 
