@@ -5,7 +5,6 @@
   <td><%= h support.last_name %></td>
   <td><%= h support.email %></td>
 
-  <% role = @roles.find_by id: support.role_id %>
   <td><%= h role.name %></td>
 
   <td><%= link_to 'Edit', edit_support_path(support) %></td>

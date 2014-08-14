@@ -37,6 +37,7 @@ class SupportsController < ApplicationController
   end
 
   def index
+    @roles = Role.all
     @supports = Support.all
   end
 
@@ -49,7 +50,7 @@ class SupportsController < ApplicationController
 
   def logout
     reset_session
-    redirect_to :controller => 'welcome', :action => 'index'
+    redirect_to :controller => 'application', :action => 'index'
   end
 
   def authenticate
@@ -73,7 +74,7 @@ class SupportsController < ApplicationController
         flash[:alert] = 'Invalid Login or Password, check it and try again'
       end
 
-      redirect_to :controller => 'welcome', :action => 'index'
+      redirect_to :controller => 'application', :action => 'index'
 #    end
   end
 

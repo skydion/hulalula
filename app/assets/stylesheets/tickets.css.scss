@@ -89,7 +89,8 @@ a { outline:none; }
 
 .row {
   width: 100%;
-  height: 363px; // need dynamic changing
+  height: 383px; // need dynamic changing
+  overflow-y: auto;
 }
 
 .d1, .d3, {

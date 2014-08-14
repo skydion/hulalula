@@ -1,0 +1,5 @@
+<%= form_tag(ticket_show_by_uuid_path, method: 'post') do %>
+    <b><%= label_tag('url', 'UUID: ') %></b>
+    <%= text_field_tag(:uuid) %>
+    <%= submit_tag('Search') %>
+<% end %>

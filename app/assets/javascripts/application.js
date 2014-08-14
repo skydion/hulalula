@@ -10,9 +10,23 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery
-//= require jquery-ui
-//= require jquery_ujs
+
+/*
+= require jquery
+= require jquery-ui
+= require jquery_ujs
+*/
+
 //= require turbolinks
 //= require_tree .
 
+$(document).ready(function() {
+    // Just for demonstration purposes, change the contents/active state using jQuery
+    $("#menu ul li a").click(function () {
+        $("#menu ul li a").each(function () {
+            $(this).removeClass("active");
+        });
+
+        $(this).addClass("active");
+    });
+});

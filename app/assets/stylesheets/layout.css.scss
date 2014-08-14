@@ -3,7 +3,7 @@
 header#page_header {
   background: #bc471d; // url('/assets/brandtag.png') bottom right no-repeat;
   color: #fff;
-  font-size: 0.9em;
+  font-size: 1.2em;
   height: 68px;
   margin-bottom: 0;
   overflow: hidden;
@@ -97,26 +97,6 @@ section#sidebar {
   float: right;
   margin-bottom: 20px;
   margin-right: -20px;
-}
-
-div#ipad_sidebar {
-  display: none; /* Needed to hide for regular app users */
-  background-color: #999;
-  border: 2px solid #444;
-  border-left: none;
-  -moz-border-radius-topright: 10px;
-  -moz-border-radius-bottomright: 10px;
-  -webkit-border-top-right-radius: 10px;
-  -webkit-border-bottom-right-radius: 10px;
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
-  -moz-box-shadow: 0px 0px 10px #333 inset;
-  -webkit-box-shadow: 0px 0px 10px #333 inset;
-  box-shadow: 0px 0px 10px #333 inset;
-  color: #fff;
-  float: left;
-  padding: 10px;
-  @include column(3); /* approx 200px */
 }
 
 /* for image replacement */

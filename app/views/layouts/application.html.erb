@@ -2,16 +2,28 @@
 <html>
 <head>
   <title>Hulalula</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-
-  <%= javascript_include_tag 'welcome.js' %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-<%= yield %>
+
+
+<div class="container">
+  <%= render(partial: 'layouts/header') %>
+  <%= render(partial: 'layouts/home') %>
+
+  <section id="content">
+    <div id="wrapper">
+      <div id="main">
+        <%= yield %>
+      </div>
+    </div>
+  </section>
+
+  <%= render(partial: 'layouts/footer') %>
+</div>
 
 </body>
 </html>

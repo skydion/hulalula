@@ -1,10 +1,15 @@
 fieldset label {
   display: block;
+
+  font-size: 1.1em;
+  font-weight: bold;
+  padding-left: 10px;
 }
 
 fieldset#creation-print {
    font-size: 0.9em;
 }
+
 fieldset.inline label {
    display: inline;
    width: 240px;
@@ -31,4 +36,16 @@ fieldset div.field_with_errors {
   input {
     background: #ffc; /* light yellow */
   }
+}
+
+input, textarea {
+  &:focus {
+    background-color: #cdc1a8;
+  }
+
+  border-style: solid;
+  border-width: 1px;
+  border-color: #4c2719;
+
+  border-radius: 0;
 }

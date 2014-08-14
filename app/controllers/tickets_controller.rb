@@ -5,6 +5,10 @@ class TicketsController < ApplicationController
     @ticket = Ticket.new
   end
 
+  def index
+    @tickets = Ticket.all
+  end
+
   def edit
     @ticket = Ticket.find(params[:id])
     @supports = Support.all
@@ -26,10 +30,6 @@ class TicketsController < ApplicationController
         render 'edit'
       end
     end
-  end
-
-  def index
-    # @tickets = Ticket.all
   end
 
   def create
@@ -83,34 +83,13 @@ class TicketsController < ApplicationController
 
     if @ticket.nil?
       flash[:notice] = 'Wrong UUID, please re-check and try again'
-      redirect_to :controller => 'welcome', :action => 'index'
+      redirect_to :controller => 'application', :action => 'index'
     else
       @support = Support.find_by(id: @ticket.support_id)
       @status = TicketState.find_by(id: @ticket.ticket_state_id)
+
+      redirect_to @ticket
     end
-  end
-
-  def get_tickets(state_name)
-
-    @status = case state_name
-                when 'unassigned'
-                  TicketState.find_by('name = ? OR name = ?', 'Waiting for staff responce', 'Waiting for customer')
-                when 'opened'
-                  TicketState.find_by(name: 'On hold')
-                when 'cancelled'
-                  TicketState.find_by(name: 'Cancelled')
-                when 'closed'
-                  TicketState.find_by(name: 'Completed')
-                else
-                  @status = nil
-              end
-
-    if @status
-      @tickets = Ticket.find_by(ticket_state_id: @status.id)
-      # puts '=== tickets [1]: ' + @tickets.inspect.to_s
-    end
-
-    return @tickets
   end
 
 private

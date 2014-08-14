@@ -1,5 +1,3 @@
-<% @roles = Role.all %>
-
 <table>
   <tr>
     <th>Login</th>
@@ -11,7 +9,8 @@
   </tr>
 
   <% @supports.each do |support| %>
-    <%= render partial: 'supports/table_row', locals: {support: support} %>
+    <% role = @roles.find_by id: support.role_id %>
+    <%= render partial: 'supports/table_row', locals: {support: support, role: role} %>
   <% end %>
 </table>
 

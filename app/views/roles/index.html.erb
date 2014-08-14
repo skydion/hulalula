@@ -9,7 +9,7 @@
 
   <tbody>
     <% @roles.each do |role| %>
-      <tr class="<%= cycle("even", "odd") %>">
+      <tr class="<%= cycle('even', 'odd') %>">
         <td><%= raw role.name %></td>
         <td><%= raw role.description %></td>
 
@@ -22,7 +22,7 @@
   </tbody>
 </table>
 
-<%#= link_to 'Home', action: 'index', controller: 'welcome' %>
+<%#= link_to 'Home', controller: 'application', action: 'index' %>
 <% if session[:role_name] == 'admin' %>
     <%= link_to 'New Role', new_role_path %>
 <% end %>

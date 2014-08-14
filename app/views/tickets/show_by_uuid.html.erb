@@ -4,6 +4,6 @@
 <% if session[:user_id] %>
     <%= link_to 'Back', controller: 'tickets' %>
 <% else %>
-    <%= link_to 'Home', controller: 'welcome' %>
-    | <%= link_to 'New ticket', action: 'new', controller: 'tickets' %>
+    <%= link_to 'Home', controller: 'application' %>
+    | <%= link_to 'New ticket', controller: 'tickets', action: 'new' %>
 <% end %>
