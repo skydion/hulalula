@@ -1,14 +1,7 @@
-<% if flash[:notice] %>
-        <p class="notification notice">
-          <%= flash[:notice] %>
-        </p>
-<% end %>
-
 <%= render 'form' %>
 
-<%= link_to 'Back', controller: 'application', action: 'index', anchor: 'tickets' %>
-
-<% unless session[:user_id] %>
-<%= link_to 'Home', controller: 'application', action: 'index', anchor: 'home' %>
-| <%= link_to 'New ticket', controller: 'tickets', action: 'new' %>
+<% if authorized? %>
+  <%= link_to 'Back', controller: 'tickets', action: 'index' %>
+<% else %>
+  <%= link_to 'New ticket', controller: 'tickets', action: 'new' %>
 <% end %>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
+    </head>
+
+    <body>
+
+    <h1>Hello <%= @ticket.username %></h1>
+    <p>
+      You was posted problem on hulalula.com, with <a href="<%= 'http://localhost:3000/ticket/'+@ticket.uuid %>">UUID: <%= @ticket.uuid %></a>
+      so you have new comment about it.
+    </p>
+
+    <h2>Comment text:</h2>
+    <p>
+        <%= @comment.body %>
+    </p>
+
+    </body>
+</html>

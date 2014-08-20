@@ -6,80 +6,40 @@
         <div class="owner_customer">Owner: Customer</div>
     <% end %>
 
-    <div>
       <p>
-        <strong>Date: </strong>
+        <strong>Date:</strong>
         <%= @ticket.created_at %>
       </p>
 
-      <p>
-        <strong>Generated unique UUID:</strong>
-        <%= @ticket.uuid %>
-      </p>
+      <table width="100%">
+        <thead>
+        <tr>
+          <th>UUID</th>
+          <th>Status</th>
+          <th>Owner</th>
+          <th>Username</th>
+          <th>E-mail</th>
+          <th>Subject</th>
 
-      <p>
-        <strong class="status">Status:
-          <%= @ticket.current_status %>
-        </strong>
-      </p>
+          <% if self.action_name == 'index' %>
+              <th>Problem</th>
+              <th colspan="3">Actions</th>
+          <% end %>
+        </tr>
+        </thead>
 
-      <p>
-        <strong>Username:</strong>
-        <%= h @ticket.username %>
-      </p>
-
-      <p>
-        <strong>E-mail:</strong>
-        <%= h @ticket.email %>
-      </p>
-
-      <p>
-        <strong>Subject:</strong>
-        <%= h @ticket.subject %>
-      </p>
+        <tbody>
+        <%= render partial: 'table_row', locals: {ticket: @ticket} %>
+        </tbody>
+      </table>
 
       <p>
         <strong>Problem:</strong>
         <%= h @ticket.problem %>
       </p>
-    </div>
 
-    <h2>Comments</h2>
-    <% @ticket.comments.each do |comment| %>
-        <%
-           if comment.owner_id
-             owner = Support.find_by(id: comment.owner_id).login
-           else
-             owner = 'Customer'
-           end
-        %>
+    <%= render partial: 'comments', locals: {ticket: @ticket} %>
 
-        <div class="comment">
-          <div class="header1">Comment [<%= comment.id %>] - <%= comment.created_at %></div>
-          <div class="header2">User: [<%= owner %>]</div>
-
-          <div class="comment_body"><%= h comment.body %></div>
-
-          <div class="delete_comment">
-            <% if comment.owner_id == session[:user_id] %>
-                <%= link_to 'Destroy Comment', [comment.ticket, comment], method: :delete, data: {confirm: 'Are you sure?'} %>
-            <% end %>
-          </div>
-        </div>
-
-    <% end %>
-
-    <h2>Add a comment:</h2>
-    <%= form_for ([@ticket, @ticket.comments.build]) do |f| %>
-        <%= f.hidden_field :owner_id, value: session[:user_id] %>
-        <p>
-          <%= f.label :body %><br>
-          <%= f.text_area :body, cols: 60, rows: 10 %>
-        </p>
-
-        <p>
-          <%= f.submit %>
-        </p>
-    <% end %>
+    <%= render partial: 'form_add_comment', locals: {ticket: @ticket} %>
   </div>
 </div>

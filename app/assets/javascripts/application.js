@@ -11,15 +11,12 @@
 // about supported directives.
 //
 
-/*
-= require jquery
-= require jquery-ui
-= require jquery_ujs
-*/
-
+//= require jquery
+//= require jquery_ujs
 //= require turbolinks
 //= require_tree .
 
+/*
 $(document).ready(function() {
     // Just for demonstration purposes, change the contents/active state using jQuery
     $("#menu ul li a").click(function () {
@@ -29,4 +26,31 @@ $(document).ready(function() {
 
         $(this).addClass("active");
     });
+});
+*/
+
+/*$(document).ready(function() {
+    var m = $("#main");
+    var mw = m.width();
+
+    $(".d1").width( mw/2 );
+    $(".d2").width( mw/2 );
+    $(".d3").width( mw/2 );
+    $(".d4").width( mw/2 );
+});
+ */
+
+$(window).resize( function() {
+    var m = $("#main");
+
+    var mw = m.width();
+    var mh = m.height();
+    //console.log("MW: " + mw + ",  MH: " + mh);
+
+    $(".d1").width( mw/2 );
+    $(".d2").width( mw/2 );
+    $(".d3").width( mw/2 );
+    $(".d4").width( mw/2 );
+
+    $("footer#page_footer").bottom( mh );
 });

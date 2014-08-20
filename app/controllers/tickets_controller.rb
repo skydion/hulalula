@@ -1,5 +1,5 @@
 class TicketsController < ApplicationController
-  before_filter :check_authentic_user, :except =>[ :new, :show, :show_by_uuid, :create, :authenticate ]
+  before_filter :check_authentic_user, :except =>[ :new, :show, :show_by_uuid, :create ]
 
   def new
     @ticket = Ticket.new
@@ -19,12 +19,22 @@ class TicketsController < ApplicationController
     @ticket = Ticket.find(params[:id])
 
     if @ticket
-      # puts '=== ticket::update'
-      # TODO - check owner and state changing between comments and end email if one of them is changed
-      @ticket.update_attribute :support_id, params[:support_id]
-      @ticket.update_attribute :ticket_state_id, params[:ticket_state_id]
+      # TODO - check owner and state changing between comments and email if one of them is changed
+      old_support_id = @ticket.support_id
+      old_ticket_state_id = @ticket.ticket_state_id
 
+      new_support_id = params[:ticket][:support_id].to_i
+      new_ticket_state_id = params[:ticket][:ticket_state_id].to_i
+
+      @ticket.update_attribute :support_id, new_support_id
+      @ticket.update_attribute :ticket_state_id, new_ticket_state_id
+
+      binding.pry
       if @ticket.update(ticket_params)
+        if (old_support_id != new_support_id) || (old_ticket_state_id != new_ticket_state_id)
+          NotificationMailer.ticket_status_changed(@ticket).deliver
+        end
+
         redirect_to @ticket
       else
         render 'edit'
@@ -47,7 +57,9 @@ class TicketsController < ApplicationController
 
       if @ticket.save
         flash[:notice] = 'Mail with ticket url, and unique UUID send, to your e-mail address'
-        # TODO - send email to the customer
+
+        NotificationMailer.new_ticket(@ticket).deliver
+
         redirect_to @ticket
       else
         render 'new'
@@ -59,15 +71,12 @@ class TicketsController < ApplicationController
     @ticket = Ticket.find(params[:id])
 
     if @ticket
-      support_id = @ticket.support_id
-      #puts '=== support_id: ' + support_id.to_s
-
       @ticket.destroy
 
-      if support_id
+      if !session[:user_id].nil?
         redirect_to tickets_path
       else
-        redirect_to welcome_index_path
+        redirect_to root_path
       end
     end
   end

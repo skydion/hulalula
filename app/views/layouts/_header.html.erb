@@ -1,22 +1,20 @@
 <header id="page_header" role="banner" xmlns="http://www.w3.org/1999/html">
   <nav id="utility">
     <p>
-      <% unless session[:login] %>
-          <%= content_tag :div, render(partial: 'layouts/login'), :id => 'form_login' %>
-      <% end %>
-
-      <% if session[:login] %>
+      <% if authorized? %>
           You are logged in as <strong><%= session[:login] %></strong>
           <%= link_to '[Your Account]', controller: 'supports', action: 'edit', id: session[:user_id] %>
           <%= link_to '[Logout]', controller: 'supports', action: 'logout' %>
+      <% else %>
+          <%= content_tag :div, render(partial: 'layouts/login'), :id => 'form_login' %>
       <% end %>
     </p>
   </nav>
 
   <nav id="main_nav" role="navigation">
     <ul>
-      <% if !session[:login] %>
-          <li><%= link_to 'Home', '#' %></li>
+      <% if !authorized? %>
+          <li><%= link_to 'Home', '/' %></li>
           <li><%= link_to 'Creations', '#' %></li>
           <li><%= link_to 'Campaigns', '#' %></li>
           <li><%= link_to 'Projects', '#' %></li>

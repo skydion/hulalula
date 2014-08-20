@@ -14,6 +14,6 @@
   <% end %>
 </table>
 
-<% if session[:role_name] == 'admin' %>
-    <%= link_to 'New Support', new_support_path %>
+<%= admin_area do %>
+  <%= link_to 'New Support', new_support_path %>
 <% end %>

@@ -3,15 +3,9 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  before_filter :check_authentic_user, :except => [:index]
+  before_filter :check_authentic_user, :except => [:index, :contact]
 
   def index
-    #@tickets = Ticket.all
-    #@support = Support.new
-    #@supports = Support.all
-    #@roles = Role.all
-    #@ticket_states = TicketState.all
-
     render 'layouts/application', layout: false
   end
 
@@ -20,5 +14,9 @@ class ApplicationController < ActionController::Base
       flash[:notice] = 'Please log in'
       redirect_to(:controller => 'application', :action => 'index')
     end
+  end
+
+  def contact
+    render 'layouts/contact'
   end
 end

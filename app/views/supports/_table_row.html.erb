@@ -7,8 +7,8 @@
 
   <td><%= h role.name %></td>
 
-  <td><%= link_to 'Edit', edit_support_path(support) %></td>
-  <% if session[:role_name] == 'admin' %>
-      <td><%= link_to 'Destroy', support_path(support), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  <td><%= link_to image_tag('edit-icon.png'), edit_support_path(support) %></td>
+  <%= admin_area do %>
+    <td><%= link_to image_tag('delete-trash.png'), support_path(support), method: :delete, data: { confirm: 'Are you sure?' } %></td>
   <% end %>
 </tr>

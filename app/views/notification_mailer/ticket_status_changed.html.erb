@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
+    </head>
+
+    <body>
+
+    <h1>Hello <%= @ticket.username %></h1>
+    <p>
+      Ticket state [<a href="<%= 'http://localhost:3000/ticket/'+@ticket.uuid %>">UUID: <%= @ticket.uuid %></a>] is changed, maybe it is improtant for you.<br>
+      Please check you ticket.
+    </p>
+    </body>
+</html>

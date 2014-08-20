@@ -5,12 +5,15 @@
   <td><%= h ticket.username %></td>
   <td><%= h ticket.email %></td>
   <td><%= h ticket.subject %></td>
-  <td><%= h ticket.problem %></td>
 
-  <td><%= link_to 'Show', ticket_path(ticket) %></td>
-  <td><%= link_to 'Edit', edit_ticket_path(ticket) %></td>
+  <% if self.action_name == 'index' %>
+      <td><%= h ticket.problem %></td>
 
-  <% if session[:role_name] == 'admin' %>
-      <td><%= link_to 'Destroy', ticket_path(ticket), method: :delete, data: {confirm: 'Are you sure?'} %></td>
+      <td><%= link_to image_tag('show-icon.png'), ticket_path(ticket) %></td>
+      <td><%= link_to image_tag('edit-icon.png'), edit_ticket_path(ticket) %></td>
+
+      <%= admin_area do %>
+        <td><%= link_to image_tag('delete-trash.png'), ticket_path(ticket), method: :delete, data: {confirm: 'Are you sure?'} %></td>
+      <% end %>
   <% end %>
 </tr>

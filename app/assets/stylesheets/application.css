@@ -19,6 +19,15 @@
  *= require forms
  */
 
-table tr.even td { background-color: linen; }
-table tr.odd td { background-color: lightblue; }
+table tr.even td {
+    background-color: linen;
+}
 
+table tr.odd td {
+    background-color: lightblue;
+}
+
+body {
+    background-image:url("wood_bg.jpg");
+    font: 14px Georgia, serif;
+}

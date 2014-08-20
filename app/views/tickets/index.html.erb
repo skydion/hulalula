@@ -1,18 +1,17 @@
+<script>
+  $(document).ready(function() {
+    var m = $("#main");
+    var mw = m.width();
+
+    $(".d1").width( mw/2 );
+    $(".d2").width( mw/2 );
+    $(".d3").width( mw/2 );
+    $(".d4").width( mw/2 );
+});
+</script>
+
 <div class="d1 row" id="left_top">
-  <p>Left top cell [unassigned]</p>
-  <%
-     # in this array we can late add new ticket_state ID witch we want to display in some cell
-     # need create gui to select ids for active cell
-     ids = [1, 2]
-
-     # select tickets fields and ticket_states.name field too
-     #@unassigned = Ticket.select('*').joins(:ticket_state).where("ticket_states.id IN (?) AND support_id NOT NULL", ids)
-
-     # select only tickets field
-     @unassigned = Ticket.joins(:ticket_state).where("ticket_states.id IN (?) AND support_id NOT NULL", ids)
-     #puts debug(@unassigned)
-  %>
-
+  <!-- <p>Left top cell [unassigned]</p> -->
   <table width="100%">
     <thead>
     <tr>
@@ -28,18 +27,14 @@
     </thead>
 
     <tbody>
-    <%= render partial: 'tickets/table_row', collection: @unassigned, as: :ticket %>
+    <%= render partial: 'tickets/table_row', collection: unassigned, as: :ticket %>
     </tbody>
   </table>
 </div>
 
 
 <div class="d2 row" id="right_top">
-  <p>Right top cell [opened]</p>
-  <%
-     @opened = Ticket.where('support_id IS NULL')
-  %>
-
+  <!-- <p>Right top cell [opened]</p> -->
   <table width="100%">
     <thead>
     <tr>
@@ -55,27 +50,14 @@
     </thead>
 
     <tbody>
-    <%= render partial: 'tickets/table_row', collection: @opened, as: :ticket %>
+    <%= render partial: 'tickets/table_row', collection: Ticket.where('support_id IS NULL'), as: :ticket %>
     </tbody>
   </table>
 </div>
 
 
-<div class="d3 row" id="right_top">
-  <p>Left bottom cell [on hold]</p>
-
-  <%
-     # in this array we can late add new ticket_state ID witch we want to display in some cell
-     # need create gui to select ids for active cell
-     ids = [3]
-
-     # select tickets fields and ticket_states.name field too
-     #@onhold = Ticket.select('*').joins(:ticket_state).where("ticket_states.id IN (?)", ids)
-
-     # select only tickets field
-     @onhold = Ticket.joins(:ticket_state).where("ticket_states.id IN (?)", ids)
-  %>
-
+<div class="d3 row" id="left_bottom">
+  <!-- <p>Left bottom cell [on hold]</p> -->
   <table width="100%">
     <thead>
     <tr>
@@ -91,27 +73,14 @@
     </thead>
 
     <tbody>
-    <%= render partial: 'tickets/table_row', collection: @onhold, as: :ticket %>
+    <%= render partial: 'tickets/table_row', collection: onhold, as: :ticket %>
     </tbody>
   </table>
 </div>
 
 
 <div class="d4 row" id="right_bottom">
-  <p>Right bottom cell [closed]</p>
-
-  <%
-     # in this array we can late add new ticket_state ID witch we want to display in some cell
-     # need create gui to select ids for active cell
-     ids = [4, 5]
-
-     # select tickets fields and ticket_states.name field too
-     #@closed = Ticket.select('*').joins(:ticket_state).where("ticket_states.id IN (?)", ids)
-
-     # select only tickets field
-     @closed = Ticket.joins(:ticket_state).where("ticket_states.id IN (?)", ids)
-  %>
-
+  <!-- <p>Right bottom cell [closed]</p> -->
   <table width="100%">
     <thead>
     <tr>
@@ -127,7 +96,7 @@
     </thead>
 
     <tbody>
-    <%= render partial: 'tickets/table_row', collection: @closed, as: :ticket %>
+    <%= render partial: 'tickets/table_row', collection: closed, as: :ticket %>
     </tbody>
   </table>
 </div>

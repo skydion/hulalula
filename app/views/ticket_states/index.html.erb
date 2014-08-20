@@ -11,9 +11,9 @@
       <tr class="<%= cycle('even', 'odd') %>">
         <td><%= ticket_state.name %></td>
 
-        <td><%= link_to 'Edit', edit_ticket_state_path(ticket_state) %></td>
-        <% if session[:role_name] == 'admin' %>
-            <td><%= link_to 'Destroy', ticket_state, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+        <td><%= link_to image_tag('edit-icon.png'), edit_ticket_state_path(ticket_state) %></td>
+        <%= admin_area do %>
+          <td><%= link_to image_tag('delete-trash.png'), ticket_state, method: :delete, data: {confirm: 'Are you sure?'} %></td>
         <% end %>
       </tr>
   <% end %>
@@ -21,6 +21,6 @@
   </tbody>
 </table>
 
-<% if session[:role_name] == 'admin' %>
-    <%= link_to 'New Ticket State', new_ticket_state_path %>
+<%= admin_area do %>
+  <%= link_to 'New Ticket State', new_ticket_state_path %>
 <% end %>

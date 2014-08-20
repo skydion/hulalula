@@ -4,41 +4,27 @@
 
 /* BASIC RESET */
 ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,body,html,p,blockquote,fieldset,input {
-  margin:0;
-  padding:0;
+  margin: 0;
+  padding: 0;
 }
-
-/* HTML ELEMENTS */
-body {
-  background-image:url("wood_bg.jpg");
-  font: 14px Georgia, serif;
-}
-
-/*
-h1 { font: bold 65px/60px Helvetica, Arial, Sans-serif; text-align: center; color: #eee; text-shadow: 0 2px 6px #333; }
-h1 small{ font-size: 20px; text-transform:uppercase; letter-spacing: 14px; display: block; color: #ccc; }
-h2 a { display: block; text-decoration: none; margin: 0 0 30px 0; font: italic 45px Georgia, Times, Serif;  text-align: center; color: #bfe1f1; text-shadow: 0 2px 6px #333; }
-h2 a:hover { color: #90bcd0; }
-a { outline:none; }
-*/
 
 /* COMMON CLASSES */
-.break { clear:both; }
+.break { clear: both; }
 
 /* WRAPPER */
 /* #wrapper { width: 1200px; margin:5px auto; } */
-#wrapper { margin:5px auto; }
+#wrapper { margin: 5px auto; }
 
 /* CONTENT */
 #content { }
-#content p { margin:20px; }
+// #content p { margin: 20px; }
 
 /* MENU
 #menu { margin: 20px 0 0 10px; }
 */
 #menu { margin: 10px 0 0 0; }
-#menu ul { list-style:none; }
-#menu ul li { display:inline; float:left; margin-bottom:20px; }
+#menu ul { list-style: none; }
+#menu ul li { display: inline; float: left; margin-bottom: 20px; }
 
 /* :first-child pseudo selector with rounded top left corner */
 /* #menu ul li:first-child a { border-top-left-radius: 12px; } */
@@ -48,7 +34,7 @@ a { outline:none; }
 
 /* background color set to RGBA, with opacity on 0.3 and also using text-shadow */
 #menu ul li a {
-  padding:20px;
+  padding: 20px;
   background: rgba(255,138,30,0.3);
   text-decoration: none;
   font: bold 14px Helvetica, Sans-Serif;
@@ -61,9 +47,9 @@ a { outline:none; }
 #menu ul li a:hover {
   box-shadow: 0 -5px 10px #777;
   background: linear-gradient(right bottom, rgb(237,227,112) 0%, rgb(255,173,10) 72%) !important;
-  background-color:rgb(255,173,10) !important;
-  filter:alpha(opacity=90);
-  opacity:.90; }
+  background-color: rgb(255,173,10) !important;
+  filter: alpha(opacity=90);
+  opacity: .90; }
 
 /* another RGBA background, now with an opacity of 0.8 */
 /*
@@ -74,68 +60,80 @@ a { outline:none; }
 
 /* main contents with RGBA background (same colour as active tab) and three rounded corners
  width:1200px; margin-left:10px;
- */
+*/
+
+$height: 780px;
 
 #main {
-  clear:both;
+  clear: both;
 //  background: rgba(255,138,30,0.8);
 
   margin: 0;
   padding: 0;
 
-  height: 780px; // need dynamic changing
+  height: $height; // need dynamic changing
   overflow-y: auto;
 }
 
 .row {
-  width: 100%;
-  height: 383px; // need dynamic changing
+  //width: 100%;
+  height: ($height - 10) / 2; // need dynamic changing
   overflow-y: auto;
 }
 
 .d1, .d3, {
-  float:left;
-  width: 50%; // need change
+  float: left;
+  //width: 50%; // need change
   margin-right: 0;
 }
 
 .d2, .d4, {
-  float:right;
-  width: 50%; // need change
+  float: right;
+ // width: 50%; // need change
 }
 
 $step: 5%;
-$d1_color: darkred;
+//$d1_color: darkred;
+$d1_color: #806a2e;
+
+// left top
 .d1 {
-  margin-bottom: 4px;
   background-color: $d1_color;
+  //border-right: 1px solid #4c2719;
+  //border-bottom: 1px solid #4c2719;
 
   &:hover {
     background-color: lighten($d1_color, $step);
   }
 }
 
-$d2_color: darkblue;
+// right top
+//$d2_color: darkblue;
+$d2_color: $d1_color;
 .d2 {
-  margin-bottom: 4px;
   background-color: $d2_color;
+  //border-bottom: 1px solid #4c2719;
 
   &:hover {
     background-color: lighten($d2_color, $step);
   }
 }
 
-$d3_color: darkgoldenrod;
+// left bottom
+//$d3_color: darkgoldenrod;
+$d3_color: $d1_color;
 .d3 {
-  //clear:both;
   background-color: $d3_color;
+  //border-right: 1px solid #4c2719;
 
   &:hover {
     background-color: lighten($d3_color, $step);
   }
 }
 
-$d4_color: darkolivegreen;
+// right bottom
+//$d4_color: darkolivegreen;
+$d4_color: $d1_color;
 .d4 {
   background-color: $d4_color;
 
@@ -146,16 +144,16 @@ $d4_color: darkolivegreen;
 
 /* header with a text-shadow */
 #main h3 {
-  text-transform:uppercase;
-  padding:20px 0 20px 0;
-  color:#eee;
+  text-transform: uppercase;
+  padding: 20px 0 20px 0;
+  color: #eee;
   text-shadow: #000 0 0 2px;
   margin-bottom: 0;
 }
 
 #main p {
-  padding-bottom:20px;
-  color:#ddd;
+  padding-bottom: 20px;
+  color: #ddd;
 }
 
 .status {
@@ -167,6 +165,11 @@ $d4_color: darkolivegreen;
 }
 
 .owner_customer {
+  color: red;
+  font-weight: bold;
+}
+
+.admin {
   color: red;
   font-weight: bold;
 }

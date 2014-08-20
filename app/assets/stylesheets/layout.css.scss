@@ -85,6 +85,28 @@ div#wrapper {
   margin: 0 auto;
 }
 
+div#contact {
+  background-color: #806a2e;
+  width: auto;
+  margin: 20px;
+  border: 2px solid #4c2719;
+  font-size: 1.4em;
+
+  h2 {
+    margin: 15px;
+    color: #ddd;
+  }
+
+  p {
+    line-height: 175%;
+    letter-spacing: 0.07em;
+
+    font-size: 0.9em;
+    margin-left: 30px;
+    color: #ddd
+  }
+}
+
 section#content {
   @include column(10);
   float: left;

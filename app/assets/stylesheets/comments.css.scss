@@ -15,6 +15,11 @@
   padding: 1em;
 }
 
+.comments_area {
+  height: 200px;
+  overflow-y: auto;
+}
+
 .header1 {
   color: red;
 }
@@ -25,6 +30,7 @@
 
 .delete_comment
 {
+  padding: 5px 5px 5px 5px;
   font-weight: bold;
   color: black;
   text-align: right;

@@ -1,0 +1,14 @@
+<h2>Add a comment:</h2>
+
+<div>
+<%= form_for ([ticket, ticket.comments.build]) do |f| %>
+    <%= f.hidden_field :owner_id, value: session[:user_id] %>
+    <p>
+      <%= f.text_area :body, cols: 60, rows: 10 %>
+    </p>
+
+    <p>
+      <%= f.submit %>
+    </p>
+<% end %>
+</div>

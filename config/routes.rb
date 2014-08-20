@@ -20,6 +20,8 @@ Rails.application.routes.draw do
     resources :comments, constraints: { id: /\d+/ }
   end
 
+  get '/contact' => 'application#contact'
+
   # You can have the root of your site routed with "root"
   root 'application#index'
 

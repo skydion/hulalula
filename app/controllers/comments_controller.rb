@@ -1,14 +1,10 @@
 class CommentsController < ApplicationController
   def create
     @ticket = Ticket.find(params[:ticket_id])
-
     @comment = @ticket.comments.create(comment_params)
 
-    puts '=== Comment inspect', @comment.inspect
+    NotificationMailer.new_comment(@ticket, @comment).deliver
 
-    # TODO - send email with comment to the customer
-
-    # puts '=== Comment::create: ' + @ticket.support_id.to_s + ' uuid: ' + @ticket.uuid.to_s
     if @ticket.support_id
       redirect_to ticket_path(@ticket)
     else

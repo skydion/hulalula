@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
+    </head>
+
+    <body>
+
+    <h1>Hello <%= @ticket.username %></h1>
+    <p>
+      Thank you sent us information about the problem.</br>
+      Your problem is registered and has a unique id [<a href="<%= 'http://localhost:3000/ticket/'+@ticket.uuid %>">UUID: <%= @ticket.uuid %></a>]<br>
+      on which you can track the status of the issue.
+    </p>
+    </body>
+</html>
