@@ -1,19 +1,25 @@
 <% if ticket.comments.size > 0 %>
-    <h2>Comments</h2>
+
     <div class="comments_area">
+      <h2 class="comment_h2">Comments</h2>
       <% ticket.comments.each do |comment| %>
-          <div class="comment">
-            <div class="header1">Comment [<%= comment.id %>] - <%= comment.created_at %></div>
-            <div class="header2">User: [<%= owner_name(comment.owner_id) %>]</div>
+          <% if !comment.id.nil? %> <%# temporary solution look into partial form_add_comment %>
+            <table class="comment fixed">
+              <tr>
+                <td>#<%= comment.id %></td>
 
-            <div class="comment_body"><%= h comment.body %></div>
+                <td class="comment_body">
+                  <%= h comment.body %>
+                </td>
 
-            <div class="delete_comment">
-              <% if comment.owner_id == session[:user_id] %>
-                  <%= link_to image_tag('delete-trash.png'), [comment.ticket, comment], method: :delete, data: {confirm: 'Are you sure?'} %>
-              <% end %>
-            </div>
-          </div>
+                <td>
+                  <% if comment.owner_id == session[:user_id] %>
+                     <%= link_to image_tag('delete-trash.png'), [comment.ticket, comment], method: :delete, data: {confirm: 'Are you sure?'} %>
+                  <% end %>
+                </td>
+              </tr>
+            </table>
+          <% end %>
       <% end %>
     </div>
 <% end %>

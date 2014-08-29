@@ -29,28 +29,38 @@ $(document).ready(function() {
 });
 */
 
-/*$(document).ready(function() {
-    var m = $("#main");
-    var mw = m.width();
+/*function getScrollBarWidth () {
+    var inner = document.createElement('p');
+    inner.style.width = "100%";
+    inner.style.height = "200px";
 
-    $(".d1").width( mw/2 );
-    $(".d2").width( mw/2 );
-    $(".d3").width( mw/2 );
-    $(".d4").width( mw/2 );
-});
- */
+    var outer = document.createElement('div');
+    outer.style.position = "absolute";
+    outer.style.top = "0px";
+    outer.style.left = "0px";
+    outer.style.visibility = "hidden";
+    outer.style.width = "200px";
+    outer.style.height = "150px";
+    outer.style.overflow = "hidden";
+    outer.appendChild (inner);
 
-$(window).resize( function() {
-    var m = $("#main");
+    document.body.appendChild (outer);
+    var w1 = inner.offsetWidth;
+    outer.style.overflow = 'scroll';
+    var w2 = inner.offsetWidth;
+    if (w1 == w2) w2 = outer.clientWidth;
 
-    var mw = m.width();
-    var mh = m.height();
-    //console.log("MW: " + mw + ",  MH: " + mh);
+    document.body.removeChild (outer);
 
-    $(".d1").width( mw/2 );
-    $(".d2").width( mw/2 );
-    $(".d3").width( mw/2 );
-    $(".d4").width( mw/2 );
+    return (w1 - w2);
+}*/
 
-    $("footer#page_footer").bottom( mh );
-});
+// for example
+/*        var expandData = $(this).attr('data-expand');
+
+        if (expandData === 'true') {
+            $(this).attr('data-expand', 'false');
+        }
+        else if (expandData === 'false') {
+            $(this).attr('data-expand', 'true');
+        }*/

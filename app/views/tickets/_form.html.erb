@@ -1,17 +1,17 @@
 <div class="container">
   <div id="content">
+    <div id="main">
+    <div id="header">
     <% if !@support.nil? %>
-        <div class="owner_support">Owner: <%= @support.login_with_full_name %></div>
+        <span class="owner_support">Owner: <%= @support.login_with_full_name %></span>
     <% else %>
-        <div class="owner_customer">Owner: Customer</div>
+        <span class="owner_customer">Owner: Customer</span>
     <% end %>
 
-      <p>
         <strong>Date:</strong>
         <%= @ticket.created_at %>
-      </p>
 
-      <table width="100%">
+      <table>
         <thead>
         <tr>
           <th>UUID</th>
@@ -33,13 +33,13 @@
         </tbody>
       </table>
 
-      <p>
-        <strong>Problem:</strong>
-        <%= h @ticket.problem %>
-      </p>
+      <strong>Problem:</strong>
+      <%= h @ticket.problem %>
+
+      <%= render partial: 'form_add_comment', locals: {ticket: @ticket} %>
+    </div>
 
     <%= render partial: 'comments', locals: {ticket: @ticket} %>
-
-    <%= render partial: 'form_add_comment', locals: {ticket: @ticket} %>
+  </div>
   </div>
 </div>

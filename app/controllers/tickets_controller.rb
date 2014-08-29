@@ -29,7 +29,6 @@ class TicketsController < ApplicationController
       @ticket.update_attribute :support_id, new_support_id
       @ticket.update_attribute :ticket_state_id, new_ticket_state_id
 
-      binding.pry
       if @ticket.update(ticket_params)
         if (old_support_id != new_support_id) || (old_ticket_state_id != new_ticket_state_id)
           NotificationMailer.ticket_status_changed(@ticket).deliver
@@ -52,8 +51,7 @@ class TicketsController < ApplicationController
       # generate unique url
       alpha = (:A..:Z).to_a.shuffle[0,9].join
       digit = (0..9).to_a.shuffle[0,6].join
-      url = alpha[0,3] + digit[0,3] + alpha[3,3] + digit[3,3] + alpha[6,3]
-      @ticket.uuid = url
+      @ticket.uuid = alpha[0,3] + digit[0,3] + alpha[3,3] + digit[3,3] + alpha[6,3]
 
       if @ticket.save
         flash[:notice] = 'Mail with ticket url, and unique UUID send, to your e-mail address'
@@ -73,10 +71,10 @@ class TicketsController < ApplicationController
     if @ticket
       @ticket.destroy
 
-      if !session[:user_id].nil?
-        redirect_to tickets_path
-      else
+      if session[:user_id].nil?
         redirect_to root_path
+      else
+        redirect_to tickets_path
       end
     end
   end

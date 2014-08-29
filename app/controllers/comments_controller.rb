@@ -1,4 +1,12 @@
 class CommentsController < ApplicationController
+  before_filter :check_authentic_user, :except =>[ :create ]
+
+=begin
+  def new
+    @comment = CommentsController.new
+  end
+=end
+
   def create
     @ticket = Ticket.find(params[:ticket_id])
     @comment = @ticket.comments.create(comment_params)

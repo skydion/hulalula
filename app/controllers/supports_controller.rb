@@ -54,21 +54,18 @@ class SupportsController < ApplicationController
   end
 
   def authenticate
-      l = params[:support][:login]
-      p = params[:support][:password]
-
-      @support = Support.new(login: l, password: p)
+      @support = Support.new(login: params[:support][:login], password: params[:support][:password])
       valid = @support.check_login
 
-      if !valid.nil?
+      if valid.nil?
+        flash[:alert] = 'Invalid Login or Password, check it and try again'
+        redirect_to :controller => 'application', :action => 'index'
+      else
         session[:user_id] = valid.id
         session[:login] = valid.login
         session[:role_name] = Role.find_by(id: valid.role_id).name
 
         redirect_to :controller => 'tickets', :action => 'index'
-      else
-        flash[:alert] = 'Invalid Login or Password, check it and try again'
-        redirect_to :controller => 'application', :action => 'index'
       end
   end
 

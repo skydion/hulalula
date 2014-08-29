@@ -2,36 +2,73 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.comment {
-  color: blue;
-  background-color:lightgoldenrodyellow;
-  margin-bottom: 5px;
+$header_height: 250px;
+
+#header {
+  // Provide scrollbars if needed and fix the header dimensions
+  overflow: auto;
+  position: absolute;
+  width: 100%;
+  height: $header_height;
+  background-color: #b9ad95;
+  //background-color: darkkhaki;
 }
 
-.comment_body {
-  background-color: #fffddf;
-  border: 1px dotted #9f9b63;
+#main {
+  // Provide scrollbars if needed, position below header, and derive height from top/bottom
   overflow: auto;
-  padding: 1em;
+  width: 100%;
+  top: $header_height;
+  bottom: 0;
 }
 
 .comments_area {
-  height: 200px;
+  width: 100%;
   overflow-y: auto;
+  margin: $header_height auto 0;
 }
 
-.header1 {
-  color: red;
+.comment {
+  background-color: lightgoldenrodyellow;
+  //margin-bottom: 3px;
+  border-bottom: 1px solid #4c2719;
+
 }
 
-.header2 {
-  color: darkblue;
+.comment_body {
+  //background-color: #fffddf;
+  border: 1px dotted #9f9b63;
+  overflow: auto;
+  padding: 3px;
+  margin: 0 5px 5px 3px;
 }
 
-.delete_comment
-{
-  padding: 5px 5px 5px 5px;
-  font-weight: bold;
-  color: black;
+.delete_comment {
+  padding: 3px;
   text-align: right;
+}
+
+.comment_h2 {
+  background-color: #000000;
+  color: darkorange;
+  line-height: 35px;
+  padding-left: 30px;
+}
+
+.subheader1 {
+  font-weight: bold;
+  padding-left: 10px;
+  text-transform: capitalize;
+  width: 50%;
+}
+
+.subheader2 {
+  padding-right: 10px;
+  float: right;
+  text-align: right;
+  width: 50%;
+}
+
+.form {
+  padding: 10px auto 10px;
 }

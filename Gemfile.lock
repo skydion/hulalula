@@ -36,7 +36,7 @@ GEM
     coffee-script (2.3.0)
       coffee-script-source
       execjs
-    coffee-script-source (1.7.1)
+    coffee-script-source (1.8.0)
     erubis (2.7.0)
     execjs (2.2.1)
     hike (1.2.3)
@@ -53,7 +53,7 @@ GEM
       treetop (~> 1.4.8)
     method_source (0.8.2)
     mime-types (1.25.1)
-    minitest (5.4.0)
+    minitest (5.4.1)
     multi_json (1.10.1)
     polyglot (0.3.5)
     pry (0.10.1)
@@ -108,7 +108,7 @@ GEM
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
-    turbolinks (2.2.3)
+    turbolinks (2.3.0)
       coffee-rails
     tzinfo (1.2.2)
       thread_safe (~> 0.1)

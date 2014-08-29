@@ -9,11 +9,11 @@
   <% if self.action_name == 'index' %>
       <td><%= h ticket.problem %></td>
 
-      <td><%= link_to image_tag('show-icon.png'), ticket_path(ticket) %></td>
-      <td><%= link_to image_tag('edit-icon.png'), edit_ticket_path(ticket) %></td>
+      <td align='center'><%= link_to image_tag('show-icon.png'), ticket_path(ticket) %></td>
+      <td align='center'><%= link_to image_tag('edit-icon.png'), edit_ticket_path(ticket) %></td>
 
       <%= admin_area do %>
-        <td><%= link_to image_tag('delete-trash.png'), ticket_path(ticket), method: :delete, data: {confirm: 'Are you sure?'} %></td>
+        <td align='center'><%= link_to image_tag('delete-trash.png'), ticket_path(ticket), method: :delete, data: {confirm: 'Are you sure?'} %></td>
       <% end %>
   <% end %>
 </tr>

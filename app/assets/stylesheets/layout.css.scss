@@ -1,9 +1,8 @@
 @import "semanticgs";
 
 header#page_header {
-  background: #bc471d; // url('/assets/brandtag.png') bottom right no-repeat;
+  background: #bc471d;
   color: #fff;
-  font-size: 1.2em;
   height: 68px;
   margin-bottom: 0;
   overflow: hidden;
@@ -14,54 +13,38 @@ header#page_header {
   a:hover,
   a:active,
   a:visited {
-    color:#fef8e7;
+    color: #fef8e7;
     text-decoration: none;
-  }
-
-  nav#utility {
-    float: right;
-    font-size: 0.8em;
   }
 
   #logo {
     position: absolute;
     top: 15px;
   }
-}
 
-#tagline {
-  margin-left: 20px;
-}
-
-div.container {
-  overflow: hidden;
-  padding: 0 0;
+  p {
+    float: right;
+  }
 }
 
 footer#page_footer {
   background-color: #807c77;
-  border-top: 1px solid #4c2719; // maybe temporary
   border-bottom: 10px solid #4c2719;
   color: #fff;
-  font-size: 0.7em;
   height: 30px;
   padding: 10px 20px;
-  width: auto;
+  width: 100%;
 
-  // lock to (bottom, left, right) edges
+  // lock to bottom edge
   position: absolute;
   bottom: 0;
-  left: 0;
-  right: 0;
 
   ul {
     margin-left: -10px;
-    padding: 0;
 
     li {
       border-right: 1px solid #fef8e7;
       display: inline;
-      margin: 0;
 
       &:last-child {
         border-right: none;
@@ -120,6 +103,3 @@ section#sidebar {
   margin-bottom: 20px;
   margin-right: -20px;
 }
-
-/* for image replacement */
-.ir { display: block; text-indent: -999em; overflow: hidden; background-repeat: no-repeat; text-align: left; direction: ltr; }

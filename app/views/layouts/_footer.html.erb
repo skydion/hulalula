@@ -1,14 +1,14 @@
 <footer id="page_footer">
   <ul>
-    <li><%= link_to 'Contact', '/contact' %></li>
+    <li>
+        <%= link_to 'Contact', '/contact' %>
+        <div class="search"><%= render 'layouts/search' %></div>
+    </li>
     <% unless session[:user_id] %>
-        <li><%= link_to 'Send a bug', {controller: 'tickets', action: 'new'} %></li>
+      <li><%= link_to 'Send a bug', {controller: 'tickets', action: 'new'} %></li>
     <% end %>
-
   </ul>
-  <p>&copy; 2014 OnApp. All Rights Reserved. All Wrongs Reversed.</p>
-
-  <h2>
-    <div class="search"><%= render 'layouts/search' %></div>
-  </h2>
+  <ul>
+    <li>&copy; 2014 OnApp. All Rights Reserved. All Wrongs Reversed.</li>
+  </ul>
 </footer>

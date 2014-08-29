@@ -4,13 +4,12 @@ class Ticket < ActiveRecord::Base
   belongs_to :ticket_state
 
   validates :username, presence: true, length: { minimum: 3 }
-  validates_format_of :email,:with => /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/
+  validates :email, presence: true #, uniqueness: true
+  validates_format_of :email, :with => /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/
   validates :subject, presence: true
   validates :problem, presence: true
 
   def current_status
-    #puts '=== current_status: ' + self.ticket_state_id.to_s
-
     status = TicketState.find_by(id: self.ticket_state_id)
 
     if status.nil?
@@ -21,17 +20,7 @@ class Ticket < ActiveRecord::Base
   end
 
   def current_support
-    #puts '=== current_support: ' + self.support_id.to_s
-
     support = Support.find_by(id: self.support_id)
-
-    #puts '=== current_support - support: ' + self.support.login
-
-    if !support.nil?
-      return support.login
-    else
-      return 'Customer'
-    end
+    support.nil? ? 'Customer' : support.login
   end
-
 end

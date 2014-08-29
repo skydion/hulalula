@@ -72,83 +72,41 @@ $height: 780px;
   padding: 0;
 
   height: $height; // need dynamic changing
+  width: 100%;
+
   overflow-y: auto;
 }
 
-.row {
-  //width: 100%;
-  height: ($height - 10) / 2; // need dynamic changing
-  overflow-y: auto;
-}
-
-.d1, .d3, {
-  float: left;
-  //width: 50%; // need change
-  margin-right: 0;
-}
-
-.d2, .d4, {
-  float: right;
- // width: 50%; // need change
-}
-
+$bgcolor: #806a2e;
 $step: 5%;
-//$d1_color: darkred;
-$d1_color: #806a2e;
 
-// left top
-.d1 {
-  background-color: $d1_color;
-  //border-right: 1px solid #4c2719;
-  //border-bottom: 1px solid #4c2719;
+.cell {
+  width: 50%;
+  height: 50%;
+  float: left;
 
+  margin: 0;
+  padding: 0;
+
+  background-color: $bgcolor;
   &:hover {
-    background-color: lighten($d1_color, $step);
+    background-color: lighten($bgcolor, $step);
+  }
+
+  box-sizing: border-box;
+
+  .toolbar {
+    background-color: darken(#faaa00, 10%);
   }
 }
 
-// right top
-//$d2_color: darkblue;
-$d2_color: $d1_color;
-.d2 {
-  background-color: $d2_color;
-  //border-bottom: 1px solid #4c2719;
-
-  &:hover {
-    background-color: lighten($d2_color, $step);
-  }
+.expanded {
+  height: 100%;
+  width: 100%;
 }
 
-// left bottom
-//$d3_color: darkgoldenrod;
-$d3_color: $d1_color;
-.d3 {
-  background-color: $d3_color;
-  //border-right: 1px solid #4c2719;
+.expand_button {
 
-  &:hover {
-    background-color: lighten($d3_color, $step);
-  }
-}
-
-// right bottom
-//$d4_color: darkolivegreen;
-$d4_color: $d1_color;
-.d4 {
-  background-color: $d4_color;
-
-  &:hover {
-    background-color: lighten($d4_color, $step);
-  }
-}
-
-/* header with a text-shadow */
-#main h3 {
-  text-transform: uppercase;
-  padding: 20px 0 20px 0;
-  color: #eee;
-  text-shadow: #000 0 0 2px;
-  margin-bottom: 0;
 }
 
 #main p {

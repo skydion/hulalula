@@ -13,17 +13,17 @@
 
   <nav id="main_nav" role="navigation">
     <ul>
-      <% if !authorized? %>
+      <% if authorized? %>
+          <li><%= link_to 'Tickets', controller: 'tickets' %></li>
+          <li><%= link_to 'Supports', controller: 'supports' %></li>
+          <li><%= link_to 'Roles', controller: 'roles' %></li>
+          <li><%= link_to 'States', controller: 'ticket_states' %></li>
+      <% else %>
           <li><%= link_to 'Home', '/' %></li>
           <li><%= link_to 'Creations', '#' %></li>
           <li><%= link_to 'Campaigns', '#' %></li>
           <li><%= link_to 'Projects', '#' %></li>
           <li><%= link_to 'Designers', '#' %></li>
-      <% else %>
-          <li><%= link_to 'Tickets', controller: 'tickets' %></li>
-          <li><%= link_to 'Supports', controller: 'supports' %></li>
-          <li><%= link_to 'Roles', controller: 'roles' %></li>
-          <li><%= link_to 'States', controller: 'ticket_states' %></li>
       <% end %>
     </ul>
   </nav>
