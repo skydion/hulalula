@@ -1,45 +1,30 @@
-<div class="container">
+<div class="container" xmlns="http://www.w3.org/1999/html">
   <div id="content">
-    <div id="main">
-    <div id="header">
-    <% if !@support.nil? %>
-        <span class="owner_support">Owner: <%= @support.login_with_full_name %></span>
-    <% else %>
-        <span class="owner_customer">Owner: Customer</span>
-    <% end %>
+    <div class="header">
+      <h2 class="comment_header">
+        Owner:
+        <% if @support.nil? %>
+            Customer
+        <% else %>
+            <%= @support.login_with_full_name %>
+        <% end %>
 
-        <strong>Date:</strong>
-        <%= @ticket.created_at %>
+        , UUID: <%= @ticket.uuid %>
+      </h2>
 
-      <table>
-        <thead>
-        <tr>
-          <th>UUID</th>
-          <th>Status</th>
-          <th>Owner</th>
-          <th>Username</th>
-          <th>E-mail</th>
-          <th>Subject</th>
+      <div class="problem">
+        <div style="font-weight: bold; font-size: 14px;">Problem:</div>
+        <%= h @ticket.problem %>
+      </div>
 
-          <% if self.action_name == 'index' %>
-              <th>Problem</th>
-              <th colspan="3">Actions</th>
-          <% end %>
-        </tr>
-        </thead>
-
-        <tbody>
-        <%= render partial: 'table_row', locals: {ticket: @ticket} %>
-        </tbody>
-      </table>
-
-      <strong>Problem:</strong>
-      <%= h @ticket.problem %>
-
-      <%= render partial: 'form_add_comment', locals: {ticket: @ticket} %>
+      <% cs = @ticket.current_status %>
+      <% if (cs != 'Completed') && (cs != 'Cancelled') %>
+          <%= render partial: 'form_add_comment', locals: {ticket: @ticket} %>
+      <% end %>
     </div>
 
-    <%= render partial: 'comments', locals: {ticket: @ticket} %>
-  </div>
+    <div class="main">
+      <%= render partial: 'comments', locals: {ticket: @ticket} %>
+    </div>
   </div>
 </div>

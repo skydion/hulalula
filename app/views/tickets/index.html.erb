@@ -3,7 +3,7 @@
         $('.expand_button').click(function (e) {
             e.preventDefault(e);
 
-            var cell = $(this).parent('.cell');
+            var cell = $(this).closest('.cell');
             cell.toggleClass('expanded');
 
             var isExpanded = cell.hasClass('expanded');
@@ -25,8 +25,9 @@
 <% end %>
 
 <div class="cell">
-  Left top cell [unassigned]
-  <%= link_to image_tag('expand-icon.png'), '#', class: 'expand_button'  %>
+  <header>Left top cell [unassigned]
+    <span class='expand_button'><%= link_to image_tag('expand-icon.png'), '#' %></span>
+  </header>
 
   <table>
     <%= yield :thead %>
@@ -36,8 +37,9 @@
 </div>
 
 <div class="cell">
-  Right top cell [opened]
-  <%= link_to image_tag('expand-icon.png'), '#', class: 'expand_button' %>
+  <header>Right top cell [opened]
+    <span class='expand_button'><%= link_to image_tag('expand-icon.png'), '#' %></span>
+  </header>
 
   <table>
     <%= yield :thead %>
@@ -47,8 +49,9 @@
 </div>
 
 <div class="cell">
-  Left bottom cell [on hold]
-  <%= link_to image_tag('expand-icon.png'), '#', class: 'expand_button' %>
+  <header>Left bottom cell [on hold]
+    <span class='expand_button'><%= link_to image_tag('expand-icon.png'), '#' %></span>
+  </header>
 
   <table>
     <thead>
@@ -59,8 +62,9 @@
 </div>
 
 <div class="cell">
-  Right bottom cell [closed]
-  <%= link_to image_tag('expand-icon.png'), '#', class: 'expand_button' %>
+  <header>Right bottom cell [closed]
+    <span class='expand_button'><%= link_to image_tag('expand-icon.png'), '#' %></span>
+  </header>
 
   <table>
     <%= yield :thead %>

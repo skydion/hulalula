@@ -2,8 +2,9 @@ $link_color: #865140;
 
 nav#main_nav {
   position: absolute;
-    top: 50px;
-    left: 300px;
+  top: 50px;
+  left: 300px;
+
   li {
     background: $link_color;
     display: inline-block;
@@ -18,11 +19,12 @@ nav#main_nav {
     &.active {
       background: #fff;
       margin-bottom: -1px;
+
       a,
       a:link,
       a:visited {
-      color: #555;
-      font-weight: bold;
+        color: #555;
+        font-weight: bold;
       }
     }
 
@@ -31,4 +33,3 @@ nav#main_nav {
     }
   }
 }
-

@@ -4,71 +4,35 @@
 
 $header_height: 250px;
 
-#header {
-  // Provide scrollbars if needed and fix the header dimensions
-  overflow: auto;
-  position: absolute;
+.header {
+  overflow-y: auto;
   width: 100%;
   height: $header_height;
   background-color: #b9ad95;
   //background-color: darkkhaki;
 }
 
-#main {
-  // Provide scrollbars if needed, position below header, and derive height from top/bottom
-  overflow: auto;
-  width: 100%;
-  top: $header_height;
-  bottom: 0;
-}
-
-.comments_area {
-  width: 100%;
+.main {
   overflow-y: auto;
-  margin: $header_height auto 0;
+  width: 100%;
+  height: 780px - $header_height - 9px;
 }
 
 .comment {
   background-color: lightgoldenrodyellow;
-  //margin-bottom: 3px;
-  border-bottom: 1px solid #4c2719;
-
+  //border-bottom: 1px solid #4c2719;
 }
 
 .comment_body {
-  //background-color: #fffddf;
   border: 1px dotted #9f9b63;
   overflow: auto;
   padding: 3px;
   margin: 0 5px 5px 3px;
 }
 
-.delete_comment {
-  padding: 3px;
-  text-align: right;
-}
-
-.comment_h2 {
-  background-color: #000000;
+.comment_header {
+  background-color: #373737;
   color: darkorange;
   line-height: 35px;
   padding-left: 30px;
-}
-
-.subheader1 {
-  font-weight: bold;
-  padding-left: 10px;
-  text-transform: capitalize;
-  width: 50%;
-}
-
-.subheader2 {
-  padding-right: 10px;
-  float: right;
-  text-align: right;
-  width: 50%;
-}
-
-.form {
-  padding: 10px auto 10px;
 }
