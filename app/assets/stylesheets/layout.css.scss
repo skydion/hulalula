@@ -33,7 +33,7 @@ footer#page_footer {
   color: #fff;
   height: 30px;
   padding: 10px 20px;
-  width: 100%;
+  width: calc(100% - 40px);
 
   // lock to bottom edge
   position: absolute;
