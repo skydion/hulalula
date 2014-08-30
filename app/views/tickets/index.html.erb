@@ -1,4 +1,6 @@
 <script type="text/javascript" charset="utf-8">
+    setMainHeight();
+
     $(document).ready(function () {
         $('.expand_button').click(function (e) {
             e.preventDefault(e);
@@ -26,7 +28,7 @@
 
 <div class="cell">
   <header>Left top cell [unassigned]
-    <span class='expand_button'><%= link_to image_tag('expand-icon.png'), '#' %></span>
+    <span class='expand_button'><%= link_to '', '#' %></span>
   </header>
 
   <table>
@@ -38,7 +40,7 @@
 
 <div class="cell">
   <header>Right top cell [opened]
-    <span class='expand_button'><%= link_to image_tag('expand-icon.png'), '#' %></span>
+    <span class='expand_button'><%= link_to '', '#' %></span>
   </header>
 
   <table>
@@ -50,7 +52,7 @@
 
 <div class="cell">
   <header>Left bottom cell [on hold]
-    <span class='expand_button'><%= link_to image_tag('expand-icon.png'), '#' %></span>
+    <span class='expand_button'><%= link_to '', '#' %></span>
   </header>
 
   <table>
@@ -63,7 +65,7 @@
 
 <div class="cell">
   <header>Right bottom cell [closed]
-    <span class='expand_button'><%= link_to image_tag('expand-icon.png'), '#' %></span>
+    <span class='expand_button'><%= link_to '', '#' %></span>
   </header>
 
   <table>

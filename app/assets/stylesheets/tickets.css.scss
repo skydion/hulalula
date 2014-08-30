@@ -100,18 +100,16 @@ $step: 5%;
 }
 
 .expand_button {
-  padding: 2px 1px;
-  background-color: #bc471d;
-
-  height: 16px;
-  width: 16px;
-
-  :active, :focus {
-      outline: none;
+  a:before {
+    content: '';
+    float: right;
+    width: 30px;
+    height: 30px;
+    background: url(expand-icon.png) no-repeat 7px 7px #9cbc37;
   }
 
-  a {
-    vertical-align: -3px;
+  :active, :focus {
+    outline: none;
   }
 }
 
