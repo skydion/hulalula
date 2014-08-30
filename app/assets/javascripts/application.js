@@ -64,3 +64,14 @@ $(document).ready(function() {
         else if (expandData === 'false') {
             $(this).attr('data-expand', 'true');
         }*/
+
+$(document).ready(function() {
+  //console.log("ready windows.height: ", $(window).height());
+  $("#main").height($(window).height() - 88 - 50);
+});
+
+$(window).resize(function() {
+  //console.log("resize windows.height: ", $(window).height());
+  $("#main").height($(window).height() - 88 - 50);
+});
+

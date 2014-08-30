@@ -16,6 +16,6 @@
 /tmp
 
 # skydion
-/app/assets/images
+#/app/assets/images
 /.idea
 
