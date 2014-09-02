@@ -2,7 +2,9 @@
     setMainHeight();
 </script>
 
-<table width="100%">
+<%= roles_header_data %>
+
+<table>
   <thead>
     <tr>
       <th width="30%">Name</th>
@@ -25,7 +27,3 @@
     <% end %>
   </tbody>
 </table>
-
-<%= admin_area do %>
-   <%= link_to 'New Role', new_role_path %>
-<% end %>

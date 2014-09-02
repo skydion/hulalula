@@ -1,3 +1,89 @@
 // Place all the styles related to the supports controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.index_header {
+  //clear: both;
+  background-color: #373737;
+  color: darkorange;
+  //height: 43px;
+  padding-left: 30px;
+  line-height: 30px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.button {
+  background-color: #9cbc37;
+  float: right;
+  height: 24px;
+  padding: 3px;
+
+  :active, :focus {
+    outline: none;
+  }
+}
+
+/*
+.button {
+  float: right;
+  white-space: nowrap;
+  background-color: #9cbc37;
+  border: 1px solid #777;
+  padding: 0.2em .5em;
+  font: bold 0.7em Arial, Helvetica;
+  text-decoration: none;
+  color: #333;
+  text-shadow: 0 1px 0 rgba(255,255,255,.8);
+  border-radius: .2em;
+  box-shadow: 0 0 1px 1px rgba(255,255,255,.8) inset, 0 1px 0 rgba(0,0,0,.3);
+}
+
+.button :active, :focus {
+  outline: none;
+}
+
+.button:hover {
+  background-color: darken(#9cbc37, 5%);
+}
+
+.button:before {
+  background: #9cbc37;
+  background: rgba(0,0,0,.1);
+  float: left;
+  width: 1.5em;
+  text-align: center;
+  margin: 0 0.5em 0 -0.4em;
+  padding: 0 .1em;
+  box-shadow: 1px 0 0 rgba(0,0,0,.5), 2px 0 0 rgba(255,255,255,.5);
+  border-radius: .15em 0 0 .15em;
+}
+
+.add:before {
+  content: url('new-icon-16.png');
+}
+
+.edit:before {
+  content: url('edit-icon.png');
+}
+
+.delete:before {
+  content: "\2718";
+}
+
+.save:before {
+  content: "\2714";
+}
+
+.email:before {
+  content: "\2709";
+}
+
+.like:before {
+  content: "\2764";
+}
+
+.next:before {
+  content: "\279C";
+}
+*/

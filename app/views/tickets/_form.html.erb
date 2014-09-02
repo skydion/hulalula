@@ -1,3 +1,7 @@
+<script type="text/javascript" charset="utf-8">
+    setMainHeight();
+</script>
+
 <div class="container" xmlns="http://www.w3.org/1999/html">
   <div id="content">
     <div class="header">
@@ -23,7 +27,7 @@
       <% end %>
     </div>
 
-    <div class="main">
+    <div class="comments_area">
       <%= render partial: 'comments', locals: {ticket: @ticket} %>
     </div>
   </div>

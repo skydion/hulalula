@@ -1,25 +1,37 @@
-<p>
-  <strong>Login:</strong>
-  <%= raw @support.login %>
-</p>
+<table style="border-collapse: collapse;">
+  <tr bgcolor="#faebd7" style="height: 30px;">
+    <td align="right" style="font-weight: bold;">
+      Login
+    </td>
+    <td align="left" style="padding-left: 20px;">
+      <%= raw @support.login %>
+    </td>
+  </tr>
 
-<p>
-  <strong>First name:</strong>
-  <%= raw @support.first_name %>
-</p>
+  <tr bgcolor="#faebd7" style="height: 30px;">
+    <td align="right" style="font-weight: bold;">
+      First name
+    </td>
+    <td align="left" style="padding-left: 20px;">
+      <%= raw @support.first_name %>
+    </td>
+  </tr>
 
-<p>
-  <strong>Last name:</strong>
-  <%= raw @support.last_name %>
-</p>
+  <tr bgcolor="#faebd7" style="height: 30px;">
+    <td align="right" style="font-weight: bold;">
+      Last name
+    </td>
+    <td align="left" style="padding-left: 20px;">
+      <%= raw @support.last_name %>
+    </td>
+  </tr>
 
-<p>
-  <strong>E-mail:</strong>
-  <%= raw @support.email %>
-</p>
-
-<br>
-
-<%= link_to 'Home', controller: 'application' %>
-| <%= link_to 'New support', controller: 'supports', action: 'new' %>
-| <%= link_to 'Edit', edit_support_path(@support) %>
+<tr bgcolor="#faebd7" style="height: 30px;">
+    <td align="right" style="font-weight: bold;">
+      E-mail
+    </td>
+    <td align="left" style="padding-left: 20px;">
+      <%= raw @support.email %>
+    </td>
+  </tr>
+</table>

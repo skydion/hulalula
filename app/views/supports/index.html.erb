@@ -2,6 +2,8 @@
     setMainHeight();
 </script>
 
+<%= supports_header_data %>
+
 <table>
   <thead>
       <tr>
@@ -20,7 +22,3 @@
     <%= render partial: 'supports/table_row', locals: {support: support, role: role} %>
   <% end %>
 </table>
-
-<%= admin_area do %>
-  <%= link_to 'New Support', new_support_path %>
-<% end %>

@@ -1,7 +1,1 @@
 <%= render 'form' %>
-
-<% if authorized? %>
-  <%= link_to 'Back', controller: 'tickets' %>
-<% else %>
-  <%= link_to 'New ticket', controller: 'tickets', action: 'new' %>
-<% end %>

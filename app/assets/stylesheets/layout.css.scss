@@ -4,7 +4,6 @@ header#page_header {
   background: #bc471d;
   color: #fff;
   height: 68px;
-  margin-bottom: 0;
   overflow: hidden;
   padding: 10px 20px;
 
@@ -90,7 +89,7 @@ div#contact {
   }
 }
 
-section#content {
+/*section#content {
   @include column(10);
   float: left;
   margin: 0 0;
@@ -102,4 +101,4 @@ section#sidebar {
   float: right;
   margin-bottom: 20px;
   margin-right: -20px;
-}
+}*/

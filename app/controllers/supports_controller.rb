@@ -8,6 +8,7 @@ class SupportsController < ApplicationController
 
   def edit
     @support = Support.find(params[:id])
+    @roles = Role.all
   end
 
   def update

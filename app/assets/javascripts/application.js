@@ -66,10 +66,16 @@
  }*/
 
 function setMainHeight() {
-    // console.log("ready windows.height: ", $(window).height());
     // 88 = header + padding*2 (68+10*2)
     // 60 = footer + padding*2 + border (30+10*2+10)
-    $("#main").height($(window).height() - 88 - 60);
+    var wh = $(window).height();
+    //console.log("windows.height: ", wh);
+
+    var m = $("#main");
+    m.height(wh - 88 - 60);
+
+    // 250 = comment header
+    $(".comments_area").height(m.height() - 250);
 }
 
 $(document).ready(function () {
@@ -79,4 +85,3 @@ $(document).ready(function () {
 $(window).resize(function () {
     setMainHeight();
 });
-

@@ -1,21 +1,32 @@
 <%= form_for(@ticket_state) do |f| %>
-  <% if @ticket_state.errors.any? %>
-    <div id='error_explanation'>
-      <h2><%= pluralize(@ticket_state.errors.count, 'error') %> prohibited this ticket_state from being saved:</h2>
+    <% if @ticket_state.errors.any? %>
+        <div id='error_explanation'>
+          <h2><%= pluralize(@ticket_state.errors.count, 'error') %> prohibited this ticket_state from being saved:</h2>
 
-      <ul>
-      <% @ticket_state.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+          <ul>
+            <% @ticket_state.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
 
-  <div class='field'>
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class='actions'>
-    <%= f.submit %>
-  </div>
+    <table style="border-collapse: collapse;">
+      <tr bgcolor="#faebd7" style="height: 30px;">
+        <td align="right" style="font-weight: bold;">
+          <%= f.label :name %>
+        </td>
+
+        <td align="left" style="padding-left: 20px;">
+          <%= f.text_field :name, size: 40 %>
+        </td>
+      </tr>
+
+      <tr bgcolor="#deb887" style="height: 30px">
+        <td></td>
+        <td align="right" style="padding-right: 20px">
+          <%= f.submit %>
+        </td>
+      </tr>
+    </table>
 <% end %>

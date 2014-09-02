@@ -51,18 +51,11 @@ ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,body,html,p,blockquote,fieldset,input {
   filter: alpha(opacity=90);
   opacity: .90; }
 
-$height: 780px;
-
 #main {
+  // No floating elements allowed on the left or the right side of a specified element
   clear: both;
-
-  margin: 0;
-  padding: 0;
-
-  height: $height; // need dynamic changing
   width: 100%;
-
-  overflow-y: auto;
+  overflow-y: hidden;
 }
 
 $bgcolor: #806a2e;
@@ -74,19 +67,16 @@ $step: 5%;
   height: 50%;
   float: left;
 
-  margin: 0;
-  padding: 0;
-
   background-color: $bgcolor;
   &:hover {
     background-color: lighten($bgcolor, $step);
   }
 
   box-sizing: border-box;
-  //border: 1px solid darkred;
 }
 
 .cell header {
+  clear: both;
   background-color: #373737;
   color: darkorange;
   line-height: 30px;
@@ -105,7 +95,7 @@ $step: 5%;
     float: right;
     width: 30px;
     height: 30px;
-    background: url(expand-icon.png) no-repeat 7px 7px #9cbc37;
+    background: url('expand-icon.png') no-repeat 7px 7px #9cbc37;
   }
 
   :active, :focus {

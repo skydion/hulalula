@@ -1,4 +1,8 @@
 .notification {
+  position: absolute;
+  top: 0;
+  width: calc(100% - 0.75em - 45px);
+
   background:{
     position: 10px 9px;
     repeat: no-repeat;
@@ -17,15 +21,14 @@
   &.notice {
     background: {
       color: #006302;
-      image: url(image-path("notification_check.png"));
+      image: url('notification_check.png');
     }
   }
 
   &.alert {
     background: {
       color: #920202;
-      image: url(image-path("notification_x.png"));
+      image: url('notification_x.png');
     }
   }
 }
-

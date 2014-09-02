@@ -1,26 +1,42 @@
 <%= form_for(@role) do |f| %>
-  <% if @role.errors.any? %>
-    <div id='error_explanation'>
-      <h2><%= pluralize(@role.errors.count, 'error') %> prohibited this role from being saved:</h2>
+    <% if @role.errors.any? %>
+        <div id='error_explanation'>
+          <h2><%= pluralize(@role.errors.count, 'error') %> prohibited this role from being saved:</h2>
 
-      <ul>
-      <% @role.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+          <ul>
+            <% @role.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
 
-  <div class='field'>
-    <%= f.label :name %><br>
-    <%= raw f.text_field :name %>
-  </div>
-  <div class='field'>
-    <%= f.label :description %><br>
-    <%= raw f.text_field :description %>
-  </div>
+    <table style="border-collapse: collapse;">
+      <tr bgcolor="#faebd7" style="height: 30px;">
+        <td align="right" style="font-weight: bold;">
+          <%= f.label :name %>
+        </td>
 
-  <div class='actions'>
-    <%= f.submit %>
-  </div>
+        <td align="left" style="padding-left: 20px;">
+          <%= f.text_field :name, size: 40 %>
+        </td>
+      </tr>
+
+      <tr bgcolor="#faebd7" style="height: 30px;">
+        <td align="right" style="font-weight: bold;">
+          <%= f.label :description %>
+        </td>
+
+        <td align="left" style="padding-left: 20px;">
+          <%= raw f.text_field :description, size: 40 %>
+        </td>
+      </tr>
+
+      <tr bgcolor="#deb887" style="height: 30px">
+        <td></td>
+        <td align="right" style="padding-right: 20px">
+          <%= f.submit %>
+        </td>
+      </tr>
+    </table>
 <% end %>

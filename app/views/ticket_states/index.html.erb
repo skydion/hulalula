@@ -2,7 +2,9 @@
     setMainHeight();
 </script>
 
-<table width="100%">
+<%= ticket_states_header_data %>
+
+<table>
   <thead>
   <tr>
     <th width=50%>Name</th>
@@ -24,7 +26,3 @@
 
   </tbody>
 </table>
-
-<%= admin_area do %>
-  <%= link_to 'New Ticket State', new_ticket_state_path %>
-<% end %>

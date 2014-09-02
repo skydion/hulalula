@@ -1,15 +1,21 @@
-<p id='notice'><%= notice %></p>
+<table style="border-collapse: collapse;">
+  <tr bgcolor="#faebd7" style="height: 30px;">
+    <td align="right" style="font-weight: bold;">
+      Name
+    </td>
 
-<p>
-  <strong>Name:</strong>
-  <%= raw @role.name %>
-</p>
+    <td align="left" style="padding-left: 20px;">
+      <%= h @role.name %>
+    </td>
+  </tr>
 
-<p>
-  <strong>Description:</strong>
-  <%= raw @role.description %>
-</p>
+  <tr bgcolor="#faebd7" style="height: 30px;">
+    <td align="right" style="font-weight: bold;">
+      Description
+    </td>
 
-<%#= link_to 'Edit', edit_role_path(@role) %> |
-<%#= link_to 'Back', roles_path %>
-<%= link_to 'Back', controller: 'application', action: 'index', anchor: 'roles' %>
+    <td align="left" style="padding-left: 20px;">
+      <%= h @role.description %>
+    </td>
+  </tr>
+</table>

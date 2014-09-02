@@ -1,45 +1,60 @@
-<div class="form">
-  <%= form_for @ticket, url: tickets_path do |f| %>
-      <fieldset>
-        <legend>New ticket</legend>
+<header class="index_header">New ticket</header>
 
-        <% if @ticket.errors.any? %>
-            <div id='error_explanation'>
-              <h2><%= pluralize(@ticket.errors.count, 'error') %> prohibited this ticket from being saved:</h2>
+<%= form_for @ticket, url: tickets_path do |f| %>
+    <% if @ticket.errors.any? %>
+        <div id='error_explanation'>
+          <h2><%= pluralize(@ticket.errors.count, 'error') %> prohibited this ticket from being saved:</h2>
 
-              <ul>
-                <% @ticket.errors.full_messages.each do |msg| %>
-                    <li><%= msg %></li>
-                <% end %>
-              </ul>
-            </div>
-        <% end %>
+          <ul>
+            <% @ticket.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
 
-        <p>
+    <table style="border-collapse: collapse;">
+      <tr bgcolor="#faebd7" style="height: 30px;">
+        <td align="right">
           <%= f.label :Username %>
-          <%= f.text_field :username %>
-        </p>
+        </td>
+        <td align="left" style="padding-left: 20px;">
+          <%= f.text_field :username, size: 40 %>
+        </td>
+      </tr>
 
-        <p>
+      <tr bgcolor="#faebd7" style="height: 30px;">
+        <td align="right">
           <%= f.label :'E-mail' %>
-          <%= f.text_field :email %>
-        </p>
+        </td>
+        <td align="left" style="padding-left: 20px;">
+          <%= f.text_field :email, size: 40 %>
+        </td>
+      </tr>
 
-        <p>
+      <tr bgcolor="#faebd7" style="height: 30px;">
+        <td align="right">
           <%= f.label :Subject %>
-          <%= f.text_field :subject %>
-        </p>
+        </td>
+        <td align="left" style="padding-left: 20px;">
+          <%= f.text_field :subject, size: 40 %>
+        </td>
+      </tr>
 
-        <p>
+      <tr bgcolor="#faebd7" style="height: 30px;">
+        <td align="right">
           <%= f.label :Problem %>
-          <%= f.text_area :problem, cols: 60, rows: 10 %>
-        </p>
+        </td>
+        <td align="left" style="padding-left: 0;">
+          <%= f.text_area :problem, cols: 120, rows: 20 %>
+        </td>
+      </tr>
 
-        <p>
+      <tr bgcolor="#deb887" style="height: 30px">
+        <td></td>
+        <td align="right" style="padding-right: 20px">
           <%= f.submit %>
-        </p>
-      </fieldset>
-  <% end %>
-</div>
-
-<%#= link_to 'Home', controller: 'application', action: 'index' %>
+        </td>
+      </tr>
+    </table>
+<% end %>

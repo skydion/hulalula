@@ -1,9 +1,11 @@
-<p id='notice'><%= notice %></p>
+<table style="border-collapse: collapse;">
+  <tr bgcolor="#faebd7" style="height: 30px;">
+    <td align="right" style="font-weight: bold;">
+      Name
+    </td>
 
-<p>
-  <strong>Name:</strong>
-  <%= @ticket_state.name %>
-</p>
-
-<%= link_to 'Edit', edit_ticket_state_path(@ticket_state) %> |
-<%= link_to 'Back', ticket_states_path %>
+    <td align="left" style="padding-left: 20px;">
+      <%= @ticket_state.name %>
+    </td>
+  </tr>
+</table>
