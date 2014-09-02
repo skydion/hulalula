@@ -1,12 +1,12 @@
 <%= form_for :support, url: authenticate_path do |f| %>
-    <div class="form_login">
+    <div style="text-align: right;">
       <div>
-        <%= f.label :Login, class: 'label' %>
+        <%= f.label :login, class: 'label' %>
         <%= f.text_field :login %>
       </div>
 
       <div>
-        <%= f.label :Password, class: 'label' %>
+        <%= f.label :password, class: 'label' %>
         <%= f.password_field :password %>
       </div>
 

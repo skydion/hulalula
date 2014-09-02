@@ -1,4 +1,6 @@
-<header class="index_header">Editing ticket</header>
+<header class="index_header">
+  <span class="index_header_text">Edit ticket:</span>
+</header>
 
 <%= form_for :ticket, url: ticket_path(@ticket), method: :patch do |f| %>
     <% if @ticket.errors.any? %>
@@ -19,7 +21,7 @@
           <%= f.label :'Owner' %>
         </td>
         <td align="left" style="padding-left: 20px;">
-          <%= f.collection_select :support_id, @supports, :id, :login_with_full_name, include_blank: true, :selected => @ticket.support_id, :size => 40 %>
+          <%= f.collection_select :support_id, @supports, :id, :login_with_full_name, include_blank: true, :selected => @ticket.support_id %>
         </td>
       </tr>
 

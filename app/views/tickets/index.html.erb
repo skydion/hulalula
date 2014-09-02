@@ -22,12 +22,15 @@
 
 <% content_for :thead do %>
     <thead>
-    <tr> <th>UUID</th> <th>State</th> <th>Owner</th> <th>Username</th> <th>E-mail</th> <th>Subject</th> <th>Problem</th> <th colspan='3'>Actions</th> </tr>
+    <tr> <th>UUID</th> <th>State</th> <th>Owner</th>
+      <!--<th>Username</th> <th>E-mail</th>-->
+      <th>Subject</th> <th>Problem</th> <th colspan='3'>Actions</th> </tr>
     </thead>
 <% end %>
 
 <div class="cell">
-  <header>Left top cell [unassigned]
+  <header>
+    <span class="header_text">LT [unassigned]</span>
     <span class='expand_button'><%= link_to '', '#' %></span>
   </header>
 
@@ -39,7 +42,8 @@
 </div>
 
 <div class="cell">
-  <header>Right top cell [opened]
+  <header>
+    <span class="header_text">RT [opened]</span>
     <span class='expand_button'><%= link_to '', '#' %></span>
   </header>
 
@@ -51,7 +55,8 @@
 </div>
 
 <div class="cell">
-  <header>Left bottom cell [on hold]
+  <header>
+    <span class="header_text">LB [on hold]</span>
     <span class='expand_button'><%= link_to '', '#' %></span>
   </header>
 
@@ -64,7 +69,8 @@
 </div>
 
 <div class="cell">
-  <header>Right bottom cell [closed]
+  <header>
+    <span class="header_text">RB [closed]</span>
     <span class='expand_button'><%= link_to '', '#' %></span>
   </header>
 

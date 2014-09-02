@@ -1,4 +1,6 @@
-<header class="index_header">New ticket</header>
+<header class="index_header">
+  <span class="index_header_text">New ticket:</span>
+</header>
 
 <%= form_for @ticket, url: tickets_path do |f| %>
     <% if @ticket.errors.any? %>
@@ -15,7 +17,7 @@
 
     <table style="border-collapse: collapse;">
       <tr bgcolor="#faebd7" style="height: 30px;">
-        <td align="right">
+        <td align="right" style="font-weight: bold;">
           <%= f.label :Username %>
         </td>
         <td align="left" style="padding-left: 20px;">
@@ -24,7 +26,7 @@
       </tr>
 
       <tr bgcolor="#faebd7" style="height: 30px;">
-        <td align="right">
+        <td align="right" style="font-weight: bold;">
           <%= f.label :'E-mail' %>
         </td>
         <td align="left" style="padding-left: 20px;">
@@ -33,7 +35,7 @@
       </tr>
 
       <tr bgcolor="#faebd7" style="height: 30px;">
-        <td align="right">
+        <td align="right" style="font-weight: bold;">
           <%= f.label :Subject %>
         </td>
         <td align="left" style="padding-left: 20px;">
@@ -42,10 +44,10 @@
       </tr>
 
       <tr bgcolor="#faebd7" style="height: 30px;">
-        <td align="right">
+        <td align="right" style="font-weight: bold; vertical-align: top;">
           <%= f.label :Problem %>
         </td>
-        <td align="left" style="padding-left: 0;">
+        <td align="left" style="padding-left: 20px;">
           <%= f.text_area :problem, cols: 120, rows: 20 %>
         </td>
       </tr>

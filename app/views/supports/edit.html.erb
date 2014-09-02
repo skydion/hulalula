@@ -1,4 +1,6 @@
-<header class="index_header">Edit support user</header>
+<header class="index_header">
+  <span class="index_header_text">Edit support user:</span>
+</header>
 
 <%= form_for :support, url: support_path(@support), method: :patch do |f| %>
     <% if @support.errors.any? %>
@@ -60,20 +62,10 @@
 
       <tr bgcolor="#faebd7" style="height: 30px;">
         <td align="right" style="font-weight: bold;">
-          <%= f.label :Role %>
+          <%= f.label :role %>
         </td>
         <td align="left" style="padding-left: 20px;">
-          <select name='selected_role'>
-            <% @roles.each do |role| %>
-                <% if role.name.downcase == 'guest' %>
-                    <option value="<%= role.id %>" selected>
-                <% else %>
-                    <option value="<%= role.id %>">
-                <% end %>
-                <%= role.name %>
-                </option>
-            <% end %>
-          </select>
+          <%= f.collection_select :role_id, @roles, :id, :name, :selected => @support.role_id %>
         </td>
       </tr>
 

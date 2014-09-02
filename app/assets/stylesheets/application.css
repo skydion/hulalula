@@ -22,17 +22,22 @@
 table {
     width: 100%;
     overflow: auto;
+    /*border-collapse: collapse;*/
 }
 
-table tr.even td {
+td {
+    padding-left: 3px;
+}
+
+.even {
     background-color: linen;
 }
 
-table tr.odd td {
+.odd {
     background-color: lightblue;
 }
 
-table thead {
+thead {
     background-color: #faaa00;
 }
 

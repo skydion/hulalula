@@ -30,23 +30,43 @@ fieldset div.field_with_errors {
   }
 }
 
-input, textarea {
-  &:focus {
-    background-color: #cdc1a8;
-  }
-
-  border: 1px solid #4c2719;
-  border-radius: 0px;
-  padding: 3px;
-  margin-left: 20px;
-}
-
-.form_login {
-  text-align: right;
+.label {
+  padding-right: 3px;
 }
 
 .search {
   float: right;
   position: relative;
   right: 10px;
+}
+
+input {
+  &:focus, &:hover {
+    background-color: #cdc1a8;
+  }
+
+  //height: 1.5em;
+  border: 1px solid #4c2719;
+  border-radius: 0px;
+  padding-left: 3px;
+}
+
+textarea {
+  &:focus, &:hover {
+    background-color: #cdc1a8;
+  }
+
+  border: 1px solid #4c2719;
+  border-radius: 0px;
+  padding: 3px;
+}
+
+select {
+  border: 1px solid #4c2719;
+  border-radius: 0px;
+  padding: 1px;
+
+  &:hover {
+    background-color: #cdc1a8;
+  }
 }

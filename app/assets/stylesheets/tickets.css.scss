@@ -60,10 +60,11 @@ ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,body,html,p,blockquote,fieldset,input {
 
 $bgcolor: #806a2e;
 $step: 5%;
+$cw: 50%;
 
 .cell {
-  overflow-y: auto;
-  width: 50%;
+  overflow: auto;
+  width: $cw;
   height: 50%;
   float: left;
 
@@ -72,16 +73,29 @@ $step: 5%;
     background-color: lighten($bgcolor, $step);
   }
 
-  box-sizing: border-box;
+  //box-sizing: border-box;
 }
 
+$lh: 30px;
+
 .cell header {
+  width: inherit;
   clear: both;
   background-color: #373737;
   color: darkorange;
-  line-height: 30px;
+  line-height: $lh;
+  position: fixed;
+}
+
+.cell table {
+   margin-top: $lh;
+}
+
+header .header_text {
+  color: darkorange;
   padding-left: 20px;
-  margin: 0 2px;
+  font-weight: bold;
+  font-size: 1.1em;
 }
 
 .expanded {

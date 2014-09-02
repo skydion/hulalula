@@ -15,7 +15,7 @@ class SupportsController < ApplicationController
     @support = Support.find(params[:id])
 
     if @support.update(support_params)
-      redirect_to @support
+      redirect_to supports_path, notice: 'Support user was successfully updated.' #@support
     else
       render 'edit'
     end
@@ -26,15 +26,14 @@ class SupportsController < ApplicationController
     @support.update_attribute :role_id, params[:selected_role]
 
     if @support.save
-      flash[:notice] = 'User was successfully created.'
-      redirect_to @support
+      redirect_to supports_path, notice: 'Support user was successfully created.'
     else
       render 'new'
     end
   end
 
   def show
-    @support = Support.find(params[:id])
+    #@support = Support.find(params[:id])
   end
 
   def index
@@ -72,7 +71,7 @@ class SupportsController < ApplicationController
 
 private
   def support_params
-    params.require(:support).permit(:login, :password, :first_name, :last_name, :email) if params[:support]
+    params.require(:support).permit(:login, :password, :first_name, :last_name, :email, :role_id) if params[:support]
   end
 end
 

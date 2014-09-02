@@ -2,13 +2,17 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+$lh: 30px;
+
 .index_header {
-  //clear: both;
+  clear: both;
   background-color: #373737;
+  line-height: $lh;
+}
+
+.index_header_text {
   color: darkorange;
-  //height: 43px;
   padding-left: 30px;
-  line-height: 30px;
   font-size: 20px;
   font-weight: bold;
 }
@@ -16,7 +20,7 @@
 .button {
   background-color: #9cbc37;
   float: right;
-  height: 24px;
+  height: $lh - 3px;
   padding: 3px;
 
   :active, :focus {

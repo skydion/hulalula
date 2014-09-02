@@ -28,7 +28,8 @@ class TicketStatesController < ApplicationController
 
     respond_to do |format|
       if @ticket_state.save
-        format.html { redirect_to @ticket_state, notice: 'Ticket state was successfully created.' }
+        #format.html { redirect_to @ticket_state, notice: 'Ticket state was successfully created.' }
+        format.html { redirect_to ticket_states_path, notice: 'Ticket state was successfully created.' }
         format.json { render :show, status: :created, location: @ticket_state }
       else
         format.html { render :new }
@@ -42,7 +43,7 @@ class TicketStatesController < ApplicationController
   def update
     respond_to do |format|
       if @ticket_state.update(ticket_state_params)
-        format.html { redirect_to @ticket_state, notice: 'Ticket state was successfully updated.' }
+        format.html { redirect_to ticket_states_path, notice: 'Ticket state was successfully updated.' }
         format.json { render :show, status: :ok, location: @ticket_state }
       else
         format.html { render :edit }
