@@ -19,9 +19,11 @@
     <ul>
       <% if authorized? %>
           <li><%= link_to 'Tickets', controller: 'tickets' %></li>
-          <li><%= link_to 'Supports', controller: 'supports' %></li>
-          <li><%= link_to 'Roles', controller: 'roles' %></li>
-          <li><%= link_to 'States', controller: 'ticket_states' %></li>
+          <%= admin_area do %>
+              <li><%= link_to 'Supports', controller: 'supports' %></li>
+              <li><%= link_to 'Roles', controller: 'roles' %></li>
+              <li><%= link_to 'States', controller: 'ticket_states' %></li>
+          <% end %>
       <% else %>
           <li><%= link_to 'Home', '/' %></li>
           <li><%= link_to 'Creations', '#' %></li>

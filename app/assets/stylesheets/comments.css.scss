@@ -10,7 +10,6 @@ $header_height: 250px;
   width: 100%;
   height: $header_height;
   background-color: #b9ad95;
-  //background-color: darkkhaki;
 }
 
 .comments_area {
@@ -21,7 +20,6 @@ $header_height: 250px;
 
 .comment {
   background-color: lightgoldenrodyellow;
-  //border-bottom: 1px solid #4c2719;
 }
 
 .comment_body {
@@ -37,4 +35,14 @@ $header_height: 250px;
   color: darkorange;
   line-height: 35px;
   padding-left: 30px;
+}
+
+.comment_title {
+  clear: both;
+  background-color: #b9ad95;
+  color: #373737;
+  line-height: 20px;
+  padding-right: 20px;
+  text-align: right;
+  font-weight: bold;
 }

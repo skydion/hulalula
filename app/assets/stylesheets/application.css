@@ -47,7 +47,7 @@ table.fixed {
 }
 
 table.fixed tr:hover {
-    background-color: darkkhaki;
+    background-color: #d7d7af;
 }
 
 table.fixed td:nth-of-type(1) {

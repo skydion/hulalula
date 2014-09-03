@@ -6,7 +6,6 @@ class TicketsController < ApplicationController
   end
 
   def index
-    @tickets = Ticket.all
   end
 
   def edit
@@ -78,8 +77,13 @@ class TicketsController < ApplicationController
   end
 
   def show
-      @ticket = Ticket.find(params[:id])
-      @support = Support.find_by(id: @ticket.support_id)
+    @ticket = Ticket.find(params[:id])
+
+    if @ticket.nil?
+      @comments = nil
+    else
+      @comments = @ticket.comments.select(&:persisted?)
+    end
   end
 
   def show_by_uuid
@@ -88,8 +92,7 @@ class TicketsController < ApplicationController
     if @ticket.nil?
       redirect_to :controller => 'application', :action => 'index', :notice => 'Wrong UUID, please re-check and try again'
     else
-      @support = Support.find_by(id: @ticket.support_id)
-      @status = TicketState.find_by(id: @ticket.ticket_state_id)
+      @comments = @ticket.comments.select(&:persisted?)
     end
   end
 

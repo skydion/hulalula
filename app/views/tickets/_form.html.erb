@@ -6,14 +6,8 @@
   <div id="content">
     <div class="header">
       <h2 class="comment_header">
-        Owner:
-        <% if @support.nil? %>
-            Customer
-        <% else %>
-            <%= @support.login_with_full_name %>
-        <% end %>
-
-        , UUID: <%= @ticket.uuid %>
+        <%= @ticket.owner_name(@ticket.support_id) %>,
+        UUID: <%= @ticket.uuid %>
       </h2>
 
       <div class="problem">
@@ -21,14 +15,12 @@
         <%= h @ticket.problem %>
       </div>
 
-      <% cs = @ticket.current_status %>
-      <% if (cs != 'Completed') && (cs != 'Cancelled') %>
+      <%= closed_ticket? do %>
           <%= render partial: 'form_add_comment', locals: {ticket: @ticket} %>
       <% end %>
     </div>
 
     <div class="comments_area">
-      <% @comments = @ticket.comments.select(&:persisted?) %>
       <%= render partial: 'comments', locals: {comments: @comments} %>
     </div>
   </div>

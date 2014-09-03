@@ -35,7 +35,10 @@ module TicketsHelper
      Ticket.joins(:ticket_state).where("ticket_states.id IN (?)", ids)
   end
 
-  def owner_name(owner_id)
-    owner_id ? Support.find_by(id: owner_id).login : 'Customer';
+  def closed_ticket?(&block)
+    cs = @ticket.current_status
+    if (cs != 'Completed') && (cs != 'Cancelled')
+      content_tag(:div, &block)
+    end
   end
 end
