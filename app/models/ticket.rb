@@ -20,8 +20,14 @@ class Ticket < ActiveRecord::Base
   end
 
   def owner_name(owner_id)
+    owner_id ? Support.find_by(id: owner_id).login : 'Customer';
+  end
+
+=begin
+  def full_owner_name(owner_id)
     owner_id ? Support.find_by(id: owner_id).login_with_full_name : 'Customer';
   end
+=end
 
   def current_support
     support = Support.find_by(id: self.support_id)

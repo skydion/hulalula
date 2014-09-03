@@ -35,7 +35,7 @@ module TicketsHelper
      Ticket.joins(:ticket_state).where("ticket_states.id IN (?)", ids)
   end
 
-  def closed_ticket?(&block)
+  def not_closed_ticket?(&block)
     cs = @ticket.current_status
     if (cs != 'Completed') && (cs != 'Cancelled')
       content_tag(:div, &block)

@@ -6,8 +6,9 @@
   <div id="content">
     <div class="header">
       <h2 class="comment_header">
-        <%= @ticket.owner_name(@ticket.support_id) %>,
-        UUID: <%= @ticket.uuid %>
+        <span>
+            <%= @ticket.owner_name(@ticket.support_id).upcase %>, UUID: <%= @ticket.uuid %>
+        </span>
       </h2>
 
       <div class="problem">
@@ -15,7 +16,7 @@
         <%= h @ticket.problem %>
       </div>
 
-      <%= closed_ticket? do %>
+      <%= not_closed_ticket? do %>
           <%= render partial: 'form_add_comment', locals: {ticket: @ticket} %>
       <% end %>
     </div>
