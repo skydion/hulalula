@@ -1,5 +1,5 @@
 class TicketsController < ApplicationController
-  before_filter :check_authentic_user, :except =>[ :new, :show, :show_by_uuid, :create ]
+  before_filter :check_authentic_user, :except =>[ :new, :show_by_uuid, :create ]
 
   def new
     @ticket = Ticket.new
@@ -34,7 +34,7 @@ class TicketsController < ApplicationController
           NotificationMailer.ticket_status_changed(@ticket).deliver
         end
 
-        redirect_to @ticket
+        redirect_to @ticket, :notice => 'Ticket state was successfully updated.'
       else
         render 'edit'
       end
@@ -54,11 +54,9 @@ class TicketsController < ApplicationController
       @ticket.uuid = alpha[0,3] + digit[0,3] + alpha[3,3] + digit[3,3] + alpha[6,3]
 
       if @ticket.save
-        flash[:notice] = 'Mail with ticket url, and unique UUID send, to your e-mail address'
-
         NotificationMailer.new_ticket(@ticket).deliver
 
-        redirect_to @ticket
+        redirect_to '/', :notice => 'Mail with ticket url, and unique UUID send, to your e-mail address.'
       else
         render 'new'
       end
@@ -80,22 +78,18 @@ class TicketsController < ApplicationController
   end
 
   def show
-    @ticket = Ticket.find(params[:id])
-
-    @support = Support.find_by(id: @ticket.support_id)
+      @ticket = Ticket.find(params[:id])
+      @support = Support.find_by(id: @ticket.support_id)
   end
 
   def show_by_uuid
     @ticket = Ticket.find_by(uuid: params[:uuid])
 
     if @ticket.nil?
-      flash[:notice] = 'Wrong UUID, please re-check and try again'
-      redirect_to :controller => 'application', :action => 'index'
+      redirect_to :controller => 'application', :action => 'index', :notice => 'Wrong UUID, please re-check and try again'
     else
       @support = Support.find_by(id: @ticket.support_id)
       @status = TicketState.find_by(id: @ticket.ticket_state_id)
-
-      redirect_to @ticket
     end
   end
 

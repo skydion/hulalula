@@ -15,7 +15,8 @@ class SupportsController < ApplicationController
     @support = Support.find(params[:id])
 
     if @support.update(support_params)
-      redirect_to supports_path, notice: 'Support user was successfully updated.' #@support
+      session[:role_name] = Role.find_by(id: @support.role_id).name
+      redirect_to supports_path, notice: 'Support user was successfully updated.'
     else
       render 'edit'
     end
@@ -58,8 +59,7 @@ class SupportsController < ApplicationController
       valid = @support.check_login
 
       if valid.nil?
-        flash[:alert] = 'Invalid Login or Password, check it and try again'
-        redirect_to :controller => 'application', :action => 'index'
+        redirect_to :controller => 'application', :action => 'index', :alert => 'Invalid Login or Password, check it and try again'
       else
         session[:user_id] = valid.id
         session[:login] = valid.login

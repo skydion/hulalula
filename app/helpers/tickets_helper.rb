@@ -35,7 +35,7 @@ module TicketsHelper
      Ticket.joins(:ticket_state).where("ticket_states.id IN (?)", ids)
   end
 
-  def owner_name owner_id
+  def owner_name(owner_id)
     owner_id ? Support.find_by(id: owner_id).login : 'Customer';
   end
 end

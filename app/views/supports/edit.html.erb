@@ -24,14 +24,15 @@
         </td>
       </tr>
 
-      <tr bgcolor="#faebd7" style="height: 30px;">
+      <!--# TODO: move to reset password function -->
+<!--      <tr bgcolor="#faebd7" style="height: 30px;">
         <td align="right" style="font-weight: bold;">
-          <%= f.label :password %>
+          <%#= f.label :password %>
         </td>
         <td align="left" style="padding-left: 20px;">
-          <%= raw f.password_field :password, size: 40 %>
+          <%#= raw f.password_field :password, size: 40 %>
         </td>
-      </tr>
+      </tr>-->
 
       <tr bgcolor="#faebd7" style="height: 30px;">
         <td align="right" style="font-weight: bold;">
@@ -60,14 +61,16 @@
         </td>
       </tr>
 
-      <tr bgcolor="#faebd7" style="height: 30px;">
-        <td align="right" style="font-weight: bold;">
-          <%= f.label :role %>
-        </td>
-        <td align="left" style="padding-left: 20px;">
-          <%= f.collection_select :role_id, @roles, :id, :name, :selected => @support.role_id %>
-        </td>
-      </tr>
+      <%= admin_area do %>
+          <tr bgcolor="#faebd7" style="height: 30px;">
+            <td align="right" style="font-weight: bold;">
+              <%= f.label :role %>
+            </td>
+            <td align="left" style="padding-left: 20px;">
+              <%= f.collection_select :role_id, @roles, :id, :name, :selected => @support.role_id %>
+            </td>
+          </tr>
+      <% end %>
 
       <tr bgcolor="#deb887" style="height: 30px">
         <td></td>

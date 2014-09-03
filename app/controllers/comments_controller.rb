@@ -11,24 +11,31 @@ class CommentsController < ApplicationController
     @ticket = Ticket.find(params[:ticket_id])
     @comment = @ticket.comments.create(comment_params)
 
-    NotificationMailer.new_comment(@ticket, @comment).deliver
+    if @comment
+      NotificationMailer.new_comment(@ticket, @comment).deliver
 
-    if @ticket.support_id
-      redirect_to ticket_path(@ticket)
-    else
-      redirect_to '/ticket/' + @ticket.uuid.to_s
+      if @comment.owner_id
+        redirect_to ticket_path(@ticket)
+      else
+        redirect_to '/ticket/' + @ticket.uuid.to_s
+      end
     end
   end
 
   def destroy
     @ticket = Ticket.find(params[:ticket_id])
     @comment = @ticket.comments.find(params[:id])
-    @comment.destroy
 
-    if @ticket.support_id
-      redirect_to ticket_path(@ticket)
-    else
-      redirect_to '/ticket/' + @ticket.uuid.to_s
+    if @comment
+      owner_id = @comment.owner_id
+
+      @comment.destroy
+
+      if owner_id
+        redirect_to ticket_path(@ticket)
+      else
+        redirect_to '/ticket/' + @ticket.uuid.to_s
+      end
     end
   end
 
