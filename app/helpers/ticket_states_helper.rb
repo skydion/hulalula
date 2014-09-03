@@ -6,9 +6,9 @@ module TicketStatesHelper
         if admin?
           html.concat(
               link_to(image_tag('new-icon-24.png'), new_ticket_state_path, class: 'button')
-          ).html_safe
+          )
         end
-        html
+        html.html_safe
       end
     end
   end

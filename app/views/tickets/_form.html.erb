@@ -28,7 +28,8 @@
     </div>
 
     <div class="comments_area">
-      <%= render partial: 'comments', locals: {ticket: @ticket} %>
+      <% @comments = @ticket.comments.select(&:persisted?) %>
+      <%= render partial: 'comments', locals: {comments: @comments} %>
     </div>
   </div>
 </div>
