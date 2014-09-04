@@ -2,11 +2,11 @@ $link_color: #865140;
 
 nav#main_nav {
   position: absolute;
-  top: 50px;
+  top: 45px;
   left: 300px;
 
   li {
-    background: $link_color;
+    background-color: $link_color;
     display: inline-block;
     margin: 0 2px;
     padding: 6px 12px;
@@ -14,18 +14,6 @@ nav#main_nav {
     a, a:link, a:visited {
       color: #fff;
       text-decoration: none;
-    }
-
-    &.active {
-      background: #fff;
-      margin-bottom: -1px;
-
-      a,
-      a:link,
-      a:visited {
-        color: #555;
-        font-weight: bold;
-      }
     }
 
     &:hover {

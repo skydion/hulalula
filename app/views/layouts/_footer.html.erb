@@ -4,8 +4,8 @@
         <%= link_to 'Contact', '/contact' %>
         <div class="search"><%= render 'layouts/search' %></div>
     </li>
-    <% unless session[:user_id] %>
-      <li><%= link_to 'Send a bug', {controller: 'tickets', action: 'new'} %></li>
+    <% !authorized? do %>
+      <li><%= link_to 'Send a bug', controller: 'tickets', action: 'new' %></li>
     <% end %>
   </ul>
   <ul>

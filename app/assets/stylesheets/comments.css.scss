@@ -18,18 +18,7 @@ $header_height: 250px;
   width: 100%;
 }
 
-.comment {
-  background-color: lightgoldenrodyellow;
-}
-
-.comment_body {
-  border: 1px dotted #9f9b63;
-  overflow: auto;
-  padding: 3px;
-  margin: 0 5px 5px 3px;
-}
-
-.comment_header {
+.comments_area_header {
   clear: both;
   background-color: #373737;
   color: darkorange;
@@ -37,7 +26,16 @@ $header_height: 250px;
   padding-left: 30px;
 }
 
-.comment_title {
+.comment {
+  background-color: lightgoldenrodyellow;
+}
+
+.comment_body {
+  overflow: auto;
+  padding: 3px;
+}
+
+.comment_body_header {
   clear: both;
   background-color: #b9ad95;
   color: #373737;

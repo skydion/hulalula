@@ -1,7 +1,5 @@
-@import "semanticgs";
-
 header#page_header {
-  background: #bc471d;
+  background-color: #bc471d;
   color: #fff;
   height: 68px;
   overflow: hidden;
@@ -15,15 +13,6 @@ header#page_header {
     color: #fef8e7;
     text-decoration: none;
   }
-
-  #logo {
-    position: absolute;
-    top: 15px;
-  }
-
-  p {
-    float: right;
-  }
 }
 
 footer#page_footer {
@@ -31,15 +20,14 @@ footer#page_footer {
   border-bottom: 10px solid #4c2719;
   color: #fff;
   height: 30px;
-  padding: 10px 20px;
-  width: calc(100% - 40px);
+  padding: 10px 10px;
+  width: calc(100% - 20px);
 
-  // lock to bottom edge
   position: fixed;
   bottom: 0;
 
   ul {
-    margin-left: -10px;
+    padding: 2px 0;
 
     li {
       border-right: 1px solid #fef8e7;
@@ -50,7 +38,6 @@ footer#page_footer {
       }
 
       a {
-        padding: 5px 10px;
         &:link,
         &:hover,
         &:visited,
@@ -60,11 +47,6 @@ footer#page_footer {
       }
     }
   }
-}
-
-div#wrapper {
-  width: $total-width;
-  margin: 0 auto;
 }
 
 div#contact {
@@ -82,17 +64,3 @@ div#contact {
     color: #ddd
   }
 }
-
-/*section#content {
-  @include column(10);
-  float: left;
-  margin: 0 0;
-  width: 100%;
-}
-
-section#sidebar {
-  @include column(2);
-  float: right;
-  margin-bottom: 20px;
-  margin-right: -20px;
-}*/

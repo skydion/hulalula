@@ -2,55 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-/* BASIC RESET */
-ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,body,html,p,blockquote,fieldset,input {
-  margin: 0;
-  padding: 0;
-}
-
-/* COMMON CLASSES */
-.break { clear: both; }
-
-/* WRAPPER */
-/* #wrapper { width: 1200px; margin:5px auto; } */
-#wrapper { margin: 5px auto; }
-
-/* CONTENT */
-#content { }
-// #content p { margin: 20px; }
-
-/* MENU
-#menu { margin: 20px 0 0 10px; }
-*/
-#menu { margin: 10px 0 0 0; }
-#menu ul { list-style: none; }
-#menu ul li { display: inline; float: left; margin-bottom: 20px; }
-
-/* :first-child pseudo selector with rounded top left corner */
-/* #menu ul li:first-child a { border-top-left-radius: 12px; } */
-
-/* :last-child pseudo selector with rounded top right corner */
-/* #menu ul li:last-child a { border-top-right-radius: 12px; } */
-
-/* background color set to RGBA, with opacity on 0.3 and also using text-shadow */
-#menu ul li a {
-  padding: 20px;
-  background: rgba(255,138,30,0.3);
-  text-decoration: none;
-  font: bold 14px Helvetica, Sans-Serif;
-  letter-spacing: 1px;
-  color: #402e16;
-  text-shadow: #eee 0 0 2px;
-}
-
-/* hover state shows a linear gradient and opacity it brought down to 0.9 and also shows a very slight grey gradient on top */
-#menu ul li a:hover {
-  box-shadow: 0 -5px 10px #777;
-  background: linear-gradient(right bottom, rgb(237,227,112) 0%, rgb(255,173,10) 72%) !important;
-  background-color: rgb(255,173,10) !important;
-  filter: alpha(opacity=90);
-  opacity: .90; }
-
 #main {
   // No floating elements allowed on the left or the right side of a specified element
   clear: both;
@@ -112,7 +63,7 @@ header .header_text {
     background: url('expand-icon.png') no-repeat 7px 7px #9cbc37;
   }
 
-  :active, :focus {
+  :focus {
     outline: none;
   }
 }

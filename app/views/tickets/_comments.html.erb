@@ -1,12 +1,12 @@
 <% if comments.size > 0 %>
-    <h2 class="comment_header"><%= comments.count %> Comments:</h2>
+    <h2 class="comments_area_header"><%= comments.count %> Comments:</h2>
     <% comments.each do |comment| %>
         <table class="comment fixed">
           <tr>
             <td>#<%= comment.id %></td>
 
             <td class="comment_body">
-              <p class="comment_title">
+              <p class="comment_body_header">
                 <span>
                   <%= @ticket.owner_name(comment.owner_id).upcase %>,
                   <%= comment.created_at %>
