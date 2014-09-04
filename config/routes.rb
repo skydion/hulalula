@@ -9,6 +9,10 @@ Rails.application.routes.draw do
 
   resources :supports, constraints: { id: /\d+/ } do
     resources :roles, constraints: { id: /\d+/ }
+
+    member do
+      get 'change_password'
+    end
   end
 
   get 'logout' => 'supports#logout'

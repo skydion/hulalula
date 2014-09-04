@@ -16,6 +16,11 @@
 
     <table style="border-collapse: collapse;">
       <tr bgcolor="#faebd7" style="height: 30px;">
+        <td bgcolor="#faebd7" style="height: 30px;"></td>
+        <td align="right"><%= link_to 'Change password', change_password_support_path %></td>
+      </tr>
+
+      <tr bgcolor="#faebd7" style="height: 30px;">
         <td align="right" style="font-weight: bold;">
           <%= f.label :login %>
         </td>
@@ -23,16 +28,6 @@
           <%= raw f.text_field :login, size: 40 %>
         </td>
       </tr>
-
-      <!--# TODO: move to reset password function -->
-<!--      <tr bgcolor="#faebd7" style="height: 30px;">
-        <td align="right" style="font-weight: bold;">
-          <%#= f.label :password %>
-        </td>
-        <td align="left" style="padding-left: 20px;">
-          <%#= raw f.password_field :password, size: 40 %>
-        </td>
-      </tr>-->
 
       <tr bgcolor="#faebd7" style="height: 30px;">
         <td align="right" style="font-weight: bold;">

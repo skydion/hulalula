@@ -14,6 +14,7 @@ class SupportsController < ApplicationController
   def update
     @support = Support.find(params[:id])
 
+    binding.pry
     if @support.update(support_params)
       session[:role_name] = Role.find_by(id: @support.role_id).name
       redirect_to supports_path, notice: 'Support user was successfully updated.'
@@ -67,6 +68,10 @@ class SupportsController < ApplicationController
 
         redirect_to :controller => 'tickets', :action => 'index'
       end
+  end
+
+  def change_password
+    @support = Support.find(params[:id])
   end
 
 private
