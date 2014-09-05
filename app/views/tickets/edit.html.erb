@@ -1,6 +1,6 @@
-<header class="index_header">
-  <span class="index_header_text">Edit ticket:</span>
-</header>
+<%= header_data do %>
+    Edit ticket:
+<% end %>
 
 <%= form_for :ticket, url: ticket_path(@ticket), method: :patch do |f| %>
     <% if @ticket.errors.any? %>

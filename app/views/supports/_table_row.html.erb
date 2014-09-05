@@ -1,14 +1,19 @@
 <tr class="<%= cycle('even', 'odd') %>">
   <td><%= h support.login %></td>
-  <td><%= h support.password %></td>
-  <td><%= h support.first_name%></td>
+  <%#= admin_area do %>
+    <td>
+      <%= link_to image_tag('password-icon-16.png'), change_password_support_path(support) %>
+      <span><%= h support.password %></span>
+    </td>
+  <%# end %>
+  <td><%= h support.first_name %></td>
   <td><%= h support.last_name %></td>
   <td><%= h support.email %></td>
 
   <td><%= h role.name %></td>
 
   <td align='center'><%= link_to image_tag('edit-icon.png'), edit_support_path(support) %></td>
-  <%= admin_area do %>
+  <%#= admin_area do %>
     <td align='center'><%= link_to image_tag('delete-trash.png'), support_path(support), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  <% end %>
+  <%# end %>
 </tr>

@@ -2,13 +2,18 @@
     setMainHeight();
 </script>
 
-<%= supports_header_data %>
+<%= header_data do %>
+    Supports list:
+    <%= link_to(image_tag('new-icon-24.png'), new_support_path, class: 'button') %>
+<% end %>
 
 <table>
   <thead>
       <tr>
         <th>Login</th>
-        <th>Password</th>
+        <%#= admin_area do %>
+            <th>Password</th>
+        <%# end %>
         <th>First name</th>
         <th>Last name</th>
         <th>E-mail</th>

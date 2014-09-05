@@ -25,15 +25,12 @@ class TicketsController < ApplicationController
       new_support_id = params[:ticket][:support_id].to_i
       new_ticket_state_id = params[:ticket][:ticket_state_id].to_i
 
-      @ticket.update_attribute :support_id, new_support_id
-      @ticket.update_attribute :ticket_state_id, new_ticket_state_id
-
       if @ticket.update(ticket_params)
         if (old_support_id != new_support_id) || (old_ticket_state_id != new_ticket_state_id)
           NotificationMailer.ticket_status_changed(@ticket).deliver
         end
 
-        redirect_to @ticket, :notice => 'Ticket state was successfully updated.'
+        redirect_to :controller => 'tickets', :action => 'index', :notice => 'Ticket state was successfully updated.'
       else
         render 'edit'
       end

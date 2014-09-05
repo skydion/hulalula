@@ -1,6 +1,6 @@
-<header class="index_header">
-  <span class="index_header_text">New support user:</span>
-</header>
+<%= header_data do %>
+    New support user:
+<% end %>
 
 <%= form_for :support, url: supports_path do |f| %>
     <% if @support.errors.any? %>

@@ -2,7 +2,10 @@
     setMainHeight();
 </script>
 
-<%= roles_header_data %>
+<%= header_data do %>
+    Roles list:
+    <%= link_to(image_tag('new-icon-24.png'), new_role_path, class: 'button') %>
+<% end %>
 
 <table>
   <thead>
@@ -20,9 +23,9 @@
         <td><%= raw role.description %></td>
 
         <td align='center'><%= link_to image_tag('edit-icon.png'), edit_role_path(role) %></td>
-        <%= admin_area do %>
+        <%#= admin_area do %>
           <td align='center'><%= link_to image_tag('delete-trash.png'), role, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
+        <%# end %>
       </tr>
     <% end %>
   </tbody>

@@ -34,7 +34,6 @@ class SupportsController < ApplicationController
   end
 
   def show
-    #@support = Support.find(params[:id])
   end
 
   def index
@@ -69,9 +68,12 @@ class SupportsController < ApplicationController
       end
   end
 
+  def change_password
+    @support = Support.find(params[:id])
+  end
+
 private
   def support_params
     params.require(:support).permit(:login, :password, :first_name, :last_name, :email, :role_id) if params[:support]
   end
 end
-

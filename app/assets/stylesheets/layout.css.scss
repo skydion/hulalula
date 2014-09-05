@@ -42,6 +42,8 @@ footer#page_footer {
         &:hover,
         &:visited,
         &.active {
+          padding: 0 10px;
+
           color: #fff;
         }
       }

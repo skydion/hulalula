@@ -1,6 +1,6 @@
-<header class="index_header">
-  <span class="index_header_text">New ticket:</span>
-</header>
+<%= header_data do %>
+    New ticket:
+<% end %>
 
 <%= form_for @ticket, url: tickets_path do |f| %>
     <% if @ticket.errors.any? %>

@@ -44,3 +44,16 @@ $header_height: 250px;
   text-align: right;
   font-weight: bold;
 }
+
+.problem {
+  float: left;
+  overflow-y: auto;
+
+  width: calc(50% - 6px - 10px);
+  height: $header_height - 10px - 6px - 35px;
+
+  margin: 5px 5px;
+  padding: 3px;
+
+  text-align: justify;
+}

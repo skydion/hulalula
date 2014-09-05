@@ -11,14 +11,14 @@
         </span>
       </h2>
 
-      <div class="problem">
-        <div style="font-weight: bold; font-size: 14px;">Problem:</div>
-        <%= h @ticket.problem %>
-      </div>
-
       <%= not_closed_ticket? do %>
           <%= render partial: 'form_add_comment', locals: {ticket: @ticket} %>
       <% end %>
+
+      <div class="problem">
+        <span style="font-weight: bold; font-size: 14px;">Problem: </span>
+        <%= simple_format(h(@ticket.problem)) %>
+      </div>
     </div>
 
     <div class="comments_area">

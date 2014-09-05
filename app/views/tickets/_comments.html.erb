@@ -3,7 +3,9 @@
     <% comments.each do |comment| %>
         <table class="comment fixed">
           <tr>
-            <td>#<%= comment.id %></td>
+            <td style="vertical-align: top; padding-top: 3px;">
+              #<%= comment.id %>
+            </td>
 
             <td class="comment_body">
               <p class="comment_body_header">
@@ -12,11 +14,11 @@
                   <%= comment.created_at %>
                 </span>
               </p>
-              <%= h comment.body %>
+              <%= simple_format(h(comment.body)) %>
             </td>
 
-            <td>
-              <% if comment.owner_id == session[:user_id] %>
+            <td style="vertical-align: top; padding-top: 3px;">
+              <% if (comment.owner_id == session[:user_id]) && authorized? %>
                   <%= link_to image_tag('delete-trash.png'), [comment.ticket, comment], method: :delete, data: {confirm: 'Are you sure?'} %>
               <% end %>
             </td>
