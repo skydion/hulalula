@@ -50,7 +50,7 @@
   <table>
     <%= yield :thead %>
 
-    <tbody> <%= render partial: 'tickets/table_row', collection: Ticket.where('support_id IS NULL'), as: :ticket %> </tbody>
+    <tbody> <%= render partial: 'tickets/table_row', collection: opened, as: :ticket %> </tbody>
   </table>
 </div>
 

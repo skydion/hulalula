@@ -18,7 +18,6 @@ class TicketsController < ApplicationController
     @ticket = Ticket.find(params[:id])
 
     if @ticket
-      # TODO - check owner and state changing between comments and email if one of them is changed
       old_support_id = @ticket.support_id
       old_ticket_state_id = @ticket.ticket_state_id
 
@@ -30,7 +29,7 @@ class TicketsController < ApplicationController
           NotificationMailer.ticket_status_changed(@ticket).deliver
         end
 
-        redirect_to :controller => 'tickets', :action => 'index', :notice => 'Ticket state was successfully updated.'
+        redirect_to :controller => 'tickets', :notice => 'Ticket state was successfully updated.'
       else
         render 'edit'
       end
@@ -52,7 +51,7 @@ class TicketsController < ApplicationController
       if @ticket.save
         NotificationMailer.new_ticket(@ticket).deliver
 
-        redirect_to '/', :notice => 'Mail with ticket url, and unique UUID send, to your e-mail address.'
+        redirect_to '/', :notice => 'Mail with ticket information was sent on your e-mail address.'
       else
         render 'new'
       end
@@ -87,7 +86,7 @@ class TicketsController < ApplicationController
     @ticket = Ticket.find_by(uuid: params[:uuid])
 
     if @ticket.nil?
-      redirect_to :controller => 'application', :action => 'index', :notice => 'Wrong UUID, please re-check and try again'
+      redirect_to :controller => 'application', :notice => 'Wrong UUID, please re-check and try again.'
     else
       @comments = @ticket.comments.select(&:persisted?)
     end

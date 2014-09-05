@@ -1,5 +1,6 @@
 <%= header_data do %>
     Edit support user:
+    <%= link_to image_tag('password-icon-24.png'), change_password_support_path, class: 'button' %>
 <% end %>
 
 <%= form_for :support, url: support_path(@support), method: :patch do |f| %>
@@ -15,11 +16,6 @@
     <% end %>
 
     <table style="border-collapse: collapse;">
-      <tr bgcolor="#faebd7" style="height: 30px;">
-        <td bgcolor="#faebd7" style="height: 30px;"></td>
-        <td align="right" style="padding: 3px"><%= link_to image_tag('password-icon-24.png'), change_password_support_path, class: 'button' %></td>
-      </tr>
-
       <tr bgcolor="#faebd7" style="height: 30px;">
         <td align="right" style="font-weight: bold;">
           <%= f.label :login %>

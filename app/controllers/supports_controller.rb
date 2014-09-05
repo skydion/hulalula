@@ -23,14 +23,12 @@ class SupportsController < ApplicationController
       end
     end
 
-=begin
-    if params[:support].has_key?(:role_id)
-      session[:role_name] = Role.find_by(id: @support.role_id).name
-    end
-=end
-
     if @support.update(support_params)
-      redirect_to supports_path, notice: 'Support user was successfully updated.'
+      if session[:role_name] == 'admin'
+        redirect_to supports_path, notice: 'Support user was successfully updated.'
+      else
+        redirect_to edit_support_path, notice: 'Support user was successfully updated.'
+      end
     else
       render 'edit'
     end
@@ -64,7 +62,7 @@ class SupportsController < ApplicationController
 
   def logout
     reset_session
-    redirect_to :controller => 'application', :action => 'index'
+    redirect_to :controller => 'application'
   end
 
   def authenticate
@@ -72,13 +70,13 @@ class SupportsController < ApplicationController
       valid = @support.check_login
 
       if valid.nil?
-        redirect_to :controller => 'application', :action => 'index', :alert => 'Invalid Login or Password, check it and try again'
+        redirect_to :controller => 'application', :alert => 'Invalid Login or Password, check it and try again.'
       else
         session[:user_id] = valid.id
         session[:login] = valid.login
         session[:role_name] = Role.find_by(id: valid.role_id).name
 
-        redirect_to :controller => 'tickets', :action => 'index'
+        redirect_to :controller => 'tickets'
       end
   end
 
