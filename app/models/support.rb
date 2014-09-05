@@ -3,7 +3,8 @@ class Support < ActiveRecord::Base
   belongs_to :role
 
   validates :login, presence: true, length: { minimum: 3 }, uniqueness: true
-  validates :password, presence: true, length: { minimum: 8 }
+  validates :password, presence: true, length: { minimum: 8 } #, confirmation: true
+  #validates_confirmation_of :password
   
   validates :email, presence: true, :uniqueness => true
   validates_format_of :email, :with => /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/

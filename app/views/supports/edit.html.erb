@@ -56,7 +56,7 @@
         </td>
       </tr>
 
-      <%= admin_area do %>
+      <% if admin? %>
           <tr bgcolor="#faebd7" style="height: 30px;">
             <td align="right" style="font-weight: bold;">
               <%= f.label :role %>

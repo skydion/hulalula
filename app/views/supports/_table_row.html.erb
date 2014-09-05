@@ -1,6 +1,6 @@
 <tr class="<%= cycle('even', 'odd') %>">
   <td><%= h support.login %></td>
-  <%#= admin_area do %>
+  <%# if admin? do %>
     <td>
       <%= link_to image_tag('password-icon-16.png'), change_password_support_path(support) %>
       <span><%= h support.password %></span>
@@ -13,7 +13,7 @@
   <td><%= h role.name %></td>
 
   <td align='center'><%= link_to image_tag('edit-icon.png'), edit_support_path(support) %></td>
-  <%#= admin_area do %>
+  <%# admin? %>
     <td align='center'><%= link_to image_tag('delete-trash.png'), support_path(support), method: :delete, data: { confirm: 'Are you sure?' } %></td>
   <%# end %>
 </tr>

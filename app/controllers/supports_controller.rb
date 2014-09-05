@@ -13,9 +13,23 @@ class SupportsController < ApplicationController
 
   def update
     @support = Support.find(params[:id])
+    @roles = Role.all
+
+    if params[:support].has_key?(:password_confirmation)
+      if params[:support][:password] != params[:support][:password_confirmation]
+        flash[:alert] = 'Password did not match.'
+        render 'change_password'
+        return
+      end
+    end
+
+=begin
+    if params[:support].has_key?(:role_id)
+      session[:role_name] = Role.find_by(id: @support.role_id).name
+    end
+=end
 
     if @support.update(support_params)
-      session[:role_name] = Role.find_by(id: @support.role_id).name
       redirect_to supports_path, notice: 'Support user was successfully updated.'
     else
       render 'edit'

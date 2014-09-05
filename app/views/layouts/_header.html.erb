@@ -19,7 +19,7 @@
     <ul>
       <% if authorized? %>
           <li><%= link_to 'Tickets', controller: 'tickets' %></li>
-          <%= admin_area do %>
+          <% if admin? %>
               <li><%= link_to 'Supports', controller: 'supports' %></li>
               <li><%= link_to 'Roles', controller: 'roles' %></li>
               <li><%= link_to 'States', controller: 'ticket_states' %></li>
