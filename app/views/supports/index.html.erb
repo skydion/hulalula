@@ -4,7 +4,10 @@
 
 <%= header_data do %>
     Supports list:
-    <%= link_to(image_tag('new-icon-24.png'), new_support_path, class: 'button') %>
+
+    <%= admin_area do %>
+        <%= link_to(image_tag('new-icon-24.png'), new_support_path, class: 'button') %>
+    <% end %>
 <% end %>
 
 <table>

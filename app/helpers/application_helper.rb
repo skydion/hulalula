@@ -13,7 +13,7 @@ module ApplicationHelper
 
   def header_data(&block)
     content_tag(:header, class: 'index_header') do
-      content_tag(:span, class: 'index_header_text', &block) if admin?
+      content_tag(:span, class: 'index_header_text', &block)
     end
   end
 end
