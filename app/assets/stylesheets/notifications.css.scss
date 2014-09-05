@@ -3,7 +3,7 @@
   top: 0;
   width: calc(100% - 0.75em - 45px);
 
-  background:{
+  background: {
     position: 10px 9px;
     repeat: no-repeat;
   }
@@ -55,7 +55,7 @@
   10% { opacity: 1; }
   90% { opacity: 1; transform: translateY(0);}
   99% { opacity: 0; transform: translateY(-30px);}
-  100% { opacity: 0; }
+  100% { opacity: 0; visibility: hidden; }
 }
 
 @keyframes runProgress {
