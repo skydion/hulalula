@@ -1,11 +1,15 @@
-<% if flash[:notice] %>
-    <div id='notice' class="notification notice">
-      <%= flash[:notice] %>
-    </div>
-<% end %>
+<section>
+  <% if flash[:notice] %>
+      <div class="notification notice box-active">
+        <%= flash[:notice] %>
+        <div class="progress-active"></div>
+      </div>
+  <% end %>
 
-<% if flash[:alert] %>
-    <div id='alert' class="notification alert">
-      <%= flash[:alert] %>
-    </div>
-<% end %>
+  <% if flash[:alert] %>
+      <div class="notification alert box-active">
+        <%= flash[:alert] %>
+        <div class="progress-active"></div>
+      </div>
+  <% end %>
+</section>

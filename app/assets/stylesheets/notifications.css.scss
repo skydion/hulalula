@@ -16,7 +16,7 @@
 
   line-height: 1.6em;
   margin: 0;
-  padding: 0.75em 0.75em 0.75em 45px;
+  padding: 0.75em 0.75em 2.5em 45px;
 
   &.notice {
     background: {
@@ -31,4 +31,34 @@
       image: url('notification_x.png');
     }
   }
+}
+
+.box-active {
+  display: block;
+  animation: fadeOut 5s linear forwards;
+}
+
+.progress-active {
+  width: 0;
+  height: 4px;
+  background: rgba(255,255,255,0.3);
+  position: absolute;
+  bottom: 7px;
+  left: 2%;
+  border-radius: 3px;
+  box-shadow:inset 0 1px 1px rgba(0,0,0,0.05), 0 -1px 0 rgba(255,255,255,0.6);
+  animation: runProgress 4s linear forwards 0.5s;
+}
+
+@keyframes fadeOut {
+  0% { opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; transform: translateY(0);}
+  99% { opacity: 0; transform: translateY(-30px);}
+  100% { opacity: 0; }
+}
+
+@keyframes runProgress {
+  0% { width: 0; background: rgba(255,255,255,0.3); }
+  100% { width: 96%; background: rgba(255,255,255,1); }
 }
