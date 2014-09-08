@@ -1,4 +1,5 @@
 class TicketStatesController < ApplicationController
+  before_filter :check_authentic_user
   before_action :set_ticket_state, only: [:show, :edit, :update, :destroy]
 
   # GET /ticket_states

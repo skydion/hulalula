@@ -1,5 +1,5 @@
 class RolesController < ApplicationController
-  before_filter :check_authentic_user, :except =>[ :index, :authenticate ]
+  before_filter :check_authentic_user
   before_action :set_role, only: [:show, :edit, :update, :destroy]
 
   # GET /roles
