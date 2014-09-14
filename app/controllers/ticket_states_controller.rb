@@ -1,3 +1,4 @@
+
 class TicketStatesController < ApplicationController
   before_filter :check_authentic_user
   before_action :set_ticket_state, only: [:show, :edit, :update, :destroy]
@@ -30,7 +31,8 @@ class TicketStatesController < ApplicationController
     respond_to do |format|
       if @ticket_state.save
         #format.html { redirect_to @ticket_state, notice: 'Ticket state was successfully created.' }
-        format.html { redirect_to ticket_states_path, notice: 'Ticket state was successfully created.' }
+        flash[:notice] = 'Ticket state was successfully created.'
+        format.html { redirect_to ticket_states_path }
         format.json { render :show, status: :created, location: @ticket_state }
       else
         format.html { render :new }
@@ -44,7 +46,8 @@ class TicketStatesController < ApplicationController
   def update
     respond_to do |format|
       if @ticket_state.update(ticket_state_params)
-        format.html { redirect_to ticket_states_path, notice: 'Ticket state was successfully updated.' }
+        flash[:notice] = 'Ticket state was successfully updated.'
+        format.html { redirect_to ticket_states_path }
         format.json { render :show, status: :ok, location: @ticket_state }
       else
         format.html { render :edit }
@@ -58,7 +61,8 @@ class TicketStatesController < ApplicationController
   def destroy
     @ticket_state.destroy
     respond_to do |format|
-      format.html { redirect_to ticket_states_url, notice: 'Ticket state was successfully destroyed.' }
+      flash[:notice] = 'Ticket state was successfully destroyed.'
+      format.html { redirect_to ticket_states_url }
       format.json { head :no_content }
     end
   end

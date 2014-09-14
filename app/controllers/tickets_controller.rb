@@ -6,6 +6,7 @@ class TicketsController < ApplicationController
   end
 
   def index
+    @ids = [ [1, 2], [3], [4, 5] ]
   end
 
   def edit
@@ -26,10 +27,11 @@ class TicketsController < ApplicationController
 
       if @ticket.update(ticket_params)
         if (old_support_id != new_support_id) || (old_ticket_state_id != new_ticket_state_id)
-          NotificationMailer.ticket_status_changed(@ticket).deliver
+          flash[:notice] = 'Ticket state was successfully updated.'
+          #NotificationMailer.ticket_status_changed(@ticket).deliver
         end
 
-        redirect_to :controller => 'tickets', :notice => 'Ticket state was successfully updated.'
+        redirect_to :controller => 'tickets'
       else
         render 'edit'
       end
@@ -49,9 +51,10 @@ class TicketsController < ApplicationController
       @ticket.uuid = alpha[0,3] + digit[0,3] + alpha[3,3] + digit[3,3] + alpha[6,3]
 
       if @ticket.save
-        NotificationMailer.new_ticket(@ticket).deliver
+        #NotificationMailer.new_ticket(@ticket).deliver
 
-        redirect_to '/', :notice => 'Mail with ticket information was sent on your e-mail address.'
+        flash[:notice] = 'Mail with ticket information was sent on your e-mail address.'
+        redirect_to '/'
       else
         render 'new'
       end
@@ -86,7 +89,8 @@ class TicketsController < ApplicationController
     @ticket = Ticket.find_by(uuid: params[:uuid])
 
     if @ticket.nil?
-      redirect_to :controller => 'application', :notice => 'Wrong UUID, please re-check and try again.'
+      flash[:alert] = 'Wrong UUID, please re-check and try again.'
+      redirect_to :controller => 'application'
     else
       @comments = @ticket.comments.select(&:persisted?)
     end

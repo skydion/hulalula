@@ -7,7 +7,7 @@
     <div class="header">
       <h2 class="comments_area_header">
         <span>
-            <%= @ticket.owner_name(@ticket.support_id).upcase %>, UUID: <%= @ticket.uuid %>
+            <%= @ticket.current_support.upcase %>, UUID: <%= @ticket.uuid %>
         </span>
       </h2>
 

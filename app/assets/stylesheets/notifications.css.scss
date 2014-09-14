@@ -35,7 +35,7 @@
 
 .box-active {
   display: block;
-  animation: fadeOut 5s linear forwards;
+  animation: fadeOut 2s linear forwards;
 }
 
 .progress-active {
@@ -47,7 +47,7 @@
   left: 2%;
   border-radius: 3px;
   box-shadow:inset 0 1px 1px rgba(0,0,0,0.05), 0 -1px 0 rgba(255,255,255,0.6);
-  animation: runProgress 4s linear forwards 0.5s;
+  animation: runProgress 1s linear forwards 0.5s;
 }
 
 @keyframes fadeOut {

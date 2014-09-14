@@ -24,10 +24,11 @@ class SupportsController < ApplicationController
     end
 
     if @support.update(support_params)
+      flash[:notice] = 'Support user was successfully updated.'
       if session[:role_name] == 'admin'
-        redirect_to supports_path, notice: 'Support user was successfully updated.'
+        redirect_to supports_path
       else
-        redirect_to edit_support_path, notice: 'Support user was successfully updated.'
+        redirect_to edit_support_path
       end
     else
       render 'edit'
@@ -39,7 +40,8 @@ class SupportsController < ApplicationController
     @support.update_attribute :role_id, params[:selected_role]
 
     if @support.save
-      redirect_to supports_path, notice: 'Support user was successfully created.'
+      flash[:notice] = 'Support user was successfully created.'
+      redirect_to supports_path
     else
       render 'new'
     end
@@ -70,7 +72,8 @@ class SupportsController < ApplicationController
       valid = @support.check_login
 
       if valid.nil?
-        redirect_to :controller => 'application', :alert => 'Invalid Login or Password, check it and try again.'
+        flash[:alert] = 'Invalid Login or Password, check it and try again.'
+        redirect_to :controller => 'application'
       else
         session[:user_id] = valid.id
         session[:login] = valid.login

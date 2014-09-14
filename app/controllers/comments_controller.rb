@@ -5,8 +5,15 @@ class CommentsController < ApplicationController
     @ticket = Ticket.find(params[:ticket_id])
     @comment = @ticket.comments.create(comment_params)
 
+    if @comment.owner_id
+      @ticket.ticket_state_id = 2
+    else
+      @ticket.ticket_state_id = 1
+    end
+    @ticket.save
+
     if @comment
-      NotificationMailer.new_comment(@ticket, @comment).deliver
+      #NotificationMailer.new_comment(@ticket, @comment).deliver
 
       if @comment.owner_id
         redirect_to ticket_path(@ticket)

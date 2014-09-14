@@ -9,6 +9,10 @@ class Ticket < ActiveRecord::Base
   validates :subject, presence: true
   validates :problem, presence: true
 
+  scope :states, ->(ids) { joins(:ticket_state).where("ticket_states.id IN (?)", ids) }
+  scope :support_not_present, -> { where(support_id: nil) }
+  scope :support_present, -> { where.not(support_id: nil) }
+
   def current_status
     status = TicketState.find_by(id: self.ticket_state_id)
 
@@ -23,14 +27,8 @@ class Ticket < ActiveRecord::Base
     owner_id ? Support.find_by(id: owner_id).login : 'Customer';
   end
 
-=begin
-  def full_owner_name(owner_id)
-    owner_id ? Support.find_by(id: owner_id).login_with_full_name : 'Customer';
-  end
-=end
-
   def current_support
     support = Support.find_by(id: self.support_id)
-    support.nil? ? 'Customer' : support.login
+    support ? support.login : 'Customer'
   end
 end
