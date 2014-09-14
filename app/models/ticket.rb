@@ -10,8 +10,6 @@ class Ticket < ActiveRecord::Base
   validates :problem, presence: true
 
   scope :states, ->(ids) { joins(:ticket_state).where("ticket_states.id IN (?)", ids) }
-  scope :support_not_present, -> { where(support_id: nil) }
-  scope :support_present, -> { where.not(support_id: nil) }
 
   def current_status
     status = TicketState.find_by(id: self.ticket_state_id)
