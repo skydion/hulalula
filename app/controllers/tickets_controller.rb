@@ -6,7 +6,8 @@ class TicketsController < ApplicationController
   end
 
   def index
-    @ids = [ [1, 2], [3], [4, 5] ]
+    @ids = [ [1], [2], [3], [4, 5] ]
+    @cell_headers = ['LT [unassigned]', 'RT [opened]', 'LB [on hold]', 'RB [closed]']
   end
 
   def edit
