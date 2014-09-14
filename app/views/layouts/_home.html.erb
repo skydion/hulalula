@@ -2,6 +2,7 @@
   <% if flash[:notice] %>
       <div class="notification notice box-active">
         <%= flash[:notice] %>
+        <% flash.discard(:notice) %>
         <div class="progress-active"></div>
       </div>
   <% end %>
@@ -9,6 +10,7 @@
   <% if flash[:alert] %>
       <div class="notification alert box-active">
         <%= flash[:alert] %>
+        <% flash.discard(:alert) %>
         <div class="progress-active"></div>
       </div>
   <% end %>
