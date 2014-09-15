@@ -3,7 +3,7 @@ class CommentsController < ApplicationController
 
   def create
     @ticket = Ticket.find(params[:ticket_id])
-    @comment = @ticket.comments.create(comment_params)
+    @comment = @ticket.comments.build(comment_params)
 
     if @comment.owner_id
       @ticket.ticket_state_id = 2
