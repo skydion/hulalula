@@ -33,17 +33,20 @@
     </thead>
 <% end %>
 
-<% @ids.each_with_index do |val, index| %>
+<%# @ids.each_with_index do |val, index| %>
+<% @cells.each do |val| %>
     <div class="cell">
       <header>
-        <span class="header_text"><%= @cell_headers[index] %></span>
+        <!--<span class="header_text"><%#= @cell_headers[index] %></span>-->
+        <span class="header_text"><%= val[0] %></span>
         <span class='expand_button'><%= link_to '', '#' %></span>
       </header>
 
       <table>
         <%= yield :thead %>
 
-        <tbody><%= render partial: 'tickets/table_row', collection: Ticket.states(val), as: :ticket %></tbody>
+        <!--<tbody><%#= render partial: 'tickets/table_row', collection: Ticket.states(val), as: :ticket %></tbody>-->
+        <tbody><%= render partial: 'tickets/table_row', collection: Ticket.states(val[1]), as: :ticket %></tbody>
       </table>
     </div>
 <% end %>

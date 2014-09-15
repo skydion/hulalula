@@ -6,8 +6,12 @@ class TicketsController < ApplicationController
   end
 
   def index
-    @ids = [ [1], [2], [3], [4, 5] ]
-    @cell_headers = ['LT [unassigned]', 'RT [opened]', 'LB [on hold]', 'RB [closed]']
+    #@ids = [ [1], [2], [3], [4, 5] ]
+    #@cell_headers = ['LT [unassigned]', 'RT [opened]', 'LB [on hold]', 'RB [closed]']
+
+    #@ids = Tab.pluck(:states)
+    #@cell_headers = Tab.pluck(:name)
+    @cells = Tab.pluck(:name, :states)
   end
 
   def edit
