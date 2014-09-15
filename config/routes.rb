@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :tabs
+
   resources :ticket_states, constraints: { id: /\d+/ }
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -1,0 +1,51 @@
+<%= header_data do %>
+    Edit tab:
+<% end %>
+
+<%= form_for(@tab) do |f| %>
+    <% if @tab.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@tab.errors.count, 'error') %> prohibited this tab from being saved:</h2>
+
+          <ul>
+            <% @tab.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <table style="border-collapse: collapse;">
+      <tr bgcolor="#faebd7" style="height: 30px;">
+        <td align="right" style="font-weight: bold;">
+          <%= f.label :name %>
+        </td>
+
+        <td align="left" style="padding-left: 20px;">
+          <%= f.text_field :name, size: 40 %>
+        </td>
+      </tr>
+
+      <tr bgcolor="#faebd7" style="height: 30px;">
+        <td align="right" style="font-weight: bold;">
+          <%= f.label :states %>
+        </td>
+
+        <td align="left" style="padding-left: 20px;">
+          <%#= f.collection_check_boxes :states, @states, :id, :name, include_blank: false, selected: f.states do |b| %>
+            <span>
+              <%#= b.check_box %>
+              <%#= b.label %><br>
+            </span>
+          <%# end %>
+        </td>
+      </tr>
+
+      <tr bgcolor="#deb887" style="height: 30px">
+        <td></td>
+        <td align="right" style="padding-right: 20px">
+          <%= f.submit %>
+        </td>
+      </tr>
+    </table>
+<% end %>

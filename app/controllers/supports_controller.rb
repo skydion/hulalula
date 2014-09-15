@@ -37,7 +37,8 @@ class SupportsController < ApplicationController
 
   def create
     @support = Support.new(support_params)
-    @support.update_attribute :role_id, params[:selected_role]
+    #@support.update_attribute :role_id, params[:selected_role]
+    @support.role_id = params[:selected_role]
 
     if @support.save
       flash[:notice] = 'Support user was successfully created.'

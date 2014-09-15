@@ -1,0 +1,37 @@
+<script type="text/javascript" charset="utf-8">
+    setMainHeight();
+</script>
+
+<%= header_data do %>
+    Tabs list:
+
+    <%= admin_area do %>
+      <%= link_to(image_tag('new-icon-24.png'), new_tab_path, class: 'button') %>
+    <% end %>
+<% end %>
+
+<table>
+  <thead>
+  <tr>
+    <th width=20%>Name</th>
+    <th width=70%>States</th>
+    <th colspan='3'>Actions</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @tabs.each do |tab| %>
+      <tr class='<%= cycle('even', 'odd') %>'>
+        <td><%= raw tab.name %></td>
+        <td>
+          <% tab.states.each do |val| %>
+              <%= @states[val.to_i-1].name %><br>
+          <% end %>
+        </td>
+
+        <td align='center'><%= link_to image_tag('edit-icon.png'), edit_tab_path(tab) %></td>
+        <td align='center'><%= link_to image_tag('delete-trash.png'), tab, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

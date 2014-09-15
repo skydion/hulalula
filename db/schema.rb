@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140716114049) do
+ActiveRecord::Schema.define(version: 20140915113941) do
 
   create_table "comments", force: true do |t|
     t.text     "body"
@@ -44,6 +44,13 @@ ActiveRecord::Schema.define(version: 20140716114049) do
 
   add_index "supports", ["role_id"], name: "index_supports_on_role_id"
   add_index "supports", ["ticket_id"], name: "index_supports_on_ticket_id"
+
+  create_table "tabs", force: true do |t|
+    t.string   "name",       default: ""
+    t.text     "states",     default: ""
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "ticket_states", force: true do |t|
     t.string   "name"
