@@ -1,24 +1,30 @@
-<script type="text/javascript" charset="utf-8">
-    setMainHeight();
+<% if @class == 'cell' %>
+    <script type="text/javascript" charset="utf-8">
+        setMainHeight();
 
-    $(document).ready(function () {
-        $('.expand_button').click(function (e) {
-            e.preventDefault(e);
+        $(document).ready(function () {
+            $('.expand_button').click(function (e) {
+                e.preventDefault(e);
 
-            var cell = $(this).closest('.cell');
-            cell.toggleClass('expanded');
+                var cell = $(this).closest('.cell');
+                cell.toggleClass('expanded');
 
-            var isExpanded = cell.hasClass('expanded');
+                var isExpanded = cell.hasClass('expanded');
 
-            if (isExpanded == true) {
-                $('.cell').hide();
-                cell.show();
-            }
-            else if (isExpanded == false)
-                $('.cell').show();
+                if (isExpanded == true) {
+                    $('.cell').hide();
+                    cell.show();
+                }
+                else if (isExpanded == false)
+                    $('.cell').show();
+            });
         });
-    });
-</script>
+    </script>
+<% else %>
+    <script type="text/javascript" charset="utf-8">
+        setMainHeight();
+    </script>
+<% end %>
 
 <% content_for :thead do %>
     <thead>

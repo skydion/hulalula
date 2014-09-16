@@ -2,27 +2,23 @@
     setMainHeight();
 </script>
 
-<div class="container">
-  <div id="content">
-    <div class="header">
-      <h2 class="comments_area_header">
-        <span>
-            <%= @ticket.current_support.upcase %>, UUID: <%= @ticket.uuid %>
-        </span>
-      </h2>
+<div class="header">
+  <h2 class="comments_area_header">
+     <span>
+       <%= @ticket.current_support.upcase %>, UUID: <%= @ticket.uuid %>
+     </span>
+  </h2>
 
-      <%= not_closed_ticket? do %>
-          <%= render partial: 'form_add_comment', locals: {ticket: @ticket} %>
-      <% end %>
+  <%= not_closed_ticket? do %>
+      <%= render partial: 'form_add_comment', locals: {ticket: @ticket} %>
+  <% end %>
 
-      <div class="problem">
-        <span style="font-weight: bold; font-size: 14px;">Problem: </span>
-        <%= simple_format(h(@ticket.problem)) %>
-      </div>
-    </div>
-
-    <div class="comments_area">
-      <%= render partial: 'comments', locals: {comments: @comments} %>
-    </div>
+  <div class="problem">
+    <span style="font-weight: bold; font-size: 14px;">Problem: </span>
+    <%= simple_format(h(@ticket.problem)) %>
   </div>
+</div>
+
+<div class="comments_area">
+  <%= render partial: 'comments', locals: {comments: @comments} %>
 </div>

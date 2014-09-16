@@ -8,11 +8,11 @@
   width: 100%;
   position: relative;
   top: 88px;
-  //overflow-y: hidden;
+  overflow: auto;
 }
 
 $bgcolor: #806a2e;
-//$step: 5%;
+$lh: 30px;
 
 .cell {
   overflow: auto;
@@ -21,14 +21,7 @@ $bgcolor: #806a2e;
   float: left;
 
   background-color: $bgcolor;
- /* &:hover {
-    background-color: lighten($bgcolor, $step);
-  }*/
-
-  //box-sizing: border-box;
 }
-
-$lh: 30px;
 
 .cell header {
   width: inherit;
@@ -70,7 +63,6 @@ header .header_text {
 }
 
 .tab {
-  overflow: auto;
   float: left;
   width: 100%;
 }
