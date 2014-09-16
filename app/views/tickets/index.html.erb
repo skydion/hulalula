@@ -34,10 +34,13 @@
 <% end %>
 
 <% @cells.each do |val| %>
-    <div class="cell">
+    <div class="<%= @class %>">
       <header>
         <span class="header_text"><%= val[0] %></span>
-        <span class='expand_button'><%= link_to '', '#' %></span>
+
+        <% if @class == 'cell' %>
+          <span class='expand_button'><%= link_to '', '#' %></span>
+        <% end %>
       </header>
 
       <table>

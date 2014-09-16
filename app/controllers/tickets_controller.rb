@@ -15,9 +15,9 @@ class TicketsController < ApplicationController
     @cells = Tab.pluck(:name, :states)
 
     if @cells.length > 4
-      render 'tickets/tabs_index'
+      @class = 'tab'
     else
-      render 'tickets/cells_index'
+      @class = 'cell'
     end
   end
 
