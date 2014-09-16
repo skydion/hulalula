@@ -13,6 +13,12 @@ class TicketsController < ApplicationController
     #@ids = Tab.pluck(:states)
     #@cell_headers = Tab.pluck(:name)
     @cells = Tab.pluck(:name, :states)
+
+    if @cells.length > 4
+      render 'tickets/tabs_index'
+    else
+      render 'tickets/cells_index'
+    end
   end
 
   def edit

@@ -1,0 +1,26 @@
+<% content_for :thead do %>
+    <thead>
+    <tr>
+      <th>UUID</th>
+      <th>State</th>
+      <th>Owner</th>
+      <th>Subject</th>
+      <th>Problem</th>
+      <th colspan='3'>Actions</th>
+    </tr>
+    </thead>
+<% end %>
+
+<% @cells.each do |val| %>
+    <div class="tab">
+      <header>
+        <span class="header_text"><%= val[0] %></span>
+      </header>
+
+      <table>
+        <%= yield :thead %>
+
+        <tbody><%= render partial: 'tickets/table_row', collection: Ticket.states(val[1]), as: :ticket %></tbody>
+      </table>
+    </div>
+<% end %>
