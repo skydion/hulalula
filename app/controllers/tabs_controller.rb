@@ -22,7 +22,7 @@ class TabsController < ApplicationController
 
   # GET /tabs/1/edit
   def edit
-    @states = Tab.find(params[:id]).states.to_a
+    @all_states = TicketState.all.to_a
   end
 
   # POST /tabs
@@ -46,10 +46,12 @@ class TabsController < ApplicationController
   # PATCH/PUT /tabs/1
   # PATCH/PUT /tabs/1.json
   def update
+    @tab.states = params[:tab][:states].delete_if(&:blank?)
+
     respond_to do |format|
       if @tab.update(tab_params)
         #format.html { redirect_to @tab, notice: 'Tab was successfully updated.' }
-        format.html { redirect_to role_path, notice: 'Tab was successfully updated.' }
+        format.html { redirect_to tabs_path, notice: 'Tab was successfully updated.' }
         format.json { render :show, status: :ok, location: @tab }
       else
         format.html { render :edit }
@@ -76,6 +78,6 @@ class TabsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def tab_params
-      params.require(:tab).permit(:name) if params[:tab]
+      params.require(:tab).permit(:name, :states) if params[:tab]
     end
 end

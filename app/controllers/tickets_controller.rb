@@ -1,5 +1,6 @@
 class TicketsController < ApplicationController
   before_filter :check_authentic_user, :except =>[ :new, :show_by_uuid, :create ]
+  before_action :set_ticket, only: [:show, :edit, :update, :destroy]
 
   def new
     @ticket = Ticket.new
@@ -15,14 +16,11 @@ class TicketsController < ApplicationController
   end
 
   def edit
-    @ticket = Ticket.find(params[:id])
     @supports = Support.all
     @states = TicketState.all
   end
 
   def update
-    @ticket = Ticket.find(params[:id])
-
     if @ticket
       old_support_id = @ticket.support_id
       old_ticket_state_id = @ticket.ticket_state_id
@@ -67,8 +65,6 @@ class TicketsController < ApplicationController
   end
 
   def destroy
-    @ticket = Ticket.find(params[:id])
-
     if @ticket
       @ticket.destroy
 
@@ -81,8 +77,6 @@ class TicketsController < ApplicationController
   end
 
   def show
-    @ticket = Ticket.find(params[:id])
-
     if @ticket.nil?
       @comments = nil
     else
@@ -102,6 +96,11 @@ class TicketsController < ApplicationController
   end
 
 private
+  # Use callbacks to share common setup or constraints between actions.
+  def set_ticket
+    @ticket = Ticket.find(params[:id])
+  end
+
   def ticket_params
     params.require(:ticket).permit(:username, :email, :subject, :problem, :support_id, :ticket_state_id) if params[:ticket]
   end

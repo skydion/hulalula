@@ -1,5 +1,6 @@
 class SupportsController < ApplicationController
   before_filter :check_authentic_user, :except =>[ :authenticate ]
+  before_action :set_support, only: [:show, :edit, :update, :destroy]
 
   def new
     @support = Support.new
@@ -7,12 +8,10 @@ class SupportsController < ApplicationController
   end
 
   def edit
-    @support = Support.find(params[:id])
     @roles = Role.all
   end
 
   def update
-    @support = Support.find(params[:id])
     @roles = Role.all
 
     if params[:support].has_key?(:password_confirmation)
@@ -37,7 +36,6 @@ class SupportsController < ApplicationController
 
   def create
     @support = Support.new(support_params)
-    #@support.update_attribute :role_id, params[:selected_role]
     @support.role_id = params[:selected_role]
 
     if @support.save
@@ -57,9 +55,7 @@ class SupportsController < ApplicationController
   end
 
   def destroy
-    @support = Support.find(params[:id])
     @support.destroy
-
     redirect_to supports_path
   end
 
@@ -89,6 +85,11 @@ class SupportsController < ApplicationController
   end
 
 private
+  # Use callbacks to share common setup or constraints between actions.
+  def set_support
+    @support = Support.find(params[:id])
+  end
+
   def support_params
     params.require(:support).permit(:login, :password, :first_name, :last_name, :email, :role_id) if params[:support]
   end
