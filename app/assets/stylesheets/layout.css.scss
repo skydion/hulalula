@@ -4,6 +4,9 @@ header#page_header {
   height: 68px;
   overflow: hidden;
   padding: 10px 20px;
+  position: fixed;
+  top: 0;
+  width: calc(100% - 40px);
 
   a,
   a:link,

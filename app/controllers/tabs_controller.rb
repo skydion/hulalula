@@ -6,7 +6,7 @@ class TabsController < ApplicationController
   # GET /tabs.json
   def index
     @tabs = Tab.all
-    @states = TicketState.all.to_a
+    @ticket_states = TicketState.all.to_a
   end
 
   # GET /tabs/1
@@ -17,12 +17,12 @@ class TabsController < ApplicationController
   # GET /tabs/new
   def new
     @tab = Tab.new
-    @states = TicketState.all.to_a
+    @ticket_states = TicketState.all.to_a
   end
 
   # GET /tabs/1/edit
   def edit
-    @all_states = TicketState.all.to_a
+    @ticket_states = TicketState.all.to_a
   end
 
   # POST /tabs

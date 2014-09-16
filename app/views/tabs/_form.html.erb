@@ -28,7 +28,7 @@
         </td>
 
         <td align="left" style="padding-left: 20px;">
-          <%= f.collection_check_boxes :states, @states, :id, :name, include_blank: false do |b| %>
+          <%= f.collection_check_boxes :states, @ticket_states, :id, :name, include_blank: false, :checked => @tab.states do |b| %>
             <span>
               <%= b.check_box %>
               <%= b.label %><br>

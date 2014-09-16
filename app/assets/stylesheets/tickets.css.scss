@@ -6,23 +6,24 @@
   // No floating elements allowed on the left or the right side of a specified element
   clear: both;
   width: 100%;
-  overflow-y: hidden;
+  position: relative;
+  top: 88px;
+  //overflow-y: hidden;
 }
 
 $bgcolor: #806a2e;
-$step: 5%;
-$cw: 50%;
+//$step: 5%;
 
 .cell {
   overflow: auto;
-  width: $cw;
+  width: 50%;
   height: 50%;
   float: left;
 
   background-color: $bgcolor;
-  &:hover {
+ /* &:hover {
     background-color: lighten($bgcolor, $step);
-  }
+  }*/
 
   //box-sizing: border-box;
 }
@@ -30,16 +31,12 @@ $cw: 50%;
 $lh: 30px;
 
 .cell header {
-  width: inherit;
   clear: both;
   background-color: #373737;
   color: darkorange;
   line-height: $lh;
-  position: fixed;
-}
-
-.cell table {
-   margin-top: $lh;
+  position: relative;
+  top: 0px;
 }
 
 header .header_text {
