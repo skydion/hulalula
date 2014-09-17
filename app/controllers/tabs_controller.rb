@@ -78,6 +78,6 @@ class TabsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def tab_params
-      params.require(:tab).permit(:name, :states) if params[:tab]
+      params.require(:tab).permit(:name, :show, :states) if params[:tab]
     end
 end

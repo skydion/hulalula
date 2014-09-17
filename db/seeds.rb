@@ -39,7 +39,8 @@ Ticket.create(uuid: 'UIK107GAP893CTQ', created_at: '2014-07-16 09:54:32.524883',
 Ticket.create(uuid: 'SMU980NFB372JRY', created_at: '2014-07-21 08:11:07.501664', support_id: 3, ticket_state_id: 1,
               username: 'customer5', email: 'customer5@user.net', subject: 'help customer5', problem: 'problem customer5', updated_at: '2014-07-21 08:11:07.501664')
 
-Tab.create(name: 'Unassigned', states: "---\n- '1'\n-", created_at: '2014-09-15 13:31:22.312515', updated_at: '2014-09-15 13:31:22.312515')
-Tab.create(name: 'Opened', states: "---\n- 2'\n-", created_at: '2014-09-15 13:31:30.968730', updated_at: '2014-09-15 13:31:30.968730')
-Tab.create(name: 'On hold', states: "---\n- 3'\n-", created_at: '2014-09-15 13:55:08.831919', updated_at: '2014-09-15 13:55:08.831919')
-Tab.create(name: 'Closed', states: "---\n- 4'\n- '5'\n", created_at: '2014-09-15 13:55:08.831919', updated_at: '2014-09-15 13:55:08.831919')
+Tab.create(name: 'Unassigned', show: true, states: "---\n- '1'\n-", created_at: '2014-09-15 13:31:22.312515', updated_at: '2014-09-15 13:31:22.312515')
+Tab.create(name: 'Opened', show: true, states: "---\n- '2'\n-", created_at: '2014-09-15 13:31:30.968730', updated_at: '2014-09-15 13:31:30.968730')
+Tab.create(name: 'On hold', show: true, states: "---\n- '3'\n-", created_at: '2014-09-15 13:55:08.831919', updated_at: '2014-09-15 13:55:08.831919')
+Tab.create(name: 'Closed', show: true, states: "---\n- '4'\n- '5'\n", created_at: '2014-09-15 13:55:08.831919', updated_at: '2014-09-15 13:55:08.831919')
+Tab.create(name: 'All', show: false, states: "---\n- '1'\n- '2'\n- '3'\n'- 4'\n- '5'\n", created_at: '2014-09-17 14:40:08.831919', updated_at: '2014-09-17 14:40:08.831919')

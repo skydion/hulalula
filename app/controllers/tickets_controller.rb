@@ -12,12 +12,12 @@ class TicketsController < ApplicationController
 
     #@ids = Tab.pluck(:states)
     #@cell_headers = Tab.pluck(:name)
-    @cells = Tab.pluck(:name, :states)
+    @cells = Tab.show.pluck(:name, :states)
 
-    if @cells.length > 4
-      @class = 'tab'
-    else
+    if @cells.length == 4
       @class = 'cell'
+    else
+      @class = 'tab'
     end
   end
 

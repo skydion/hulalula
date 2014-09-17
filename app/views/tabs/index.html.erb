@@ -13,8 +13,9 @@
 <table>
   <thead>
   <tr>
-    <th width=30%>Name</th>
-    <th width=60%>States</th>
+    <th>Name</th>
+    <th width="20px">Show</th>
+    <th>States</th>
     <th colspan='2'>Actions</th>
   </tr>
   </thead>
@@ -23,6 +24,17 @@
   <% @tabs.each do |tab| %>
       <tr class='<%= cycle('even', 'odd') %>'>
         <td><%= raw tab.name %></td>
+
+        <td align="center">
+            <% if tab.show %>
+              <%#= image_tag 'checked-checkbox-icon.png' %>
+              <%= image_tag 'visibility-on-16.png' %>
+            <% else%>
+              <%#= image_tag 'unchecked-checkbox-icon.png' %>
+              <%= image_tag 'visibility-off-16.png' %>
+            <% end %>
+        </td>
+
         <td>
           <% tab.states.each do |val| %>
               <%= @ticket_states[val.to_i-1].name %><br>
