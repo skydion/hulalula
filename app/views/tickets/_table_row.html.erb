@@ -7,11 +7,13 @@
   <%# if self.action_name == 'index' %>
       <td><%= h ticket.problem %></td>
 
-      <td align='center'><%= link_to image_tag('show-icon.png'), ticket_path(ticket) %></td>
-      <td align='center'><%= link_to image_tag('edit-icon.png'), edit_ticket_path(ticket) %></td>
+      <td align='center'>
+        <%= link_to image_tag('show-icon.png', alt: ''), ticket_path(ticket) %>
+        <%= link_to image_tag('edit-icon.png', alt: ''), edit_ticket_path(ticket) %>
 
-      <% if admin? %>
-        <td align='center'><%= link_to image_tag('delete-trash.png'), ticket_path(ticket), method: :delete, data: {confirm: 'Are you sure?'} %></td>
-      <% end %>
+        <% if admin? %>
+          <%= link_to image_tag('delete-trash.png', alt: ''), ticket_path(ticket), method: :delete, data: {confirm: 'Are you sure?'} %>
+        <% end %>
+      </td>
   <%# end %>
 </tr>

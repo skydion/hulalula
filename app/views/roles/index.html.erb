@@ -6,7 +6,7 @@
     Roles list:
 
     <%= admin_area do %>
-        <%= link_to(image_tag('new-icon-24.png'), new_role_path, class: 'button') %>
+        <%= link_to(image_tag('new-icon-24.png', alt: ''), new_role_path, class: 'button') %>
     <% end %>
 <% end %>
 
@@ -14,8 +14,8 @@
   <thead>
     <tr>
       <th width="30%">Name</th>
-      <th width="60%">Description</th>
-      <th colspan='3'>Actions</th>
+      <th>Description</th>
+      <th width="40px">Actions</th>
     </tr>
   </thead>
 
@@ -25,10 +25,10 @@
         <td><%= raw role.name %></td>
         <td><%= raw role.description %></td>
 
-        <td align='center'><%= link_to image_tag('edit-icon.png'), edit_role_path(role) %></td>
-        <%# if admin? %>
-          <td align='center'><%= link_to image_tag('delete-trash.png'), role, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <%# end %>
+        <td align='center'>
+          <%= link_to image_tag('edit-icon.png', alt: ''), edit_role_path(role) %>
+          <%= link_to image_tag('delete-trash.png', alt: ''), role, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
       </tr>
     <% end %>
   </tbody>

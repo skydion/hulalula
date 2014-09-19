@@ -4,7 +4,7 @@
 
 <%= header_data do %>
     Edit support user:
-    <%= link_to image_tag('password-icon-24.png'), change_password_support_path, class: 'button' %>
+    <%= link_to image_tag('password-icon-24.png', alt: ''), change_password_support_path, class: 'button' %>
 <% end %>
 
 <%= form_for :support, url: support_path(@support), method: :patch do |f| %>

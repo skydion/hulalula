@@ -12,6 +12,7 @@
 //
 
 //= require jquery
+//= require jquery-ui
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
@@ -48,4 +49,10 @@ $(document).ready(function () {
 
 $(window).resize(function () {
     setMainHeight();
+});
+
+$(".savebutton").click(function() {
+    $('form').submit(function() {
+         $(this).serialize();
+    });
 });

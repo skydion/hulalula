@@ -6,8 +6,8 @@
             You are logged in as <strong><%= session[:login] %></strong>
           </span>
           <span>
-            <%= link_to image_tag('edit-user-icon-24.png'), controller: 'supports', action: 'edit', id: session[:user_id] %>
-            <%= link_to image_tag('logout-icon-24.png'), controller: 'supports', action: 'logout' %>
+            <%= link_to image_tag('edit-user-icon-24.png', alt: ''), controller: 'supports', action: 'edit', id: session[:user_id] %>
+            <%= link_to image_tag('logout-icon-24.png', alt: ''), controller: 'supports', action: 'logout' %>
           </span>
         </div>
       <% else %>

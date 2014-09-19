@@ -19,7 +19,7 @@
     Tabs list:
 
     <%= admin_area do %>
-      <%= link_to(image_tag('new-icon-24.png'), new_tab_path, class: 'button') %>
+      <%= link_to(image_tag('new-icon-24.png', alt: ''), new_tab_path, class: 'button') %>
     <% end %>
 <% end %>
 
@@ -29,7 +29,7 @@
     <th>Name</th>
     <th width="20px">Show</th>
     <th>States</th>
-    <th colspan='2'>Actions</th>
+    <th width="40px">Actions</th>
   </tr>
   </thead>
 
@@ -53,8 +53,10 @@
           <% end %>
         </td>
 
-        <td align='center'><%= link_to image_tag('edit-icon.png'), edit_tab_path(tab) %></td>
-        <td align='center'><%= link_to image_tag('delete-trash.png'), tab, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+        <td align='center'>
+          <%= link_to image_tag('edit-icon.png', alt: ''), edit_tab_path(tab) %>
+          <%= link_to image_tag('delete-trash.png', alt: ''), tab, method: :delete, data: {confirm: 'Are you sure?'} %>
+        </td>
       </tr>
   <% end %>
   </tbody>

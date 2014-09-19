@@ -22,7 +22,7 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 
 # Use jquery-ui as the JavaScript library
-#gem 'jquery-ui-rails'
+gem 'jquery-ui-rails'
 
 # Use pry as the debugger
 gem 'pry'
