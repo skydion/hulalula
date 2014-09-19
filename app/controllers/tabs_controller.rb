@@ -1,6 +1,6 @@
 class TabsController < ApplicationController
   before_filter :check_authentic_user
-  before_action :set_tab, only: [:show, :edit, :update, :destroy]
+  before_action :set_tab, only: [:show, :edit, :update, :destroy, :update_show]
 
   # GET /tabs
   # GET /tabs.json
@@ -57,6 +57,15 @@ class TabsController < ApplicationController
         format.html { render :edit }
         format.json { render json: @tab.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def update_show
+    @tab.update_column(:show, params[:checked])
+
+    respond_to do |format|
+      format.html { render nothing: true, layout: false }
+      format.js { render pratial: 'checkbox', locals: {tab: @tab}, layout: false }
     end
   end
 

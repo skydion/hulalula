@@ -1,5 +1,18 @@
 <script type="text/javascript" charset="utf-8">
     setMainHeight();
+
+    $(":checkbox").change(function() {
+        var id = $(this).attr('id');
+        id = id.match(/\d+/);
+        var checked = $(this).is(":checked");
+
+        $.ajax({
+            method: 'post',
+            url: '/tabs/' + id + '/update_show',
+            data: { id: id, checked: ~~checked },
+            dataType: 'script'
+        })
+    });
 </script>
 
 <%= header_data do %>
@@ -26,18 +39,17 @@
         <td><%= raw tab.name %></td>
 
         <td align="center">
-            <% if tab.show %>
-              <%#= image_tag 'checked-checkbox-icon.png' %>
-              <%= image_tag 'visibility-on-16.png' %>
-            <% else%>
-              <%#= image_tag 'unchecked-checkbox-icon.png' %>
-              <%= image_tag 'visibility-off-16.png' %>
-            <% end %>
+          <%= render partial: 'checkbox', locals: {tab: tab}, layout: false %>
+          <% if tab.show %>
+            <%#= link_to image_tag('checked-checkbox-icon.png'), update_show_tab_path(tab.id, :checked => 0), method: :post  %>
+          <% else%>
+            <%#= link_to image_tag('unchecked-checkbox-icon.png'), update_show_tab_path(tab.id, :checked => 1), method: :post %>
+          <% end %>
         </td>
 
         <td>
           <% tab.states.each do |val| %>
-              <%= @ticket_states[val.to_i-1].name %><br>
+            <%= @ticket_states[val.to_i-1].name %><br>
           <% end %>
         </td>
 

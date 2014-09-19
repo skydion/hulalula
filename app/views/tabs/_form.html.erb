@@ -1,3 +1,7 @@
+<script type="text/javascript" charset="utf-8">
+    setMainHeight();
+</script>
+
 <%= form_for(@tab) do |f| %>
     <% if @tab.errors.any? %>
         <div id="error_explanation">
@@ -22,15 +26,15 @@
         </td>
       </tr>
 
-      <tr bgcolor="#faebd7" style="height: 30px;">
+<!--      <tr bgcolor="#faebd7" style="height: 30px;">
         <td align="right" style="font-weight: bold;">
-          <%= f.label :show %>
+          <%#= f.label :show %>
         </td>
 
         <td align="left" style="padding-left: 20px;">
-          <%= f.check_box :show %>
+          <%#= f.check_box :show %>
         </td>
-      </tr>
+      </tr>-->
 
       <tr bgcolor="#faebd7" style="height: 30px;">
         <td align="right" style="font-weight: bold;">

@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :tabs
+  resources :tabs do
+    member do
+      post 'update_show'
+    end
+  end
 
   resources :ticket_states, constraints: { id: /\d+/ }
 

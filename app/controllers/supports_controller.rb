@@ -1,6 +1,8 @@
 class SupportsController < ApplicationController
   before_filter :check_authentic_user, :except =>[ :authenticate ]
-  before_action :set_support, only: [:show, :edit, :update, :destroy]
+  before_action :set_support, only: [:show, :edit, :update, :destroy, :change_password]
+
+  respond_to :html, :js
 
   def new
     @support = Support.new
@@ -81,7 +83,6 @@ class SupportsController < ApplicationController
   end
 
   def change_password
-    @support = Support.find(params[:id])
   end
 
 private
