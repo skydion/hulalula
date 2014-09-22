@@ -50,9 +50,3 @@ $(document).ready(function () {
 $(window).resize(function () {
     setMainHeight();
 });
-
-$(".savebutton").click(function() {
-    $('form').submit(function() {
-         $(this).serialize();
-    });
-});

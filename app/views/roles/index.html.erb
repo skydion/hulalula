@@ -21,7 +21,7 @@
 
   <tbody>
     <% @roles.each do |role| %>
-      <tr class="<%= cycle('even', 'odd') %>">
+      <tr class="<%= cycle('even', 'odd') %>"  style="line-height: 20px;">
         <td><%= raw role.name %></td>
         <td><%= raw role.description %></td>
 

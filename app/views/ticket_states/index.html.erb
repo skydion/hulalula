@@ -20,7 +20,7 @@
 
   <tbody>
   <% @ticket_states.each do |ticket_state| %>
-      <tr class='<%= cycle('even', 'odd') %>'>
+      <tr class='<%= cycle('even', 'odd') %>' style="line-height: 20px;">
         <td><%= ticket_state.name %></td>
 
         <td align='center'>

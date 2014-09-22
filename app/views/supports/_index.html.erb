@@ -8,6 +8,9 @@
     <%= admin_area do %>
         <%= link_to(image_tag('new-icon-24.png', alt: ''), new_support_path, class: 'button') %>
     <% end %>
+
+    <div id='change_password_div'>
+    </div>
 <% end %>
 
 <table>
@@ -30,6 +33,3 @@
       <%= render partial: 'supports/table_row', locals: {support: support, role: role} %>
   <% end %>
 </table>
-
-<div id='change_password'>
-</div>

@@ -2,6 +2,8 @@ class SupportsController < ApplicationController
   before_filter :check_authentic_user, :except =>[ :authenticate ]
   before_action :set_support, only: [:show, :edit, :update, :destroy, :change_password]
 
+  # respond_to :html, :js
+
   def new
     @support = Support.new
     @roles = Role.all
@@ -21,6 +23,9 @@ class SupportsController < ApplicationController
         return
       else
         @support.update_column(:password, params[:support][:password])
+        redirect_to supports_path, notice: 'Password was successfully updated.'
+
+        # respond_with @support
         return
       end
     end
@@ -32,10 +37,6 @@ class SupportsController < ApplicationController
       else
         redirect_to edit_support_path
       end
-    end
-
-    respond_to do |format|
-      format.js { render :nothing => true }
     end
   end
 
