@@ -1,1 +1,35 @@
-<%= render partial: 'supports/index' %>
+<script type="text/javascript" charset="utf-8">
+    setMainHeight();
+</script>
+
+<%= header_data do %>
+    Supports list:
+
+    <%= admin_area do %>
+        <%= link_to(image_tag('new-icon-24.png', alt: ''), new_support_path, class: 'button') %>
+    <% end %>
+
+    <div id='change_password_div'>
+    </div>
+<% end %>
+
+<table>
+  <thead>
+  <tr>
+    <th>Login</th>
+    <%# if admin? %>
+    <th>Password</th>
+    <%# end %>
+    <th>First name</th>
+    <th>Last name</th>
+    <th>E-mail</th>
+    <th>Role</th>
+    <th width="60px">Actions</th>
+  </tr>
+  </thead>
+
+  <% @supports.each do |support| %>
+      <% role = @roles.find_by id: support.role_id %>
+      <%= render partial: 'supports/table_row', locals: {support: support, role: role} %>
+  <% end %>
+</table>

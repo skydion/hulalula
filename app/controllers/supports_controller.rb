@@ -2,7 +2,7 @@ class SupportsController < ApplicationController
   before_filter :check_authentic_user, :except =>[ :authenticate ]
   before_action :set_support, only: [:show, :edit, :update, :destroy, :change_password]
 
-  # respond_to :html, :js
+  respond_to :html, :js
 
   def new
     @support = Support.new
@@ -15,20 +15,6 @@ class SupportsController < ApplicationController
 
   def update
     @roles = Role.all
-
-    if params[:support].has_key?(:password_confirmation)
-      if params[:support][:password] != params[:support][:password_confirmation]
-        flash[:alert] = 'Password did not match.'
-        render 'change_password'
-        return
-      else
-        @support.update_column(:password, params[:support][:password])
-        redirect_to supports_path, notice: 'Password was successfully updated.'
-
-        # respond_with @support
-        return
-      end
-    end
 
     if @support.update(support_params)
       flash[:notice] = 'Support user was successfully updated.'
@@ -87,6 +73,22 @@ class SupportsController < ApplicationController
   end
 
   def change_password
+    if params.has_key?(:support)
+      if params[:support].has_key?(:password_confirmation)
+        if params[:support][:password] != params[:support][:password_confirmation]
+          flash[:alert] = 'Password did not match.'
+          respond_with @support do |format|
+            format.html { render 'change_password' }
+          end
+          return
+        else
+          @support.update_column(:password, params[:support][:password])
+        end
+      end
+    end
+
+    flash[:notice] = 'Password was successfully updated.'
+    respond_with @supports
   end
 
 private
