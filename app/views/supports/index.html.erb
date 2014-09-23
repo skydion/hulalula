@@ -29,7 +29,6 @@
   </thead>
 
   <% @supports.each do |support| %>
-      <% role = @roles.find_by id: support.role_id %>
-      <%= render partial: 'supports/table_row', locals: {support: support, role: role} %>
+      <%= render partial: 'supports/table_row', locals: {support: support} %>
   <% end %>
 </table>

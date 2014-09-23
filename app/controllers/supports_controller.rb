@@ -6,8 +6,9 @@ class SupportsController < ApplicationController
 
   def new
     @support = Support.new
-    @roles = Role.all
     @support.role_id = 2
+
+    @roles = Role.all
   end
 
   def edit
@@ -15,8 +16,6 @@ class SupportsController < ApplicationController
   end
 
   def update
-    @roles = Role.all
-
     if @support.update(support_params)
       flash[:notice] = 'Support user was successfully updated.'
       if session[:role_name] == 'admin'
@@ -43,8 +42,7 @@ class SupportsController < ApplicationController
   end
 
   def index
-    @roles = Role.all
-    @supports = Support.all
+    @supports = Support.joins(:role)
   end
 
   def destroy
