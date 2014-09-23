@@ -40,11 +40,6 @@
 
         <td align="center">
           <%= render partial: 'checkbox', locals: {tab: tab}, layout: false %>
-          <% if tab.show %>
-            <%#= link_to image_tag('checked-checkbox-icon.png'), update_show_tab_path(tab.id, :checked => 0), method: :post  %>
-          <% else%>
-            <%#= link_to image_tag('unchecked-checkbox-icon.png'), update_show_tab_path(tab.id, :checked => 1), method: :post %>
-          <% end %>
         </td>
 
         <td>

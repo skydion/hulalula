@@ -7,6 +7,7 @@ class SupportsController < ApplicationController
   def new
     @support = Support.new
     @roles = Role.all
+    @support.role_id = 2
   end
 
   def edit

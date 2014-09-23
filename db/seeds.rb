@@ -59,6 +59,6 @@ Tab.create(name: 'On hold', show: true, states: "---\n- '3'\n",
 Tab.create(name: 'Closed', show: true, states: "---\n- '4'\n- '5'\n",
            created_at: '2014-09-15 13:55:08.831919',
            updated_at: '2014-09-15 13:55:08.831919')
-Tab.create(name: 'All', show: false, states: "---\n- '1'\n- '2'\n- '3'\n'- 4'\n- '5'\n",
+Tab.create(name: 'All', show: false, states: "---\n- '1'\n- '2'\n- '3'\n- '4'\n- '5'\n",
            created_at: '2014-09-17 14:40:08.831919',
            updated_at: '2014-09-17 14:40:08.831919')

@@ -4,77 +4,7 @@
 
 <%= header_data do %>
     Edit support user:
-    <%= link_to image_tag('password-icon-24.png', alt: ''), change_password_support_path(@support), remote: true, class: 'button' %>
-
-    <div id='change_password_div'>
-    </div>
+    <%= link_to image_tag('password-icon-24.png', alt: ''), change_password_support_path(@support), class: 'button' %>
 <% end %>
 
-<%= form_for :support, url: support_path(@support), method: :patch do |f| %>
-    <% if @support.errors.any? %>
-        <div id='error_explanation'>
-          <h2><%= pluralize(@support.errors.count, 'error') %> prohibited this support from being saved:</h2>
-          <ul>
-            <% @support.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
-            <% end %>
-          </ul>
-        </div>
-    <% end %>
-
-    <table style="border-collapse: collapse;">
-      <tr bgcolor="#faebd7" style="height: 30px;">
-        <td align="right" style="font-weight: bold;">
-          <%= f.label :login %>
-        </td>
-        <td align="left" style="padding-left: 20px;">
-          <%= h(f.text_field :login, size: 40) %>
-        </td>
-      </tr>
-
-      <tr bgcolor="#faebd7" style="height: 30px;">
-        <td align="right" style="font-weight: bold;">
-          <%= f.label :first_name %>
-        </td>
-        <td align="left" style="padding-left: 20px;">
-          <%= h(f.text_field :first_name, size: 40) %>
-        </td>
-      </tr>
-
-      <tr bgcolor="#faebd7" style="height: 30px;">
-        <td align="right" style="font-weight: bold;">
-          <%= f.label :last_name %>
-        </td>
-        <td align="left" style="padding-left: 20px;">
-          <%= h(f.text_field :last_name, size: 40) %>
-        </td>
-      </tr>
-
-      <tr bgcolor="#faebd7" style="height: 30px;">
-        <td align="right" style="font-weight: bold;">
-          <%= f.label 'E-mail' %>
-        </td>
-        <td align="left" style="padding-left: 20px;">
-          <%= h(f.text_field :email, size: 40) %>
-        </td>
-      </tr>
-
-      <% if admin? %>
-          <tr bgcolor="#faebd7" style="height: 30px;">
-            <td align="right" style="font-weight: bold;">
-              <%= f.label :role %>
-            </td>
-            <td align="left" style="padding-left: 20px;">
-              <%= f.collection_select :role_id, @roles, :id, :name, :selected => @support.role_id %>
-            </td>
-          </tr>
-      <% end %>
-
-      <tr bgcolor="#deb887" style="height: 30px">
-        <td></td>
-        <td align="right" style="padding-right: 20px">
-          <%= f.submit %>
-        </td>
-      </tr>
-    </table>
-<% end %>
+<%= render partial: 'supports/form' %>

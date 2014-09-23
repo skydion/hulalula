@@ -1,1 +1,2 @@
-Need fix notification when back button is used
+Need fix notification when back button is used, maybe problem is on _header.html.erb
+I think it must be on every page where show notice

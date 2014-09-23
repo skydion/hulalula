@@ -4,7 +4,7 @@
     <td>
       <%#= link_to image_tag('password-icon-16.png'), change_password_support_path(support) %>
       <%= link_to image_tag('password-icon-16.png', alt: ''), change_password_support_path(support), remote: true %>
-      <span><%= h support.password %></span>
+      <%= h support.password %>
     </td>
   <%# end %>
   <td><%= h support.first_name %></td>
