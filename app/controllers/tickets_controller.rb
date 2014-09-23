@@ -47,7 +47,7 @@ class TicketsController < ApplicationController
 
     if @ticket
       @ticket.support_id = session[:user_id]
-      @ticket.ticket_state_id = 1 # 'Waiting for Staff Response'
+      @ticket.ticket_state_id = 1 # set default ('Waiting for Staff Response') ticket state
 
       # generate unique url
       alpha = (:A..:Z).to_a.shuffle[0,9].join

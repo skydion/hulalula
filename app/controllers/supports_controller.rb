@@ -6,7 +6,7 @@ class SupportsController < ApplicationController
 
   def new
     @support = Support.new
-    @support.role_id = 2
+    @support.role_id = 2 # set default (guest) role
 
     @roles = Role.all
   end
@@ -28,7 +28,7 @@ class SupportsController < ApplicationController
 
   def create
     @support = Support.new(support_params)
-    @support.role_id = params[:selected_role]
+    @support.role_id = params[:support][:role_id]
 
     if @support.save
       flash[:notice] = 'Support user was successfully created.'
@@ -77,7 +77,7 @@ class SupportsController < ApplicationController
         if params[:support][:password] != params[:support][:password_confirmation]
           flash[:alert] = 'Password did not match.'
           respond_with @support do |format|
-            format.html { render 'change_password' }
+            format.html { render partial: 'change_password' }
           end
           return
         else
