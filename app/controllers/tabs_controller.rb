@@ -6,7 +6,6 @@ class TabsController < ApplicationController
   # GET /tabs.json
   def index
     @tabs = Tab.all
-    @ticket_states = TicketState.all.to_a
   end
 
   # GET /tabs/1

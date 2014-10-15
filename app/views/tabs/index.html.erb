@@ -43,8 +43,9 @@
         </td>
 
         <td>
-          <% tab.states.each do |val| %>
-            <%= @ticket_states[val.to_i-1].name %><br>
+          <% states = TicketState.where("ticket_states.id IN (?)", tab.states) %>
+          <% states.each do |state| %>
+            <%= state.name %><br>
           <% end %>
         </td>
 
