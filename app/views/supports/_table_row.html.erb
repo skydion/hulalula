@@ -1,9 +1,30 @@
+<script type="text/javascript" charset="utf-8">
+    function popup() {
+        dlg = $('#change_password_div').dialog({
+            autoOpen: false,
+            width: 600,
+            modal: true,
+            title: 'Change password',
+            buttons: {
+                'Submit': function() {
+                    $('#edit_support_<%= support.id %>').submit();
+                    dlg.dialog( "close" );
+                }
+            },
+            open: function() {
+                dlg.html("<%= escape_javascript( render partial: 'supports/change_password', locals: {support: support} ) %>");
+            }
+        });
+
+        dlg.dialog('open');
+    }
+</script>
+
 <tr class="<%= cycle('even', 'odd') %>" style="line-height: 20px;">
   <td><%= h support.login %></td>
   <%# if admin? do %>
     <td>
-      <%#= link_to image_tag('password-icon-16.png'), change_password_support_path(support) %>
-      <%= link_to image_tag('password-icon-16.png', alt: ''), change_password_support_path(support), remote: true %>
+      <%= link_to image_tag('password-icon-16.png', alt: ''), '#', :onclick => 'popup();', remote: true %>
       <%= h support.password %>
     </td>
   <%# end %>
