@@ -1,5 +1,5 @@
 class TicketsController < ApplicationController
-  before_filter :check_authentic_user, :except =>[ :new, :show_by_uuid, :create ]
+  before_filter :check_authentic_user, :except =>[ :new, :show, :create ]
   before_action :set_ticket, only: [:show, :edit, :update, :destroy]
 
   def new
@@ -8,12 +8,6 @@ class TicketsController < ApplicationController
 
   def index
     @cells = Tab.show.pluck(:name, :states)
-
-    if @cells.length == 4
-      @class = 'cell'
-    else
-      @class = 'tab'
-    end
   end
 
   def edit
@@ -23,21 +17,18 @@ class TicketsController < ApplicationController
 
   def update
     if @ticket
-      old_support_id = @ticket.support_id
-      old_ticket_state_id = @ticket.ticket_state_id
+      @ticket.assign_attributes(params)
 
-      new_support_id = params[:ticket][:support_id].to_i
-      new_ticket_state_id = params[:ticket][:ticket_state_id].to_i
-
-      if @ticket.update(ticket_params)
-        if (old_support_id != new_support_id) || (old_ticket_state_id != new_ticket_state_id)
+      # rails dirty attributes
+      if @ticket.support_id_changed? || @ticket.ticket_state_id_changed?
+        if @ticket.save
           flash[:notice] = 'Ticket state was successfully updated.'
           #NotificationMailer.ticket_status_changed(@ticket).deliver
-        end
 
-        redirect_to :controller => 'tickets'
-      else
-        render 'edit'
+          redirect_to tickets_path
+        else
+          render 'new'
+        end
       end
     end
   end
@@ -47,7 +38,7 @@ class TicketsController < ApplicationController
 
     if @ticket
       @ticket.support_id = session[:user_id]
-      @ticket.ticket_state_id = 1 # set default ('Waiting for Staff Response') ticket state
+      @ticket.ticket_state_id = TicketState::CUSTOMER # set default ('Waiting for Staff Response') ticket state
 
       # generate unique url
       alpha = (:A..:Z).to_a.shuffle[0,9].join
@@ -58,7 +49,7 @@ class TicketsController < ApplicationController
         #NotificationMailer.new_ticket(@ticket).deliver
 
         flash[:notice] = 'Mail with ticket information was sent on your e-mail address.'
-        redirect_to '/'
+        redirect_to root_path
       else
         render 'new'
       end
@@ -85,21 +76,10 @@ class TicketsController < ApplicationController
     end
   end
 
-  def show_by_uuid
-    @ticket = Ticket.find_by(uuid: params[:uuid])
-
-    if @ticket.nil?
-      flash[:alert] = 'Wrong UUID, please re-check and try again.'
-      redirect_to :controller => 'application'
-    else
-      @comments = @ticket.comments.select(&:persisted?)
-    end
-  end
-
 private
   # Use callbacks to share common setup or constraints between actions.
   def set_ticket
-    @ticket = Ticket.find(params[:id])
+    @ticket = Ticket.where("id = ? OR uuid = ?", params[:id], params[:id]).first!
   end
 
   def ticket_params

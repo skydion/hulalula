@@ -1,5 +1,5 @@
-<%= form_tag(ticket_show_by_uuid_path, method: 'post') do %>
+<%= form_tag(search_tickets_path, method: :get) do %>
     <b><%= label_tag 'uuid', 'UUID: ' %></b>
-    <%= text_field_tag :uuid %>
+    <%= text_field_tag :id %>
     <%= submit_tag 'Search' %>
 <% end %>

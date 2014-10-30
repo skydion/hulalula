@@ -5,12 +5,12 @@ class Support < ActiveRecord::Base
   validates :login, presence: true, length: { minimum: 3 }, uniqueness: true
   validates :password, presence: true, length: { minimum: 8 } #, confirmation: true
   #validates_confirmation_of :password
-  
+
   validates :email, presence: true, :uniqueness => true
   validates_format_of :email, :with => /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/
 
   def check_login
-    Support.find_by('login = ? and password = ?', login, password)
+    Support.where(login: login, password: password).first
   end
 
   def full_name

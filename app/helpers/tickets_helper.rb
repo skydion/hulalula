@@ -5,4 +5,8 @@ module TicketsHelper
       content_tag(:div, &block)
     end
   end
+
+  def css_class
+    @cells.length == 4 ? 'cell' : 'tab'
+  end
 end

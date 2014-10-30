@@ -1,4 +1,4 @@
-<% if @class == 'cell' %>
+<% if css_class == 'cell' %>
     <script type="text/javascript" charset="utf-8">
         setMainHeight();
 
@@ -40,11 +40,11 @@
 <% end %>
 
 <% @cells.each do |val| %>
-    <div class="<%= @class %>">
+    <div class="<%= css_class %>">
       <header>
         <span class="header_text"><%= val[0] %></span>
 
-        <% if @class == 'cell' %>
+        <% if css_class == 'cell' %>
           <span class='expand_button'><%= link_to '', '#' %></span>
         <% end %>
       </header>

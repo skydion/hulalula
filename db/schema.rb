@@ -65,10 +65,10 @@ ActiveRecord::Schema.define(version: 20140917123847) do
     t.datetime "created_at"
     t.integer  "support_id"
     t.integer  "ticket_state_id"
-    t.string   "username",    default: ""
-    t.string   "email",       default: ""
-    t.string   "subject",     default: ""
-    t.text     "problem",     default: ""
+    t.string   "username",        default: ""
+    t.string   "email",           default: ""
+    t.string   "subject",         default: ""
+    t.text     "problem",         default: ""
     t.datetime "updated_at"
   end
 

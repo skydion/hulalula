@@ -24,11 +24,12 @@ Rails.application.routes.draw do
 
   get 'logout', to: 'supports#logout'
 
-  get 'ticket/:uuid', to: 'tickets#show_by_uuid', constraints: { uuid: /[A-Z]{3}\d{3}[A-Z]{3}\d{3}[A-Z]{3}/ }
-  post 'ticket/show_by_uuid', to: 'tickets#show_by_uuid'
-
-  resources :tickets, constraints: { id: /\d+/ } do
+  resources :tickets, constraints: { id: /(\d+)|([A-Z]{3}\d{3}[A-Z]{3}\d{3}[A-Z]{3})/ } do
     resources :comments, constraints: { id: /\d+/ }
+
+    collection do
+      get :search, action: 'show'
+    end
   end
 
   get '/contact' => 'application#contact'

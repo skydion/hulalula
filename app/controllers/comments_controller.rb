@@ -6,9 +6,9 @@ class CommentsController < ApplicationController
     @comment = @ticket.comments.build(comment_params)
 
     if @comment.owner_id
-      @ticket.ticket_state_id = 2
+      @ticket.ticket_state_id = TicketState::SUPPORT
     else
-      @ticket.ticket_state_id = 1
+      @ticket.ticket_state_id = TicketState::CUSTOMER
     end
     @ticket.save
 
@@ -18,7 +18,7 @@ class CommentsController < ApplicationController
       if @comment.owner_id
         redirect_to ticket_path(@ticket)
       else
-        redirect_to '/ticket/' + @ticket.uuid.to_s
+        redirect_to ticket_path(@ticket.uuid.to_s)
       end
     end
   end
@@ -35,7 +35,7 @@ class CommentsController < ApplicationController
       if owner_id
         redirect_to ticket_path(@ticket)
       else
-        redirect_to '/ticket/' + @ticket.uuid.to_s
+        redirect_to ticket_path(@ticket.uuid.to_s)
       end
     end
   end
