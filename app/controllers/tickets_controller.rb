@@ -17,7 +17,7 @@ class TicketsController < ApplicationController
 
   def update
     if @ticket
-      @ticket.assign_attributes(params)
+      @ticket.assign_attributes(ticket_params)
 
       # rails dirty attributes
       if @ticket.support_id_changed? || @ticket.ticket_state_id_changed?
