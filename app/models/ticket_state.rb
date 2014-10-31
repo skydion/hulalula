@@ -1,6 +1,6 @@
 class TicketState < ActiveRecord::Base
+  belongs_to :ticket
+
   SUPPORT = 2
   CUSTOMER = 1
-
-  belongs_to :ticket
 end

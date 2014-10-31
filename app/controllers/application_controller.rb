@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   def check_authentic_user
     unless session[:user_id]
       flash[:notice] = 'Please log in'
-      redirect_to(:controller => 'application', :action => 'index')
+      redirect_to root_path
     end
   end
 

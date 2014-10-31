@@ -6,7 +6,7 @@ class SupportsController < ApplicationController
 
   def new
     @support = Support.new
-    @support.role_id = 2 # set default (guest) role
+    @support.role_id = Role::GUEST
 
     @roles = Role.all
   end
@@ -52,7 +52,7 @@ class SupportsController < ApplicationController
 
   def logout
     reset_session
-    redirect_to :controller => 'application'
+    redirect_to root_path
   end
 
   def authenticate
@@ -61,13 +61,13 @@ class SupportsController < ApplicationController
 
       if valid.nil?
         flash[:alert] = 'Invalid Login or Password, check it and try again.'
-        redirect_to :controller => 'application'
+        redirect_to root_path
       else
         session[:user_id] = valid.id
         session[:login] = valid.login
         session[:role_name] = Role.find_by(id: valid.role_id).name
 
-        redirect_to :controller => 'tickets'
+        redirect_to ticket_path
       end
   end
 

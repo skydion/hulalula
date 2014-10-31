@@ -14,7 +14,7 @@ class Ticket < ActiveRecord::Base
   #attr_accessor :uuid
 
   def current_status
-    status = TicketState.find_by(id: self.ticket_state_id)
+    status = TicketState.find_by(id: :ticket_state_id)
 
     if status.nil?
       status = TicketState.find_by(id: TicketState::CUSTOMER)
