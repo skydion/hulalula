@@ -33,7 +33,7 @@ class CommentsController < ApplicationController
 
 private
   def set_ticket
-    @ticket = Ticket.where(params[:ticket_id]).first
+    @ticket = Ticket.where(id: params[:ticket_id]).first
   end
 
   def comment_params
