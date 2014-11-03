@@ -1,5 +1,5 @@
 class TicketsController < ApplicationController
-  before_filter :check_authentic_user, :except =>[ :new, :show, :create ]
+  before_filter :check_authentic_user, except: [ :new, :show, :create ]
   before_action :set_ticket, only: [:show, :edit, :update, :destroy]
 
   def new
@@ -21,14 +21,14 @@ class TicketsController < ApplicationController
 
       # rails dirty attributes
       if @ticket.support_id_changed? || @ticket.ticket_state_id_changed?
-        if @ticket.save
-          flash[:notice] = 'Ticket state was successfully updated.'
-          #NotificationMailer.ticket_status_changed(@ticket).deliver
+        flash[:notice] = 'Ticket state was successfully updated.'
+        #NotificationMailer.ticket_status_changed(@ticket).deliver
+      end
 
-          redirect_to tickets_path
-        else
-          render 'new'
-        end
+      if @ticket.save
+        redirect_to tickets_path
+      else
+        render 'edit'
       end
     end
   end
@@ -55,11 +55,7 @@ class TicketsController < ApplicationController
     if @ticket
       @ticket.destroy
 
-      if session[:user_id].nil?
-        redirect_to root_path
-      else
-        redirect_to tickets_path
-      end
+      session[:user_id].nil? ? redirect_to(root_path) : redirect_to(tickets_path)
     end
   end
 

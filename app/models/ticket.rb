@@ -3,6 +3,7 @@ class Ticket < ActiveRecord::Base
   belongs_to :support
   belongs_to :ticket_state
 
+  validates :uuid, presence: true
   validates :username, presence: true, length: { minimum: 3 }
   validates :email, presence: true #, uniqueness: true
   validates_format_of :email, :with => /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/
@@ -13,33 +14,28 @@ class Ticket < ActiveRecord::Base
 
   before_validation(on: :create) do
     begin
-      set_uuid
+      alpha = (:A..:Z).to_a.shuffle[0,9].join
+      digit = (0..9).to_a.shuffle[0,6].join
+      self.uuid = alpha[0,3] + digit[0,3] + alpha[3,3] + digit[3,3] + alpha[6,3]
     end while Ticket.where(uuid: self.uuid).first
   end
 
-  def set_uuid
-    alpha = (:A..:Z).to_a.shuffle[0,9].join
-    digit = (0..9).to_a.shuffle[0,6].join
-
-    self.uuid = alpha[0,3] + digit[0,3] + alpha[3,3] + digit[3,3] + alpha[6,3]
-  end
-
   def current_status
-    status = TicketState.find_by(id: :ticket_state_id)
+    status = TicketState.where(id: :ticket_state_id).first
 
     if status.nil?
-      status = TicketState.find_by(id: TicketState::CUSTOMER)
+      status = TicketState.where(id: TicketState::CUSTOMER).first
     end
 
     status.name
   end
 
   def owner_name(owner_id)
-    owner_id ? Support.find_by(id: owner_id).login : 'Customer';
+    owner_id ? Support.where(id: owner_id).first.login : 'Customer';
   end
 
   def current_support
-    support = Support.find_by(id: support_id)
+    support = Support.where(id: support_id).first
     support ? support.login : 'Customer'
   end
 end
