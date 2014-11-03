@@ -11,7 +11,18 @@ class Ticket < ActiveRecord::Base
 
   scope :states, ->(ids) { joins(:ticket_state).where(ticket_states: { id: ids }) }
 
-  #attr_accessor :uuid
+  before_validation(on: :create) do
+    begin
+      set_uuid
+    end while Ticket.where(uuid: self.uuid).first
+  end
+
+  def set_uuid
+    alpha = (:A..:Z).to_a.shuffle[0,9].join
+    digit = (0..9).to_a.shuffle[0,6].join
+
+    self.uuid = alpha[0,3] + digit[0,3] + alpha[3,3] + digit[3,3] + alpha[6,3]
+  end
 
   def current_status
     status = TicketState.find_by(id: :ticket_state_id)
@@ -22,13 +33,6 @@ class Ticket < ActiveRecord::Base
 
     status.name
   end
-
-  # def set_uuid
-  #     alpha = (:A..:Z).to_a.shuffle[0,9].join
-  #     digit = (0..9).to_a.shuffle[0,6].join
-  #
-  #     self.uuid = alpha[0,3] + digit[0,3] + alpha[3,3] + digit[3,3] + alpha[6,3]
-  # end
 
   def owner_name(owner_id)
     owner_id ? Support.find_by(id: owner_id).login : 'Customer';

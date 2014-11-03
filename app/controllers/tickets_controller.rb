@@ -40,11 +40,6 @@ class TicketsController < ApplicationController
       @ticket.support_id = session[:user_id]
       @ticket.ticket_state_id = TicketState::CUSTOMER
 
-      # generate unique url
-      alpha = (:A..:Z).to_a.shuffle[0,9].join
-      digit = (0..9).to_a.shuffle[0,6].join
-      @ticket.uuid = alpha[0,3] + digit[0,3] + alpha[3,3] + digit[3,3] + alpha[6,3]
-
       if @ticket.save
         #NotificationMailer.new_ticket(@ticket).deliver
 

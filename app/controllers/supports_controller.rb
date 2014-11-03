@@ -67,7 +67,7 @@ class SupportsController < ApplicationController
         session[:login] = valid.login
         session[:role_name] = Role.find_by(id: valid.role_id).name
 
-        redirect_to ticket_path
+        redirect_to tickets_path
       end
   end
 
@@ -76,9 +76,11 @@ class SupportsController < ApplicationController
       if params[:support].has_key?(:password_confirmation)
         if params[:support][:password] != params[:support][:password_confirmation]
           flash[:alert] = 'Password did not match.'
+
           respond_with @support do |format|
             format.html { render partial: 'change_password' }
           end
+
           return
         else
           @support.update_column(:password, params[:support][:password])
