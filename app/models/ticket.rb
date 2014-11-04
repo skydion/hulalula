@@ -21,7 +21,7 @@ class Ticket < ActiveRecord::Base
   end
 
   def current_status
-    status = TicketState.where(id: :ticket_state_id).first
+    status = TicketState.where(id: self.ticket_state_id).first
 
     if status.nil?
       status = TicketState.where(id: TicketState::CUSTOMER).first
@@ -35,7 +35,7 @@ class Ticket < ActiveRecord::Base
   end
 
   def current_support
-    support = Support.where(id: support_id).first
+    support = Support.where(id: self.support_id).first
     support ? support.login : 'Customer'
   end
 end

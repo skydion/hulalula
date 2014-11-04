@@ -43,7 +43,7 @@
         </td>
 
         <td>
-          <% states = TicketState.where("ticket_states.id IN (?)", tab.states) %>
+          <% states = TicketState.where(ticket_states: { id: tab.states }) %>
           <% states.each do |state| %>
             <%= state.name %><br>
           <% end %>
