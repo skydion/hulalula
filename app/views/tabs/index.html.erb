@@ -42,12 +42,7 @@
           <%= render partial: 'checkbox', locals: {tab: tab}, layout: false %>
         </td>
 
-        <td>
-          <% states = TicketState.where(ticket_states: { id: tab.states }) %>
-          <% states.each do |state| %>
-            <%= state.name %><br>
-          <% end %>
-        </td>
+        <%= tab_ticket_states(tab) %>
 
         <td align='center'>
           <%= link_to image_tag('edit-icon.png', alt: ''), edit_tab_path(tab) %>
