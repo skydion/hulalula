@@ -1,7 +1,6 @@
-
 class TicketStatesController < ApplicationController
   before_filter :check_authentic_user
-  before_action :set_ticket_state, only: [:show, :edit, :update, :destroy]
+  before_action :set_ticket_state, only: %i[show edit update destroy]
 
   # GET /ticket_states
   # GET /ticket_states.json
@@ -11,8 +10,7 @@ class TicketStatesController < ApplicationController
 
   # GET /ticket_states/1
   # GET /ticket_states/1.json
-  def show
-  end
+  def show; end
 
   # GET /ticket_states/new
   def new
@@ -20,8 +18,7 @@ class TicketStatesController < ApplicationController
   end
 
   # GET /ticket_states/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /ticket_states
   # POST /ticket_states.json
@@ -30,7 +27,7 @@ class TicketStatesController < ApplicationController
 
     respond_to do |format|
       if @ticket_state.save
-        #format.html { redirect_to @ticket_state, notice: 'Ticket state was successfully created.' }
+        # format.html { redirect_to @ticket_state, notice: 'Ticket state was successfully created.' }
         flash[:notice] = 'Ticket state was successfully created.'
         format.html { redirect_to ticket_states_path }
         format.json { render :show, status: :created, location: @ticket_state }
@@ -68,13 +65,14 @@ class TicketStatesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_ticket_state
-      @ticket_state = TicketState.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def ticket_state_params
-      params.require(:ticket_state).permit(:name) if params[:ticket_state]
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_ticket_state
+    @ticket_state = TicketState.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def ticket_state_params
+    params.require(:ticket_state).permit(:name) if params[:ticket_state]
+  end
 end

@@ -1,6 +1,6 @@
 class TabsController < ApplicationController
   before_filter :check_authentic_user
-  before_action :set_tab, only: [:show, :edit, :update, :destroy]
+  before_action :set_tab, only: %i[show edit update destroy]
 
   # GET /tabs
   # GET /tabs.json
@@ -11,8 +11,7 @@ class TabsController < ApplicationController
 
   # GET /tabs/1
   # GET /tabs/1.json
-  def show
-  end
+  def show; end
 
   # GET /tabs/new
   def new
@@ -33,7 +32,7 @@ class TabsController < ApplicationController
 
     respond_to do |format|
       if @tab.save
-        #format.html { redirect_to @tab, notice: 'Tab was successfully created.' }
+        # format.html { redirect_to @tab, notice: 'Tab was successfully created.' }
         format.html { redirect_to tabs_path, notice: 'Tab was successfully created.' }
         format.json { render :show, status: :created, location: @tab }
       else
@@ -50,7 +49,7 @@ class TabsController < ApplicationController
 
     respond_to do |format|
       if @tab.update(tab_params)
-        #format.html { redirect_to @tab, notice: 'Tab was successfully updated.' }
+        # format.html { redirect_to @tab, notice: 'Tab was successfully updated.' }
         format.html { redirect_to tabs_path, notice: 'Tab was successfully updated.' }
         format.json { render :show, status: :ok, location: @tab }
       else
@@ -71,13 +70,14 @@ class TabsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_tab
-      @tab = Tab.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def tab_params
-      params.require(:tab).permit(:name, :show, :states) if params[:tab]
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_tab
+    @tab = Tab.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def tab_params
+    params.require(:tab).permit(:name, :show, :states) if params[:tab]
+  end
 end

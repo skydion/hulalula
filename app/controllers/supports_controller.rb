@@ -1,6 +1,8 @@
 class SupportsController < ApplicationController
-  before_filter :check_authentic_user, :except =>[ :authenticate ]
-  before_action :set_support, only: [:show, :edit, :update, :destroy]
+  has_secure_password
+
+  before_filter :check_authentic_user, except: [:authenticate]
+  before_action :set_support, only: %i[show edit update destroy]
 
   def new
     @support = Support.new
@@ -14,7 +16,7 @@ class SupportsController < ApplicationController
   def update
     @roles = Role.all
 
-    if params[:support].has_key?(:password_confirmation)
+    if params[:support].key?(:password_confirmation)
       if params[:support][:password] != params[:support][:password_confirmation]
         flash[:alert] = 'Password did not match.'
         render 'change_password'
@@ -46,8 +48,7 @@ class SupportsController < ApplicationController
     end
   end
 
-  def show
-  end
+  def show; end
 
   def index
     @roles = Role.all
@@ -61,30 +62,31 @@ class SupportsController < ApplicationController
 
   def logout
     reset_session
-    redirect_to :controller => 'application'
+    redirect_to controller: 'application'
   end
 
   def authenticate
-      @support = Support.new(login: params[:support][:login], password: params[:support][:password])
-      valid = @support.check_login
+    @support = Support.new(login: params[:support][:login], password: params[:support][:password])
+    valid = @support.check_login
 
-      if valid.nil?
-        flash[:alert] = 'Invalid Login or Password, check it and try again.'
-        redirect_to :controller => 'application'
-      else
-        session[:user_id] = valid.id
-        session[:login] = valid.login
-        session[:role_name] = Role.find_by(id: valid.role_id).name
+    if valid.nil?
+      flash[:alert] = 'Invalid Login or Password, check it and try again.'
+      redirect_to controller: 'application'
+    else
+      session[:user_id] = valid.id
+      session[:login] = valid.login
+      session[:role_name] = Role.find_by(id: valid.role_id).name
 
-        redirect_to :controller => 'tickets'
-      end
+      redirect_to controller: 'tickets'
+    end
   end
 
   def change_password
     @support = Support.find(params[:id])
   end
 
-private
+  private
+
   # Use callbacks to share common setup or constraints between actions.
   def set_support
     @support = Support.find(params[:id])
